@@ -1,0 +1,120 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_ft_vec_mul.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/10 17:17:46 by weng              #+#    #+#             */
+/*   Updated: 2022/05/10 23:58:57 by weng             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minirt.h"
+
+void	test_scalar(void)
+{
+	t_vec	*input;
+	t_vec	*vec;
+
+	input = ft_vec3_new(1, 2, 3);
+	vec = ft_vec_mul_scalar(input, 4);
+	if (vec->size != 3
+		|| eq_double(4, vec->data[0]) == 0
+		|| eq_double(8, vec->data[1]) == 0
+		|| eq_double(12, vec->data[2]) == 0)
+		printf("ft_vec_mul_scalar: Error!\n");
+	else
+		printf("ft_vec_mul_scalar: OK\n");
+	ft_vec_del(input);
+	ft_vec_del(vec);
+}
+
+void	test_elem(void)
+{
+	t_vec	*a;
+	t_vec	*b;
+	t_vec	*vec;
+
+	a = ft_vec3_new(1, 2, 3);
+	b = ft_vec3_new(4, 5, 6);
+	vec = ft_vec_mul_elem(a, b);
+	if (vec->size != 3
+		|| eq_double(4, vec->data[0]) == 0
+		|| eq_double(10, vec->data[1]) == 0
+		|| eq_double(18, vec->data[2]) == 0)
+		printf("ft_vec_mul_elem: Error!\n");
+	else
+		printf("ft_vec_mul_elem: OK\n");
+	ft_vec_del(a);
+	ft_vec_del(b);
+	ft_vec_del(vec);
+}
+
+void	test_dot(void)
+{
+	t_vec	*a;
+	t_vec	*b;
+	double	val;
+
+	a = ft_vec3_new(1, 2, 3);
+	b = ft_vec3_new(4, 5, 6);
+	val = ft_vec_mul_dot(a, b);
+	if (eq_double(32, val) == 0)
+		printf("ft_vec_mul_dot: Error!\n");
+	else
+		printf("ft_vec_mul_dot: OK\n");
+	ft_vec_del(a);
+	ft_vec_del(b);
+}
+
+void	test_cross(void)
+{
+	t_vec	*a;
+	t_vec	*b;
+	t_vec	*vec;
+
+	a = ft_vec3_new(1, 2, 3);
+	b = ft_vec3_new(4, 5, 6);
+	vec = ft_vec_mul_cross(a, b);
+	if (vec->size != 3
+		|| eq_double(-3, vec->data[0]) == 0
+		|| eq_double(6, vec->data[1]) == 0
+		|| eq_double(-3, vec->data[2]) == 0)
+		printf("ft_vec_mul_cross: Error!\n");
+	else
+		printf("ft_vec_mul_cross: OK\n");
+	ft_vec_del(a);
+	ft_vec_del(b);
+	ft_vec_del(vec);
+}
+
+void	test_triple(void)
+{
+	t_vec	*a;
+	t_vec	*b;
+	t_vec	*c;
+	double	val;
+
+	a = ft_vec3_new(1, 2, 3);
+	b = ft_vec3_new(4, 5, 6);
+	c = ft_vec3_new(7, 8, 9);
+	val = ft_vec_mul_triple(a, b, c);
+	if (eq_double(0, val) == 0)
+		printf("ft_vec_mul_triple: Error!\n");
+	else
+		printf("ft_vec_mul_triple: OK\n");
+	ft_vec_del(a);
+	ft_vec_del(b);
+	ft_vec_del(c);
+}
+
+int	main(void)
+{
+	test_scalar();
+	test_elem();
+	test_dot();
+	test_cross();
+	test_triple();
+	return (0);
+}

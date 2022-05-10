@@ -4,7 +4,9 @@ CFLAGS	=	-Wall -Wextra -Werror -I./include -g -fsanitize=address
 
 # source and object files
 SRCDIR	=	src
-SRCS	=	ft_vec.c
+SRCS	=	ft_math.c \
+			ft_vec.c \
+			ft_vec_mul.c
 OBJDIR	=	obj
 OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
@@ -32,4 +34,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean
+norm:
+	norminette include/* src/*
+
+.PHONY: clean norm

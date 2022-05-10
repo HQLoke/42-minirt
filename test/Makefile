@@ -1,19 +1,18 @@
 # Implicit variables
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror -I../include -g -fsanitize=address
+LDFLAGS	=	-L..
+LDLIBS	=	-lrt
 SRCS	=	$(wildcard test*.c)
 MAINS	=	$(SRCS:test_ft_%.c=%)
 
-# Libraries
-LIBRT	=	../librt.a
-
 all: $(MAINS)
 
-$(LIBRT):
-	@$(MAKE) --no-print-directory -C .. librt.a
+librt:
+	make --no-print-directory -C .. librt.a
 
-%: test_ft_%.c $(LIBRT)
-	@$(CC) $(CPPFLAGS) $(CFLAGS) $< $(LIBRT) -o $@
+%: test_ft_%.c librt
+	@$(CC) $(CPPFLAGS) $(CFLAGS) $< -o $@ $(LDFLAGS) $(LDLIBS)
 	@echo Testing $<:
 	@./$@
 	@$(RM) $@
@@ -27,4 +26,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean
+norm:
+	norminette *.c
+
+.PHONY: clean librt norm
