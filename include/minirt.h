@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 10:06:41 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/11 10:25:11 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int		eq_double(double a, double b);
 
 // ft_vec.c
 t_vec	*ft_vec_new(size_t n, ...);
+t_vec	*ft_vec_copy(t_vec	*vec);
 t_vec	*ft_vec3_new(double x, double y, double z);
 void	ft_vec_del(t_vec *vec);
+void	ft_vec_del_many(size_t n, ...);
 
 // ft_vec_mul.c -- various multiplication functions for vectors
 t_vec	*ft_vec_mul_scalar(t_vec *a, double f);
