@@ -4,7 +4,8 @@ CFLAGS	=	-Wall -Wextra -Werror -I./include -g -fsanitize=address
 
 # source and object files
 SRCDIR	=	src
-SRCS	=	ft_math.c \
+SRCS	=	ft_mat.c \
+			ft_math.c \
 			ft_vec.c \
 			ft_vec_mul.c \
 			ft_vec_op.c
@@ -15,6 +16,9 @@ OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 LIBRT	=	librt.a
 
 all: $(LIBRT)
+
+libft:
+	$(MAKE) -C libft
 
 $(OBJDIR):
 	@mkdir $@
@@ -38,4 +42,4 @@ re: fclean all
 norm:
 	norminette include/* src/*
 
-.PHONY: clean norm
+.PHONY: libft clean norm

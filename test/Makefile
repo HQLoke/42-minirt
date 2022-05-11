@@ -1,8 +1,8 @@
 # Implicit variables
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror -I../include -g -fsanitize=address
-LDFLAGS	=	-L..
-LDLIBS	=	-lrt -lm
+LDFLAGS	=	-L.. -L../libft
+LDLIBS	=	-lrt -lft -lm
 SRCS	=	$(wildcard test*.c)
 MAINS	=	$(SRCS:test_ft_%.c=%)
 
