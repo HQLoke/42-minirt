@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:48:22 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 10:08:34 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/11 10:45:34 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,27 @@ void	test_angle(void)
 	ft_vec_del(b);
 }
 
+void	test_normalise(void)
+{
+	t_vec	*a;
+	double	val;
+
+	a = ft_vec3_new(3, 4, 12);
+	ft_vec_normalise(a);
+	val = ft_vec_len(a);
+	if (eq_double(1, val) == 0)
+		printf("ft_vec_normalise: Error!\n");
+	else
+		printf("ft_vec_normalise: OK\n");
+	ft_vec_del(a);
+}
+
 int	main(void)
 {
 	test_add();
 	test_sub();
 	test_len();
 	test_angle();
+	test_normalise();
 	return (0);
 }

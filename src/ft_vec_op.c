@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 00:14:12 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 09:51:06 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/11 10:49:47 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,24 @@ double	ft_vec_len(t_vec *a)
 double	ft_vec_angle(t_vec *a, t_vec *b)
 {
 	return (acos(ft_vec_mul_dot(a, b) / ft_vec_len(a) / ft_vec_len(b)));
+}
+
+/* Normalise an input vector in-place */
+t_vec	*ft_vec_normalise(t_vec *a)
+{
+	double	len;
+	t_vec	*vec;
+
+	len = ft_vec_len(a);
+	if (eq_double(0, len) == 1)
+	{
+		perror("Cannot normalise vector of length 0.");
+		exit(1);
+	}
+	vec = ft_vec_mul_scalar(a, 1 / len);
+	free(a->data);
+	a->size = vec->size;
+	a->data = vec->data;
+	free(vec);
+	return (a);
 }

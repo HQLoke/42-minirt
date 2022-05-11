@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 10:25:11 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/11 10:34:37 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ t_vec	*ft_vec_add(t_vec *a, t_vec *b);
 t_vec	*ft_vec_sub(t_vec *a, t_vec *b);
 double	ft_vec_len(t_vec *a);
 double	ft_vec_angle(t_vec *a, t_vec *b);
+t_vec	*ft_vec_normalise(t_vec *a);
 
 #endif
