@@ -6,7 +6,8 @@ CFLAGS	=	-Wall -Wextra -Werror -I./include -g -fsanitize=address
 SRCDIR	=	src
 SRCS	=	ft_math.c \
 			ft_vec.c \
-			ft_vec_mul.c
+			ft_vec_mul.c \
+			ft_vec_op.c
 OBJDIR	=	obj
 OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 

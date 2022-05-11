@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/10 17:35:06 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/11 10:06:41 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 
 typedef struct s_vec
 {
@@ -40,5 +44,11 @@ t_vec	*ft_vec_mul_elem(t_vec *a, t_vec *b);
 double	ft_vec_mul_dot(t_vec *a, t_vec *b);
 t_vec	*ft_vec_mul_cross(t_vec *a, t_vec *b);
 double	ft_vec_mul_triple(t_vec *a, t_vec *b, t_vec *c);
+
+// ft_vec_op.c -- other vector operations
+t_vec	*ft_vec_add(t_vec *a, t_vec *b);
+t_vec	*ft_vec_sub(t_vec *a, t_vec *b);
+double	ft_vec_len(t_vec *a);
+double	ft_vec_angle(t_vec *a, t_vec *b);
 
 #endif
