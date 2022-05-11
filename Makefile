@@ -5,6 +5,7 @@ CFLAGS	=	-Wall -Wextra -Werror -I./include -g -fsanitize=address
 # source and object files
 SRCDIR	=	src
 SRCS	=	ft_mat.c \
+			ft_mat_mul.c \
 			ft_math.c \
 			ft_vec.c \
 			ft_vec_mul.c \
