@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:00:03 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/11 20:16:35 by hloke            ###   ########.fr       */
+/*   Updated: 2022/05/12 10:28:32 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,45 +15,87 @@
 /*
 Returns true if in range, else returns false
 */
-bool	check_float_range(double value, double min, double max)
+static bool	check_float_range(double min, double max, double val)
 {
-	if (value >= min && value <= max)
+	if (val >= min && val <= max)
 		return (true);
 	return (false);
 }
 
 /*
-Given a 2D array, return the number of elements in the array
+This function serves two purposes
+One is to check if size of array is equal to n, returns 1 if false
+Two is to check if each value in array is within min/max, returns 2 if false
+Returns 0 if all true
+Remember to free the arr in the caller function
 */
-size_t	ft_array_size(char **array)
-{
-	size_t	num;
-
-	num = 0;
-	if (array != NULL)
-	{
-		while (array[num] != NULL)
-			num += 1;
-	}
-	return (num);
-}
-
-/* 
-Free any double pointer of any data type
-Must typecast using (void **)
-*/
-void	ft_memdel(void **ptr)
+static int	check_mul_val(char **arr, int n, double min, double max)
 {
 	int	i;
 
+	if (ft_array_size(arr) != n)
+		return (1);
 	i = 0;
-	if (ptr != NULL)
+	while (arr[i] != NULL)
 	{
-		while (ptr[i] != NULL)
-		{
-			free (ptr[i]);
-			i += 1;
-		}
-		free (ptr);
-	}
+		if (check_float_range(min, max, atof(arr[i])) == false)
+			return (2);
+		i += 1;
+	}	
+	return (0);
+}
+
+/*
+Checks the R,G,B colors
+*/
+void	check_rgb(char *val, int line_num, t_list **err)
+{
+	char	**tmp;
+	int		ret;
+
+	tmp = ft_split(val, ',');
+	ret = check_mul_val(tmp, 3, (float)0, (float)255);
+	if (ret == 1)
+		ft_lstadd_back(err, ft_lstnew("RGB requires 3 colors", line_num));
+	else if (ret == 2)
+		ft_lstadd_back(err, ft_lstnew("RGB colors must be in range [0, 255]", \
+			line_num));
+	ft_memdel((void **)tmp);
+}
+
+/*
+Checks the 3D normalized orientation vector
+*/
+void	check_vector(char *val, int line_num, t_list **err)
+{
+	char	**tmp;
+	int		ret;
+
+	tmp = ft_split(val, ',');
+	ret = check_mul_val(tmp, 3, -1.0, 1.0);
+	if (ret == 1)
+		ft_lstadd_back(err, ft_lstnew("3D normalized orientation vector \
+			requires 3 coordinates", line_num));
+	else if (ret == 2)
+		ft_lstadd_back(err, ft_lstnew("Each xyz axis must be in range \
+			[-1, 1]", line_num));
+	ft_memdel((void **)tmp);
+}
+
+/*
+Checks the x,y,z coordinates
+*/
+void	check_xyz(char *val, int line_num, t_list **err)
+{
+	char	**tmp;
+	int		ret;
+
+	tmp = ft_split(val, ',');
+	ret = check_mul_val(tmp, 3, (float)INT_MIN, (float)INT_MAX);
+	if (ret == 1)
+		ft_lstadd_back(err, ft_lstnew("xyz requires 3 coordinates", line_num));
+	else if (ret == 2)
+		ft_lstadd_back(err, ft_lstnew("Each xyz axis must be in range \
+			[-2147483648, 2147483647]", line_num));
+	ft_memdel((void **)tmp);
 }

@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 10:27:23 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/12 10:26:04 by hloke            ###   ########.fr       */
+/*   Created: 2022/05/12 09:06:39 by hloke             #+#    #+#             */
+/*   Updated: 2022/05/12 09:06:51 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	teach_them(void)
+/* 
+Free any double pointer of any data type
+Must typecast using (void **)
+*/
+void	ft_memdel(void **ptr)
 {
-	printf("Usage: ./minirt [scene file in format *.rt]\n");
-	return (1);
-}
+	int	i;
 
-int	main(int argc, char **argv)
-{
-	if (argc != 2)
-		return (teach_them());
-	error_handler(argv[1]);
-	return (0);
+	i = 0;
+	if (ptr != NULL)
+	{
+		while (ptr[i] != NULL)
+		{
+			free (ptr[i]);
+			i += 1;
+		}
+		free (ptr);
+	}
 }

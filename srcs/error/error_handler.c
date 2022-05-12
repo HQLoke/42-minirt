@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:34:22 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/11 20:15:02 by hloke            ###   ########.fr       */
+/*   Updated: 2022/05/12 10:30:39 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Prints Error followed by \n first.
 Then prints an explicit error message that shows where the error happened.
 Exit failure at last.
 */
-void	error_exit(char *str)
+static void	error_exit(char *str)
 {
 	write(STDERR_FILENO, "Error\n", 6);
 	write(STDERR_FILENO, str, ft_strlen(str));
@@ -32,11 +32,11 @@ For each error message, attach the line number where the error occured and print
 Doesn't have to free linked list because did not use malloc for error message.
 Exit failure at last.
 */
-void	multiple_error_exit(t_list **error)
+static void	multiple_error_exit(t_list **error)
 {
 	t_list	*tmp;
 	char	*num;
-	
+
 	write(STDERR_FILENO, "Error\n", 6);
 	tmp = *error;
 	while (tmp != NULL)
@@ -50,7 +50,6 @@ void	multiple_error_exit(t_list **error)
 		free (num);
 		tmp = tmp->next;
 	}
-	// system("leaks minirt");
 	exit (EXIT_FAILURE);
 }
 
@@ -117,7 +116,7 @@ void	error_handler(char *scene)
 	int		line_num;
 	char	*line;
 	t_list	*error;
-	
+
 	fd = check_file(scene);
 	line_num = 1;
 	line = get_next_line(fd);

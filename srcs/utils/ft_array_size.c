@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_array_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 10:27:23 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/12 10:26:04 by hloke            ###   ########.fr       */
+/*   Created: 2022/05/12 09:06:59 by hloke             #+#    #+#             */
+/*   Updated: 2022/05/12 09:07:09 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	teach_them(void)
+/*
+Given a 2D array, return the number of elements in the array
+*/
+size_t	ft_array_size(char **array)
 {
-	printf("Usage: ./minirt [scene file in format *.rt]\n");
-	return (1);
-}
+	size_t	num;
 
-int	main(int argc, char **argv)
-{
-	if (argc != 2)
-		return (teach_them());
-	error_handler(argv[1]);
-	return (0);
+	num = 0;
+	if (array != NULL)
+	{
+		while (array[num] != NULL)
+			num += 1;
+	}
+	return (num);
 }
