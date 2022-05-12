@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:17:46 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 22:30:35 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 22:52:06 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 void	test_scalar(void)
 {
-	t_vec	*input;
 	t_vec	*vec;
 	t_vec	*target;
 
-	input = ft_vec3_new(1, 2, 3);
+	vec = ft_vec3_new(1, 2, 3);
 	target = ft_vec3_new(4, 8, 12);
-	vec = ft_vec_mul_scalar(input, 4);
+	vec = ft_vec_mul_scalar(vec, 4);
 	if (eq_vec(vec, target) == 0)
 		printf("ft_vec_mul_scalar: Error!\n");
 	else
 		printf("ft_vec_mul_scalar: OK\n");
-	ft_vec_del(input);
 	ft_vec_del(vec);
 	ft_vec_del(target);
 }
@@ -34,20 +32,18 @@ void	test_elem(void)
 {
 	t_vec	*a;
 	t_vec	*b;
-	t_vec	*vec;
 	t_vec	*target;
 
 	a = ft_vec3_new(1, 2, 3);
 	b = ft_vec3_new(4, 5, 6);
-	vec = ft_vec_mul_elem(a, b);
+	a = ft_vec_mul_elem(a, b);
 	target = ft_vec3_new(4, 10, 18);
-	if (eq_vec(vec, target) == 0)
+	if (eq_vec(a, target) == 0)
 		printf("ft_vec_mul_elem: Error!\n");
 	else
 		printf("ft_vec_mul_elem: OK\n");
 	ft_vec_del(a);
 	ft_vec_del(b);
-	ft_vec_del(vec);
 	ft_vec_del(target);
 }
 
@@ -72,20 +68,18 @@ void	test_cross(void)
 {
 	t_vec	*a;
 	t_vec	*b;
-	t_vec	*vec;
 	t_vec	*target;
 
 	a = ft_vec3_new(1, 2, 3);
 	b = ft_vec3_new(4, 5, 6);
-	vec = ft_vec_mul_cross(a, b);
+	a = ft_vec_mul_cross(a, b);
 	target = ft_vec3_new(-3, 6, -3);
-	if (eq_vec(vec, target) == 0)
+	if (eq_vec(a, target) == 0)
 		printf("ft_vec_mul_cross: Error!\n");
 	else
 		printf("ft_vec_mul_cross: OK\n");
 	ft_vec_del(a);
 	ft_vec_del(b);
-	ft_vec_del(vec);
 	ft_vec_del(target);
 }
 

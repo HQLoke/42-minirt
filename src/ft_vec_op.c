@@ -64,7 +64,6 @@ double	ft_vec_angle(t_vec *a, t_vec *b)
 t_vec	*ft_vec_normalise(t_vec *a)
 {
 	double	len;
-	t_vec	*vec;
 
 	len = ft_vec_len(a);
 	if (eq_double(0, len) == 1)
@@ -72,10 +71,5 @@ t_vec	*ft_vec_normalise(t_vec *a)
 		perror("Cannot normalise vector of length 0.");
 		exit(1);
 	}
-	vec = ft_vec_mul_scalar(a, 1 / len);
-	free(a->data);
-	a->size = vec->size;
-	a->data = vec->data;
-	free(vec);
-	return (a);
+	return (ft_vec_mul_scalar(a, 1 / len));
 }
