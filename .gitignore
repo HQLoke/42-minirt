@@ -1,6 +1,13 @@
 # vscode
 .vscode
 
+# object files / library files
+obj/
+*.a
+
+# executable
+minirt
+
 # text files
 *.txt
 
