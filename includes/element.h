@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   element.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/11 13:57:31 by hloke            ###   ########.fr       */
+/*   Updated: 2022/05/12 16:01:37 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ RGB colors in range (0 - 255): 255, 255, 255
 */
 typedef struct s_ambient
 {
-	
+	int	dummy;
 }	t_ambient;
 
 /*
@@ -45,27 +45,27 @@ FOV: Horizontal field of view in degrees in range [0, 180]
 */
 typedef struct s_camera
 {
-	
+	int	dummy;
 }	t_camera;
 
 typedef struct s_light
 {
-	
+	int	dummy;
 }	t_light;
 
 typedef struct s_sphere
 {
-	
+	int	dummy;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	
+	int	dummy;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	
+	int	dummy;
 }	t_cylinder;
 
 #endif
