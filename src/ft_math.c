@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:28:12 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 23:22:11 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/13 00:28:42 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 /* Returns true if two doubles are nearly equal in value, false otherwise. */
 int	eq_double(double a, double b)
 {
-	return (fabs(a - b) <= (DBL_EPSILON * fabs(a + b)));
+	double	lhs;
+
+	lhs = fabs(a - b);
+	return (lhs <= (DBL_EPSILON * fabs(a + b)) || lhs <= DBL_EPSILON);
 }
 
 /* Returns true if two matrices are equal, false otherwise. */
