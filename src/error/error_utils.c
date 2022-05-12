@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:00:03 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/12 11:08:29 by hloke            ###   ########.fr       */
+/*   Updated: 2022/05/12 16:01:06 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Two is to check if each value in array is within min/max, returns 2 if false
 Returns 0 if all true
 Remember to free the arr in the caller function
 */
-static int	check_mul_val(char **arr, int n, double min, double max)
+static int	check_mul_val(char **arr, size_t n, double min, double max)
 {
 	int	i;
 
@@ -75,10 +75,10 @@ void	check_vector(char *val, int line_num, t_list **err)
 	ret = check_mul_val(tmp, 3, -1.0, 1.0);
 	if (ret == 1)
 		ft_lstadd_back(err, ft_lstnew("3D normalized orientation vector "
-			"requires 3 coordinates", line_num));
+				"requires 3 coordinates", line_num));
 	else if (ret == 2)
 		ft_lstadd_back(err, ft_lstnew("Each axis in normalized orientation "
-			"vector must be in range [-1, 1]", line_num));
+				"vector must be in range [-1, 1]", line_num));
 	ft_memdel((void **)tmp);
 }
 
@@ -96,6 +96,6 @@ void	check_xyz(char *val, int line_num, t_list **err)
 		ft_lstadd_back(err, ft_lstnew("xyz requires 3 coordinates", line_num));
 	else if (ret == 2)
 		ft_lstadd_back(err, ft_lstnew("Each axis must be in range "
-			"[-2147483648, 2147483647]", line_num));
+				"[-2147483648, 2147483647]", line_num));
 	ft_memdel((void **)tmp);
 }

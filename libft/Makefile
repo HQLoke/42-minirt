@@ -1,6 +1,6 @@
 # define variables used by implicit rule
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 
 # define source and object files
 SRCS	= ft_atoi.c \
@@ -60,16 +60,16 @@ OBJS_GNL	= $(SRCS_GNL:.c=.o)
 # other variables
 NAME	= libft.a
 
-all: $(NAME) bonus gnl
+all: $(NAME)
 
-$(NAME): $(OBJS) $(OBJS_LST)
-	$(AR) -rcs $(NAME) $(OBJS) $(OBJS_LST)
+$(NAME): $(OBJS) $(OBJS_LST) $(OBJS_GNL)
+	$(AR) -rcs $(NAME) $?
 
 bonus: $(OBJS_LST)
-	$(AR) -rcs $(NAME) $(OBJS_LST)
+	$(AR) -rcs $(NAME) $?
 
 gnl: $(OBJS_GNL)
-	$(AR) -rcs $(NAME) $(OBJS_GNL)
+	$(AR) -rcs $(NAME) $?
 
 .PHONY: clean
 clean:
