@@ -1,6 +1,6 @@
 # Implicit variables
 CC		=	gcc
-INCLUDE	=	-Iincludes -Ilibft
+INCLUDE	=	-Iinclude -Ilibft
 CFLAGS	=	-Wall -Wextra -Werror $(INCLUDE) -g3 -fsanitize=address
 FDFLAGS	=	-L. -Llibft
 FDLIBS	=	-lrt -lft
@@ -9,7 +9,7 @@ FDLIBS	=	-lrt -lft
 ERROR_DIR	=	error/
 UTILS_DIR	=	utils/
 
-SRCDIR	=	srcs
+SRCDIR	=	src
 SRCS	=	$(addprefix $(ERROR_DIR),	check_objects.c \
 										check_settings.c \
 										error_handler.c \
@@ -66,6 +66,6 @@ fclean: clean
 re: fclean all
 
 norm:
-	norminette includes/* srcs/*
+	norminette include/* src/*
 
 .PHONY: libft clean norm
