@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:32:53 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 10:25:50 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 22:36:14 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ void	test_copy(void)
 
 	vec = ft_vec3_new(1, 2.3, 45.6);
 	copy = ft_vec_copy(vec);
-	if (copy->size != 3
-		|| eq_double(1, copy->data[0]) == 0
-		|| eq_double(2.3, copy->data[1]) == 0
-		|| eq_double(45.6, copy->data[2]) == 0)
+	if (eq_vec(vec, copy) == 0)
 		printf("ft_vec_copy: Error!\n");
 	else
 		printf("ft_vec_copy: OK\n");

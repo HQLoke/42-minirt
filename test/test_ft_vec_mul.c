@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:17:46 by weng              #+#    #+#             */
-/*   Updated: 2022/05/10 23:58:57 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 22:30:35 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ void	test_scalar(void)
 {
 	t_vec	*input;
 	t_vec	*vec;
+	t_vec	*target;
 
 	input = ft_vec3_new(1, 2, 3);
+	target = ft_vec3_new(4, 8, 12);
 	vec = ft_vec_mul_scalar(input, 4);
-	if (vec->size != 3
-		|| eq_double(4, vec->data[0]) == 0
-		|| eq_double(8, vec->data[1]) == 0
-		|| eq_double(12, vec->data[2]) == 0)
+	if (eq_vec(vec, target) == 0)
 		printf("ft_vec_mul_scalar: Error!\n");
 	else
 		printf("ft_vec_mul_scalar: OK\n");
 	ft_vec_del(input);
 	ft_vec_del(vec);
+	ft_vec_del(target);
 }
 
 void	test_elem(void)
@@ -35,20 +35,20 @@ void	test_elem(void)
 	t_vec	*a;
 	t_vec	*b;
 	t_vec	*vec;
+	t_vec	*target;
 
 	a = ft_vec3_new(1, 2, 3);
 	b = ft_vec3_new(4, 5, 6);
 	vec = ft_vec_mul_elem(a, b);
-	if (vec->size != 3
-		|| eq_double(4, vec->data[0]) == 0
-		|| eq_double(10, vec->data[1]) == 0
-		|| eq_double(18, vec->data[2]) == 0)
+	target = ft_vec3_new(4, 10, 18);
+	if (eq_vec(vec, target) == 0)
 		printf("ft_vec_mul_elem: Error!\n");
 	else
 		printf("ft_vec_mul_elem: OK\n");
 	ft_vec_del(a);
 	ft_vec_del(b);
 	ft_vec_del(vec);
+	ft_vec_del(target);
 }
 
 void	test_dot(void)
@@ -73,20 +73,20 @@ void	test_cross(void)
 	t_vec	*a;
 	t_vec	*b;
 	t_vec	*vec;
+	t_vec	*target;
 
 	a = ft_vec3_new(1, 2, 3);
 	b = ft_vec3_new(4, 5, 6);
 	vec = ft_vec_mul_cross(a, b);
-	if (vec->size != 3
-		|| eq_double(-3, vec->data[0]) == 0
-		|| eq_double(6, vec->data[1]) == 0
-		|| eq_double(-3, vec->data[2]) == 0)
+	target = ft_vec3_new(-3, 6, -3);
+	if (eq_vec(vec, target) == 0)
 		printf("ft_vec_mul_cross: Error!\n");
 	else
 		printf("ft_vec_mul_cross: OK\n");
 	ft_vec_del(a);
 	ft_vec_del(b);
 	ft_vec_del(vec);
+	ft_vec_del(target);
 }
 
 void	test_triple(void)

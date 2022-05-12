@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 22:15:42 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 22:27:04 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_mat	*ft_affine_rotate_z(double theta);
 // ft_math.c
 int		eq_double(double a, double b);
 int		eq_mat(t_mat *A, t_mat *B);
+int		eq_vec(t_vec *a, t_vec *b);
 
 // ft_mat.c -- matrix construction and destruction functions
 t_mat	*ft_mat_empty(size_t row, size_t col);

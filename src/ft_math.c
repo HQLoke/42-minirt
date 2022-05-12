@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:28:12 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 13:55:27 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 22:26:38 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	eq_double(double a, double b)
 	return (fabs(a - b) <= (DBL_EPSILON * fabs(a + b)));
 }
 
-/* Returns true of two matrices are equal, false otherwise. */
+/* Returns true if two matrices are equal, false otherwise. */
 int	eq_mat(t_mat *A, t_mat *B)
 {
 	size_t	i;
@@ -33,8 +33,24 @@ int	eq_mat(t_mat *A, t_mat *B)
 		while (++j < A->col)
 		{
 			if (eq_double(A->data[i][j], B->data[i][j]) == 0)
-				continue ;
+				return (0);
 		}
+	}
+	return (1);
+}
+
+/* Returns true if two vectors are equal, false otherwise. */
+int	eq_vec(t_vec *a, t_vec *b)
+{
+	size_t	i;
+
+	if (a->size != b->size)
+		return (0);
+	i = -1;
+	while (++i < a->size)
+	{
+		if (eq_double(a->data[i], a->data[i]) == 0)
+			return (0);
 	}
 	return (1);
 }
