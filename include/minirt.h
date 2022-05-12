@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 23:05:41 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 13:25:52 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,16 @@ typedef struct s_vec
 	double	*data;
 }	t_vec;
 
+// ft_affine.c -- affine transformation matrix functions
+t_mat	*ft_affine_translate(double dx, double dy, double dz);
+t_mat	*ft_affine_scale(double scale);
+t_mat	*ft_affine_rotate_x(double theta);
+t_mat	*ft_affine_rotate_y(double theta);
+t_mat	*ft_affine_rotate_z(double theta);
+
 // ft_math.c
 int		eq_double(double a, double b);
+int		eq_mat(t_mat *A, t_mat *B);
 
 // ft_mat.c -- matrix construction and destruction functions
 t_mat	*ft_mat_empty(size_t row, size_t col);
@@ -56,6 +64,12 @@ t_mat	*ft_mat_mul_scalar(const double s, const t_mat *A);
 t_mat	*ft_mat_mul_elem(const t_mat *A, const t_mat *B);
 t_vec	*ft_mat_mul_vec(const t_mat *A, const t_vec *b);
 t_mat	*ft_mat_mul(const t_mat *A, const t_mat *B);
+
+// ft_mat_op.c -- other matrix operations
+t_mat	*ft_mat_add(t_mat *A, t_mat *B);
+t_mat	*ft_mat_sub(t_mat *A, t_mat *B);
+t_mat	*ft_mat_transpose(t_mat	*A);
+t_mat	*ft_mat_affine_inverse(t_mat *A);
 
 // ft_vec.c -- vector construction and destruction functions
 t_vec	*ft_vec_new(size_t n, ...);
