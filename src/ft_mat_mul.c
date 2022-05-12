@@ -6,31 +6,28 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:20:19 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 23:10:47 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/13 00:06:04 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-/* Returns the multiplication of scalar value and a matrix. */
-t_mat	*ft_mat_mul_scalar(const double s, const t_mat *A)
+/* Returns the multiplication of scalar value and a matrix, and assign
+ * the result to the matrix A, i.e. A = sA */
+t_mat	*ft_mat_mul_scalar(double s, t_mat *A)
 {
-	t_mat	*mat;
 	size_t	i;
 
-	mat = ft_mat_copy(A);
-	if (mat == NULL)
-		return (NULL);
 	i = -1;
 	while (++i < A->row * A->col)
-		mat->data[i / A->col][i % A->col] *= s;
-	return (mat);
+		A->data[i / A->col][i % A->col] *= s;
+	return (A);
 }
 
-/* Calculates the element-wise product of a two matrices. */
-t_mat	*ft_mat_mul_elem(const t_mat *A, const t_mat *B)
+/* Calculates the element-wise product of a two matrices, and assign the
+ * result to the matrix A, i.e. A = A ∘ B. */
+t_mat	*ft_mat_mul_elem(t_mat *A, const t_mat *B)
 {
-	t_mat	*mat;
 	size_t	row;
 	size_t	col;
 	size_t	i;
@@ -42,18 +39,15 @@ t_mat	*ft_mat_mul_elem(const t_mat *A, const t_mat *B)
 		perror("ft_mat_mul_elem: input matrices must have the same size.");
 		exit(1);
 	}
-	mat = ft_mat_empty(row, col);
 	i = -1;
 	while (++i < row * col)
-	{
-		mat->data[i / col][i % col]
-			= A->data[i / col][i % col] * B->data[i / col][i % col];
-	}
-	return (mat);
+		A->data[i / col][i % col] *= B->data[i / col][i % col];
+	return (A);
 }
 
-/* Returns the product of a matrix and a vector */
-t_vec	*ft_mat_mul_vec(const t_mat *A, const t_vec *b)
+/* Returns the product of a matrix and a vector, and assign the result
+ * to the vector b, i.e. b = A ⨯ b */
+t_vec	*ft_mat_mul_vec(const t_mat *A, t_vec *b)
 {
 	t_vec	*vec;
 	size_t	i;
@@ -75,16 +69,19 @@ t_vec	*ft_mat_mul_vec(const t_mat *A, const t_vec *b)
 			val += A->data[i][j] * b->data[j];
 		vec->data[i] = val;
 	}
-	return (vec);
+	ft_memmove(b->data, vec->data, sizeof(b->data[0]) * b->size);
+	ft_vec_del(vec);
+	return (b);
 }
 
-/* Returns the product of two matrices, i.e. A x B */
-t_mat	*ft_mat_mul(const t_mat *A, const t_mat *B)
+/* Returns the product of two matrices, and assign the result to matrix
+ * A, i.e. A = A x B */
+t_mat	*ft_mat_mul(t_mat *A, const t_mat *B)
 {
 	t_mat	*mat;
+	t_mat	copy;
 	size_t	i;
 	size_t	j;
-	double	val;
 
 	if (A->col != B->row)
 	{
@@ -95,11 +92,14 @@ t_mat	*ft_mat_mul(const t_mat *A, const t_mat *B)
 	i = -1;
 	while (++i < A->row * B->col)
 	{
-		val = 0;
 		j = -1;
 		while (++j < A->col)
-			val += A->data[i / mat->col][j] * B->data[j][i % mat->col];
-		mat->data[i / mat->col][i % mat->col] = val;
+			mat->data[i / mat->col][i % mat->col]
+				+= A->data[i / mat->col][j] * B->data[j][i % mat->col];
 	}
-	return (mat);
+	ft_memmove(&copy, A, sizeof(t_mat));
+	ft_memmove(A, mat, sizeof(t_mat));
+	ft_memmove(mat, &copy, sizeof(t_mat));
+	ft_mat_del(mat);
+	return (A);
 }

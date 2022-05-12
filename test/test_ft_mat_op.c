@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 10:59:52 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 13:51:57 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/13 00:12:53 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,24 @@ void	test_affine_inverse(void)
 	t_mat	*x = ft_affine_rotate_x(0.1);
 	t_mat	*y = ft_affine_rotate_y(0.2);
 	t_mat	*t = ft_affine_translate(1, 2, 3);
-	t_mat	*transform1 = ft_mat_mul(x, y);
-	t_mat	*transform2 = ft_mat_mul(transform1, t);
-	t_mat	*inv = ft_mat_affine_inverse(transform2);
-	t_mat	*out = ft_mat_mul(transform2, inv);
+
+	x = ft_mat_mul(x, y);
+	x = ft_mat_mul(x, t);
+
+	t_mat	*inv = ft_mat_affine_inverse(x);
+
+	x = ft_mat_mul(x, inv);
+
 	t_mat	*target = ft_mat_identity(4);
 
-	if (eq_mat(out, target) == 0)
+	if (eq_mat(x, target) == 0)
 		printf("ft_mat_affine_inverse: Error!\n");
 	else
 		printf("ft_mat_affine_inverse: OK\n");
 	ft_mat_del(x);
 	ft_mat_del(y);
 	ft_mat_del(t);
-	ft_mat_del(transform1);
-	ft_mat_del(transform2);
 	ft_mat_del(inv);
-	ft_mat_del(out);
 	ft_mat_del(target);
 }
 

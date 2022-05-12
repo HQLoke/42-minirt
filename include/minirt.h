@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 22:27:04 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 23:47:48 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ t_mat	*ft_mat_identity(size_t n);
 t_mat	*ft_mat_del(t_mat *mat);
 
 // ft_mat_mul.c -- various multiplication functions for matrices
-t_mat	*ft_mat_mul_scalar(const double s, const t_mat *A);
-t_mat	*ft_mat_mul_elem(const t_mat *A, const t_mat *B);
-t_vec	*ft_mat_mul_vec(const t_mat *A, const t_vec *b);
-t_mat	*ft_mat_mul(const t_mat *A, const t_mat *B);
+t_mat	*ft_mat_mul_scalar(double s, t_mat *A);
+t_mat	*ft_mat_mul_elem(t_mat *A, const t_mat *B);
+t_vec	*ft_mat_mul_vec(const t_mat *A, t_vec *b);
+t_mat	*ft_mat_mul(t_mat *A, const t_mat *B);
 
 // ft_mat_op.c -- other matrix operations
 t_mat	*ft_mat_add(t_mat *A, t_mat *B);

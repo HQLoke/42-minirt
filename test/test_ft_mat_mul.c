@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:03:44 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 16:34:14 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 23:56:45 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@ void	test_scalar(void)
 {
 	const double	ptr[] = {1, 2, 3, 4};
 	const double	ptr2[] = {2, 4, 6, 8};
-	t_mat			*in;
-	t_mat			*out;
+	t_mat			*mat;
 	t_mat			*target;
 
-	in = ft_mat_new(2, 2, ptr);
-	out = ft_mat_mul_scalar(2, in);
+	mat = ft_mat_new(2, 2, ptr);
+	mat = ft_mat_mul_scalar(2, mat);
 	target = ft_mat_new(2, 2, ptr2);
-	if (eq_mat(out, target) == 0)
+	if (eq_mat(mat, target) == 0)
 		printf("ft_mat_mul_scalar: Error!\n");
 	else
 		printf("ft_mat_mul_scalar: OK\n");
-	ft_mat_del(in);
-	ft_mat_del(out);
+	ft_mat_del(mat);
 	ft_mat_del(target);
 }
 
@@ -36,19 +34,17 @@ void	test_elem(void)
 {
 	const double	ptr[] = {1, 2, 3, 4};
 	const double	ptr2[] = {1, 4, 9, 16};
-	t_mat			*in;
-	t_mat			*out;
+	t_mat			*mat;
 	t_mat			*target;
 
-	in = ft_mat_new(2, 2, ptr);
-	out = ft_mat_mul_elem(in, in);
+	mat = ft_mat_new(2, 2, ptr);
+	mat = ft_mat_mul_elem(mat, mat);
 	target = ft_mat_new(2, 2, ptr2);
-	if (eq_mat(out, target) == 0)
+	if (eq_mat(mat, target) == 0)
 		printf("ft_mat_mul_elem: Error!\n");
 	else
 		printf("ft_mat_mul_elem: OK\n");
-	ft_mat_del(in);
-	ft_mat_del(out);
+	ft_mat_del(mat);
 	ft_mat_del(target);
 }
 
@@ -56,21 +52,20 @@ void	test_vector(void)
 {
 	const double	ptr[] = {1, 2, 3, 4};
 	t_mat			*mat;
-	t_vec			*in;
-	t_vec			*out;
+	t_vec			*vec;
+	t_vec			*target;
 
 	mat = ft_mat_new(2, 2, ptr);
-	in = ft_vec_new(2, 5.0, 6.0);
-	out = ft_mat_mul_vec(mat, in);
-	if (out->size != mat->row
-		|| eq_double(17, out->data[0]) == 0
-		|| eq_double(39, out->data[1]) == 0)
+	vec = ft_vec_new(2, 5.0, 6.0);
+	vec = ft_mat_mul_vec(mat, vec);
+	target = ft_vec_new(2, 17.0, 39.0);
+	if (eq_vec(vec, target) == 0)
 		printf("ft_mat_mul_vec: Error!\n");
 	else
 		printf("ft_mat_mul_vec: OK\n");
 	ft_mat_del(mat);
-	ft_vec_del(in);
-	ft_vec_del(out);
+	ft_vec_del(vec);
+	ft_vec_del(target);
 }
 
 void	test_mul(void)
@@ -80,20 +75,18 @@ void	test_mul(void)
 	const double	ptr3[] = {27, 30, 33, 61, 68, 75, 95, 106, 117};
 	t_mat			*a;
 	t_mat			*b;
-	t_mat			*out;
 	t_mat			*target;
 
 	a = ft_mat_new(3, 2, ptr);
 	b = ft_mat_new(2, 3, ptr2);
-	out = ft_mat_mul(a, b);
+	a = ft_mat_mul(a, b);
 	target = ft_mat_new(3, 3, ptr3);
-	if (eq_mat(out, target) == 0)
+	if (eq_mat(a, target) == 0)
 		printf("ft_mat_mul: Error!\n");
 	else
 		printf("ft_mat_mul: OK\n");
 	ft_mat_del(a);
 	ft_mat_del(b);
-	ft_mat_del(out);
 	ft_mat_del(target);
 }
 
