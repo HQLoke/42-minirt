@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:26:01 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 10:23:02 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 22:19:58 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vec	*ft_vec_new(size_t n, ...)
 }
 
 /* Make a copy of a vector. */
-t_vec	*ft_vec_copy(t_vec	*vec)
+t_vec	*ft_vec_copy(t_vec *vec)
 {
 	t_vec	*retval;
 	size_t	n;
@@ -49,8 +49,7 @@ t_vec	*ft_vec_copy(t_vec	*vec)
 		return (NULL);
 	n = vec->size;
 	retval = ft_vec_new(n);
-	while (n-- > 0)
-		retval->data[n] = vec->data[n];
+	ft_memmove(retval->data, vec->data, sizeof(vec->data[0]) * n);
 	return (retval);
 }
 

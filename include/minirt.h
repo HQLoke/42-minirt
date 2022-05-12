@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 13:25:52 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 22:15:42 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ t_mat	*ft_mat_mul(const t_mat *A, const t_mat *B);
 // ft_mat_op.c -- other matrix operations
 t_mat	*ft_mat_add(t_mat *A, t_mat *B);
 t_mat	*ft_mat_sub(t_mat *A, t_mat *B);
-t_mat	*ft_mat_transpose(t_mat	*A);
+t_mat	*ft_mat_transpose(t_mat *A);
 t_mat	*ft_mat_affine_inverse(t_mat *A);
 
 // ft_vec.c -- vector construction and destruction functions
 t_vec	*ft_vec_new(size_t n, ...);
-t_vec	*ft_vec_copy(t_vec	*vec);
+t_vec	*ft_vec_copy(t_vec *vec);
 t_vec	*ft_vec3_new(double x, double y, double z);
 void	ft_vec_del(t_vec *vec);
 void	ft_vec_del_many(size_t n, ...);

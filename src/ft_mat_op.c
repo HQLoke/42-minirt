@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:49:02 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 13:55:24 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 22:17:09 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_mat	*ft_mat_sub(t_mat *A, t_mat *B)
 }
 
 /* Return the transpose of matrix A */
-t_mat	*ft_mat_transpose(t_mat	*A)
+t_mat	*ft_mat_transpose(t_mat *A)
 {
 	t_mat	*mat;
 	size_t	i;
