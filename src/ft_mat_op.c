@@ -6,58 +6,51 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:49:02 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 00:14:43 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/13 00:54:22 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-/* Return the result of matrix A + B */
-t_mat	*ft_mat_add(t_mat *A, t_mat *B)
+/* Return the result of matrix A + B and assign the result to matrix A,
+ * i.e. A = A + B */
+t_mat	*ft_mat_add(t_mat *A, const t_mat *B)
 {
 	size_t	i;
-	t_mat	*mat;
 
 	if (A->row != B->row || A->col != B->col)
 	{
 		perror("ft_mat_add: size of matrix A must equal size of matrix B");
 		exit(1);
 	}
-	mat = ft_mat_empty(A->row, A->col);
 	i = -1;
 	while (++i < A->row * A->col)
-	{
-		mat->data[i / A->col][i % A->col]
-			= A->data[i / A->col][i % A->col] + B->data[i / A->col][i % A->col];
-	}
-	return (mat);
+		A->data[i / A->col][i % A->col] += B->data[i / A->col][i % A->col];
+	return (A);
 }
 
-/* Return the result of matrix A - B */
-t_mat	*ft_mat_sub(t_mat *A, t_mat *B)
+/* Return the result of matrix A - B and assign the result to matrix A,
+ * i.e. A = A - B */
+t_mat	*ft_mat_sub(t_mat *A, const t_mat *B)
 {
 	size_t	i;
-	t_mat	*mat;
 
 	if (A->row != B->row || A->col != B->col)
 	{
 		perror("ft_mat_add: size of matrix A must equal size of matrix B");
 		exit(1);
 	}
-	mat = ft_mat_empty(A->row, A->col);
 	i = -1;
 	while (++i < A->row * A->col)
-	{
-		mat->data[i / A->col][i % A->col]
-			= A->data[i / A->col][i % A->col] - B->data[i / A->col][i % A->col];
-	}
-	return (mat);
+		A->data[i / A->col][i % A->col] -= B->data[i / A->col][i % A->col];
+	return (A);
 }
 
-/* Return the transpose of matrix A */
+/* Transpose of matrix A in-place. */
 t_mat	*ft_mat_transpose(t_mat *A)
 {
 	t_mat	*mat;
+	t_mat	copy;
 	size_t	i;
 	size_t	row;
 	size_t	col;
@@ -70,10 +63,14 @@ t_mat	*ft_mat_transpose(t_mat *A)
 		col = i % A->col;
 		mat->data[col][row] = A->data[row][col];
 	}
-	return (mat);
+	ft_memmove(&copy, A, sizeof(t_mat));
+	ft_memmove(A, mat, sizeof(t_mat));
+	ft_memmove(mat, &copy, sizeof(t_mat));
+	ft_mat_del(mat);
+	return (A);
 }
 
-/* Return the inverse of an affine transformation matrix.
+/* Transform an affine transformation matrix to its inverse
  *
  * Since rotation matrices are orthogonal, A is in the form
  * A = [ M  b ]
@@ -86,10 +83,12 @@ t_mat	*ft_mat_transpose(t_mat *A)
 t_mat	*ft_mat_affine_inverse(t_mat *A)
 {
 	t_mat	*inv_a;
+	t_mat	copy;
 	t_vec	*b;
 	size_t	i;
 
-	inv_a = ft_mat_transpose(A);
+	inv_a = ft_mat_copy(A);
+	inv_a = ft_mat_transpose(inv_a);
 	b = ft_vec_new(4, -A->data[0][3], -A->data[1][3], -A->data[2][3], 0.0);
 	b = ft_mat_mul_vec(inv_a, b);
 	i = -1;
@@ -98,6 +97,10 @@ t_mat	*ft_mat_affine_inverse(t_mat *A)
 		inv_a->data[3][i] = 0;
 		inv_a->data[i][3] = b->data[i];
 	}
+	ft_memmove(&copy, A, sizeof(t_mat));
+	ft_memmove(A, inv_a, sizeof(t_mat));
+	ft_memmove(inv_a, &copy, sizeof(t_mat));
+	ft_mat_del(inv_a);
 	ft_vec_del(b);
-	return (inv_a);
+	return (A);
 }
