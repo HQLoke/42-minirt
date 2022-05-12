@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:28:12 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 22:26:38 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 23:22:11 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	eq_vec(t_vec *a, t_vec *b)
 	i = -1;
 	while (++i < a->size)
 	{
-		if (eq_double(a->data[i], a->data[i]) == 0)
+		if (eq_double(a->data[i], b->data[i]) == 0)
 			return (0);
 	}
 	return (1);
