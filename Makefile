@@ -28,7 +28,7 @@ all: ${NAME}
 ${NAME}: ${OBJS}
 	@make re -C ${LIBFT_PATH} -s
 	@${CC} ${CFLAGS} ${INCLUDE} -o ${NAME} ${MAIN} ${OBJS} ${LIBRARY}
-	@printf "$(NEWLINE)$(GREEN)Successfully created $(GREEN)$@$(GREEN)!\n$(NO_COLOR)"
+	@printf "$(NEWLINE)$(GREEN)Successfully created $@!\n$(NO_COLOR)"
 
 %.o: %.c
 	@${CC} ${CFLAGS} ${INCLUDE} -c $< -o $@
