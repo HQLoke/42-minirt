@@ -6,17 +6,17 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 00:14:12 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 10:49:47 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 23:24:30 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-/* Return the result of vectors a + b */
+/* Return the sum of two vectors, and assign the result to the vector a,
+ * i.e. a = a + b */
 t_vec	*ft_vec_add(t_vec *a, t_vec *b)
 {
 	size_t	n;
-	t_vec	*vec;
 
 	if (a->size != b->size)
 	{
@@ -24,17 +24,16 @@ t_vec	*ft_vec_add(t_vec *a, t_vec *b)
 		exit(1);
 	}
 	n = a->size;
-	vec = ft_vec_new(n);
 	while (n-- > 0)
-		vec->data[n] = a->data[n] + b->data[n];
-	return (vec);
+		a->data[n] += b->data[n];
+	return (a);
 }
 
-/* Return the result of vectors a - b */
+/* Return the result of vector subtraction, and assugn the result to the
+ * vector a, i.e. a = a - b */
 t_vec	*ft_vec_sub(t_vec *a, t_vec *b)
 {
 	size_t	n;
-	t_vec	*vec;
 
 	if (a->size != b->size)
 	{
@@ -42,10 +41,9 @@ t_vec	*ft_vec_sub(t_vec *a, t_vec *b)
 		exit(1);
 	}
 	n = a->size;
-	vec = ft_vec_new(n);
 	while (n-- > 0)
-		vec->data[n] = a->data[n] - b->data[n];
-	return (vec);
+		a->data[n] -= b->data[n];
+	return (a);
 }
 
 /* Return the length of a vector */

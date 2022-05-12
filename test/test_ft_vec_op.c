@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:48:22 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 22:32:13 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 23:24:36 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,18 @@ void	test_add(void)
 {
 	t_vec	*a;
 	t_vec	*b;
-	t_vec	*vec;
 	t_vec	*target;
 
 	a = ft_vec3_new(1, 2, 3);
 	b = ft_vec3_new(4, 5, 6);
-	vec = ft_vec_add(a, b);
+	a = ft_vec_add(a, b);
 	target = ft_vec3_new(5, 7, 9);
-	if (eq_vec(vec, target) == 0)
+	if (eq_vec(a, target) == 0)
 		printf("ft_vec_add: Error!\n");
 	else
 		printf("ft_vec_add: OK\n");
 	ft_vec_del(a);
 	ft_vec_del(b);
-	ft_vec_del(vec);
 	ft_vec_del(target);
 }
 
@@ -37,20 +35,18 @@ void	test_sub(void)
 {
 	t_vec	*a;
 	t_vec	*b;
-	t_vec	*vec;
 	t_vec	*target;
 
 	a = ft_vec3_new(1, 2, 3);
 	b = ft_vec3_new(6, 5, 4);
-	vec = ft_vec_sub(a, b);
+	a = ft_vec_sub(a, b);
 	target = ft_vec3_new(-5, -3, -1);
-	if (eq_vec(vec, target) == 0)
+	if (eq_vec(a, target) == 0)
 		printf("ft_vec_sub: Error!\n");
 	else
 		printf("ft_vec_sub: OK\n");
 	ft_vec_del(a);
 	ft_vec_del(b);
-	ft_vec_del(vec);
 	ft_vec_del(target);
 }
 
