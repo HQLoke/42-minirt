@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:03:44 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 23:36:59 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/12 16:34:14 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,58 +15,41 @@
 void	test_scalar(void)
 {
 	const double	ptr[] = {1, 2, 3, 4};
-	size_t			i;
+	const double	ptr2[] = {2, 4, 6, 8};
 	t_mat			*in;
 	t_mat			*out;
+	t_mat			*target;
 
 	in = ft_mat_new(2, 2, ptr);
 	out = ft_mat_mul_scalar(2, in);
-	if (out->row != in->row || out->col != in->col)
+	target = ft_mat_new(2, 2, ptr2);
+	if (eq_mat(out, target) == 0)
 		printf("ft_mat_mul_scalar: Error!\n");
 	else
-	{
-		i = -1;
-		while (++i < out->row * out->col)
-		{
-			if (!eq_double(ptr[i] * 2, out->data[i / out->col][i % out->col]))
-			{
-				printf("ft_mat_mul_scalar: Error!\n");
-				break ;
-			}
-		}
 		printf("ft_mat_mul_scalar: OK\n");
-	}
 	ft_mat_del(in);
 	ft_mat_del(out);
+	ft_mat_del(target);
 }
 
 void	test_elem(void)
 {
 	const double	ptr[] = {1, 2, 3, 4};
-	size_t			i;
+	const double	ptr2[] = {1, 4, 9, 16};
 	t_mat			*in;
 	t_mat			*out;
+	t_mat			*target;
 
 	in = ft_mat_new(2, 2, ptr);
 	out = ft_mat_mul_elem(in, in);
-	if (out->row != in->row || out->col != in->col)
+	target = ft_mat_new(2, 2, ptr2);
+	if (eq_mat(out, target) == 0)
 		printf("ft_mat_mul_elem: Error!\n");
 	else
-	{
-		i = -1;
-		while (++i < out->row * out->col)
-		{
-			if (!eq_double(
-					ptr[i] * ptr[i], out->data[i / out->col][i % out->col]))
-			{
-				printf("ft_mat_mul_elem: Error!\n");
-				break ;
-			}
-		}
 		printf("ft_mat_mul_elem: OK\n");
-	}
 	ft_mat_del(in);
 	ft_mat_del(out);
+	ft_mat_del(target);
 }
 
 void	test_vector(void)
@@ -92,28 +75,26 @@ void	test_vector(void)
 
 void	test_mul(void)
 {
-	const double	ptr[] = {1, 2, 3, 4};
-	const double	ptr2[] = {1, 2, 3, 4, 5, 6};
+	const double	ptr[] = {1, 2, 3, 4, 5, 6};
+	const double	ptr2[] = {7, 8, 9, 10, 11, 12};
+	const double	ptr3[] = {27, 30, 33, 61, 68, 75, 95, 106, 117};
 	t_mat			*a;
 	t_mat			*b;
 	t_mat			*out;
+	t_mat			*target;
 
-	a = ft_mat_new(2, 2, ptr);
+	a = ft_mat_new(3, 2, ptr);
 	b = ft_mat_new(2, 3, ptr2);
 	out = ft_mat_mul(a, b);
-	if (out->row != a->row || out->col != b->col
-		|| eq_double(9, out->data[0][0]) == 0
-		|| eq_double(12, out->data[0][1]) == 0
-		|| eq_double(15, out->data[0][2]) == 0
-		|| eq_double(19, out->data[1][0]) == 0
-		|| eq_double(26, out->data[1][1]) == 0
-		|| eq_double(33, out->data[1][2]) == 0)
+	target = ft_mat_new(3, 3, ptr3);
+	if (eq_mat(out, target) == 0)
 		printf("ft_mat_mul: Error!\n");
 	else
 		printf("ft_mat_mul: OK\n");
 	ft_mat_del(a);
 	ft_mat_del(b);
 	ft_mat_del(out);
+	ft_mat_del(target);
 }
 
 int	main(void)
