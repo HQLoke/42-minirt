@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 10:57:26 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 11:25:10 by hloke            ###   ########.fr       */
+/*   Created: 2022/05/12 09:06:39 by hloke             #+#    #+#             */
+/*   Updated: 2022/05/12 09:06:51 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minirt.h"
 
-/*
-Allocates (with malloc(3)) and returns a new element. The variable
-'content' is initialized with the value of the parameter 'content'. The
-variable 'next' is initialized to NULL.
+/* 
+Free any double pointer of any data type
+Must typecast using (void **)
 */
-t_list	*ft_lstnew(void *content, int type)
+void	ft_memdel(void **ptr)
 {
-	t_list	*retval;
+	int	i;
 
-	retval = (t_list *) malloc(sizeof(t_list));
-	if (retval != NULL)
+	i = 0;
+	if (ptr != NULL)
 	{
-		retval->content = content;
-		retval->type = type;
-		retval->next = NULL;
+		while (ptr[i] != NULL)
+		{
+			free (ptr[i]);
+			i += 1;
+		}
+		free (ptr);
 	}
-	return (retval);
 }

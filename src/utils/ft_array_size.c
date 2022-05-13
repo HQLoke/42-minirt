@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_array_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 10:57:26 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 11:25:10 by hloke            ###   ########.fr       */
+/*   Created: 2022/05/12 09:06:59 by hloke             #+#    #+#             */
+/*   Updated: 2022/05/12 09:07:09 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minirt.h"
 
 /*
-Allocates (with malloc(3)) and returns a new element. The variable
-'content' is initialized with the value of the parameter 'content'. The
-variable 'next' is initialized to NULL.
+Given a 2D array, return the number of elements in the array
 */
-t_list	*ft_lstnew(void *content, int type)
+size_t	ft_array_size(char **array)
 {
-	t_list	*retval;
+	size_t	num;
 
-	retval = (t_list *) malloc(sizeof(t_list));
-	if (retval != NULL)
+	num = 0;
+	if (array != NULL)
 	{
-		retval->content = content;
-		retval->type = type;
-		retval->next = NULL;
+		while (array[num] != NULL)
+			num += 1;
 	}
-	return (retval);
+	return (num);
 }

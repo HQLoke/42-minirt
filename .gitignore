@@ -5,5 +5,11 @@
 obj/
 *.a
 
+# executable
+minirt
+
 # text files
 *.txt
+
+# .dSYM folder
+*.dSYM
