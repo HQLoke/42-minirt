@@ -6,11 +6,11 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:49:02 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 00:54:22 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "linalg.h"
 
 /* Return the result of matrix A + B and assign the result to matrix A,
  * i.e. A = A + B */

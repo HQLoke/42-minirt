@@ -6,11 +6,11 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:32:53 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 22:36:14 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "linalg.h"
 
 void	test_new(void)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "linalg.h"
 
 /* Returns an empty matrix of size (row, col) */
 t_mat	*ft_mat_empty(size_t row, size_t col)

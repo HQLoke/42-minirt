@@ -6,11 +6,11 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:17:46 by weng              #+#    #+#             */
-/*   Updated: 2022/05/12 22:52:06 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "linalg.h"
 
 void	test_scalar(void)
 {

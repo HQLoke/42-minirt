@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "linalg.h"
 
 /* Returns the affine transformation matrix for translation. */
 t_mat	*ft_affine_translate(double dx, double dy, double dz)

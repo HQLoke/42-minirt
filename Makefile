@@ -3,15 +3,19 @@ CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror -I./include -g -fsanitize=address
 
 # source and object files
+LINALGDIR	=	linalg/
+
 SRCDIR	=	src
-SRCS	=	ft_affine.c \
-			ft_mat.c \
-			ft_mat_mul.c \
-			ft_mat_op.c \
-			ft_math.c \
-			ft_vec.c \
-			ft_vec_mul.c \
-			ft_vec_op.c
+SRCS	=	$(addprefix $(LINALGDIR), \
+				ft_affine.c \
+				ft_mat.c \
+				ft_mat_mul.c \
+				ft_mat_op.c \
+				ft_math.c \
+				ft_vec.c \
+				ft_vec_mul.c \
+				ft_vec_op.c \
+			)
 OBJDIR	=	obj
 OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
@@ -23,10 +27,8 @@ all: $(LIBRT)
 libft:
 	$(MAKE) -C libft
 
-$(OBJDIR):
-	@mkdir $@
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(@D)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
 $(LIBRT): $(OBJS)

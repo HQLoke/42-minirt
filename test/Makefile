@@ -3,15 +3,19 @@ CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror -I../include -g -fsanitize=address
 LDFLAGS	=	-L.. -L../libft
 LDLIBS	=	-lrt -lft -lm
-SRCS	=	$(wildcard test*.c)
-MAINS	=	$(SRCS:test_ft_%.c=%)
+SRCS	=	$(wildcard */test*.c)
+FILES	=	$(notdir $(SRCS))
+MAINS	=	$(FILES:test_%.c=%)
 
 all: $(MAINS)
+
+echo:
+	echo $(MAINS)
 
 librt:
 	make --no-print-directory -C .. librt.a
 
-%: test_ft_%.c librt
+%: */test_%.c librt
 	@$(CC) $(CPPFLAGS) $(CFLAGS) $< -o $@ $(LDFLAGS) $(LDLIBS)
 	@echo Testing $<:
 	@./$@
@@ -27,6 +31,6 @@ fclean: clean
 re: fclean all
 
 norm:
-	norminette *.c
+	norminette */*.c
 
 .PHONY: clean librt norm
