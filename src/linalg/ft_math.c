@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:28:12 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/16 22:42:03 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	eq_double(double a, double b)
 	double	lhs;
 
 	lhs = fabs(a - b);
-	return (lhs <= (DBL_EPSILON * fabs(a + b)) || lhs <= DBL_EPSILON);
+	return (lhs <= (FLT_EPSILON * fabs(a + b)) || lhs <= FLT_EPSILON);
 }
 
 /* Returns true if two matrices are equal, false otherwise. */

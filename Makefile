@@ -6,12 +6,16 @@ FDFLAGS	=	-L. -Llibft
 FDLIBS	=	-lrt -lft
 
 # source and object files
+ELEMENT_DIR	=	element/
 ERROR_DIR	=	error/
 LINALGDIR	=	linalg/
 UTILS_DIR	=	utils/
 
 SRCDIR	=	src
-SRCS	=	$(addprefix $(ERROR_DIR), \
+SRCS	=	$(addprefix $(ELEMENT_DIR), \
+				ft_ray.c \
+				ft_sphere.c) \
+			$(addprefix $(ERROR_DIR), \
 				check_objects.c \
 				check_settings.c \
 				error_handler.c \
