@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:59:41 by weng              #+#    #+#             */
-/*   Updated: 2022/05/17 15:06:44 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/17 16:06:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ t_vec	*ft_plane_normal(t_obj *plane, t_vec *point, t_vec *norm)
 	normal->data[3] = 0.0;
 	ft_memmove(norm, normal, sizeof(t_vec));
 	free(normal);
+	ft_vec_normalise(norm);
 	return (norm);
 }
