@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/12 09:52:39 by hloke            ###   ########.fr       */
+/*   Updated: 2022/05/17 10:46:45 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	error_handler(char *scene);
 /srcs/utils
 */
 size_t	ft_array_size(char **array);
+double	ft_atof(const char *str);
 void	ft_memdel(void **ptr);
 
 #endif
