@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/16 19:27:39 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/17 13:52:54 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef enum e_element
 	CAMERA,
 	LIGHT,
 	SPHERE,
-	PLAN,
+	PLANE,
 	CYLINDER
 }	t_element;
 
@@ -87,7 +87,12 @@ typedef struct s_obj
 	t_intersect	intersect;
 }	t_obj;
 
-// ft_ray.c
+// ft_plane.c -- plane related functions
+t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour);
+int		ft_plane_intersect(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm);
+t_vec	*ft_plane_normal(t_obj *plane, t_vec *point, t_vec *norm);
+
+// ft_ray.c -- ray related functions
 t_ray	*ft_ray_new(t_vec *origin, t_vec *direction);
 void	ft_ray_del(t_ray *ray);
 t_ray	*ft_ray_copy(t_ray *ray);
