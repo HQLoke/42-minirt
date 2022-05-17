@@ -7,3 +7,6 @@ obj/
 
 # text files
 *.txt
+
+# dSYM folders
+*.dSYM
