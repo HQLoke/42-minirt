@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:14:10 by weng              #+#    #+#             */
-/*   Updated: 2022/05/16 22:38:51 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/17 15:19:27 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,30 @@ void	test_intersect(void)
 	free(norm.data);
 }
 
+void	test_no_intersect(void)
+{
+	t_obj	*sphere;
+	t_ray	*ray;
+	t_vec	point;
+	t_vec	norm;
+
+	point.data = NULL;
+	norm.data = NULL;
+	sphere = ft_sphere_new(ft_vec_new(4, 4.0, 0.0, 0.0, 1.0),
+			ft_vec_new(1, 1.0),
+			ft_vec_new(3, 0.0, 0.0, 0.0));
+	ray = ft_ray_new(ft_vec_new(4, 2.0, 2.0, 0.0, 1.0),
+			ft_vec_new(4, -1.0, 1.0, 0.0, 0.0));
+	if (ft_sphere_intersect(sphere, ray, &point, &norm) == 1)
+		printf("ft_sphere_intersect no intersect: Error!\n");
+	else
+		printf("ft_sphere_intersect no intersect: OK\n");
+	ft_obj_del(sphere);
+	ft_ray_del(ray);
+	free(point.data);
+	free(norm.data);
+}
+
 void	test_normal(void)
 {
 	t_obj	*sphere;
@@ -88,6 +112,7 @@ int	main(void)
 {
 	test_new();
 	test_intersect();
+	test_no_intersect();
 	test_normal();
 	return (0);
 }
