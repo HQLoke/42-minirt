@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/05/16 22:53:38 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/17 11:39:51 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	ft_sphere_intersect(t_obj *sphere, t_ray *ray, t_vec *point, t_vec *norm)
 	if (retval == 1)
 	{
 		t = -(coeff[1] + sqrt(discri)) / (2 * coeff[0]);
+		if (eq_double(t, 0) == 1)
+			t = -(coeff[1] - sqrt(discri)) / (2 * coeff[0]);
 		point = ft_ray_calc_point(ray, t, point);
 		norm = ft_sphere_normal(sphere, point, norm);
 		ft_mat_mul_vec(sphere->to_world, point);
