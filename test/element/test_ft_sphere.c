@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:14:10 by weng              #+#    #+#             */
-/*   Updated: 2022/05/18 14:49:40 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 15:19:23 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ void	test_intersect(void)
 	t_vec	*target_n;
 
 	point = ft_vec_new(4);
-	sphere = ft_sphere_new(ft_vec_new(4, 4.0, 0.0, 0.0, 1.0),
-			ft_vec_new(1, 1.0),
+	norm.data = NULL;
+	sphere = ft_sphere_new(ft_vec_new(4, 8.0, 0.0, 0.0, 1.0),
+			ft_vec_new(1, 2.0),
 			ft_vec_new(3, 0.0, 0.0, 0.0));
-	ray = ft_ray_new(ft_vec_new(4, 2.0, 2.0, 0.0, 1.0),
+	ray = ft_ray_new(ft_vec_new(4, 4.0, 4.0, 0.0, 1.0),
 			ft_vec_new(4, 1.0, -1.0, 0.0, 0.0));
 	ft_sphere_intersect(sphere, ray, point, &norm);
-	target_p = ft_vec_new(4, 4 - pow(2, 0.5) / 2, pow(2, 0.5) / 2, 0.0, 1.0);
-	target_n = ft_vec_new(4, -pow(2, 0.5) / 2, pow(2, 0.5) / 2, 0.0, 0.0);
+	target_p = ft_vec_new(4, 8 - pow(2, 0.5), pow(2, 0.5), 0.0, 1.0);
+	target_n = ft_vec_new(4, -pow(2, 0.5), pow(2, 0.5), 0.0, 0.0);
 	if (eq_vec(point, target_p) == 0 || eq_vec(&norm, target_n) == 0)
 		printf("ft_sphere_intersect: Error!\n");
 	else
