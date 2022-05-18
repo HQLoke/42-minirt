@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/05/18 15:33:19 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 15:59:26 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ t_vec	*ft_sphere_normal(t_obj *sphere, t_vec *point, t_vec *norm)
 	normal = ft_vec_mul_scalar(normal, -1);
 	ft_memmove(norm, normal, sizeof(t_vec));
 	free(normal);
+	ft_vec_normalise(norm);
 	return (norm);
 }

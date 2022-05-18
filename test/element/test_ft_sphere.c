@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:14:10 by weng              #+#    #+#             */
-/*   Updated: 2022/05/18 15:20:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 15:56:15 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,12 @@ void	test_normal(void)
 
 	sphere = ft_sphere_new(
 			ft_vec_new(4, 0.0, 0.0, 0.0, 1.0),
-			ft_vec_new(1, 1.0),
+			ft_vec_new(1, 2.0),
 			ft_vec_new(3, 0.0, 0.0, 0.0));
-	point = ft_vec_new(4, -pow(2, 0.5) / 2, pow(2, 0.5) / 2, 0.0, 1.0);
+	point = ft_vec_new(4, -pow(2, 0.5), pow(2, 0.5), 0.0, 1.0);
 	target = ft_vec_new(4, -pow(2, 0.5) / 2, pow(2, 0.5) / 2, 0.0, 0.0);
 	ft_sphere_normal(sphere, point, &norm);
-	if (eq_vec(&norm, target) == 0 && eq_double(ft_vec_len(&norm), 1) == 0)
+	if (eq_vec(&norm, target) == 0 || eq_double(ft_vec_len(&norm), 1) == 0)
 		printf("ft_sphere_normal: Error!\n");
 	else
 		printf("ft_sphere_normal: OK\n");
