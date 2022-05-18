@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:59:41 by weng              #+#    #+#             */
-/*   Updated: 2022/05/18 15:05:47 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 15:33:19 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	ft_plane_intersect(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm)
 	double	t;
 	int		retval;
 
-	denominator = ft_vec_mul_dot(plane->dimension, ray->direction);
+	denominator = ft_vec_mul_dot(plane->dimension, ray->dir);
 	retval = (denominator != 0);
 	if (retval == 1)
 	{
-		t = -ft_vec_mul_dot(plane->dimension, ray->origin) / denominator;
+		t = -ft_vec_mul_dot(plane->dimension, ray->org) / denominator;
 		retval = (eq_double(t, 0) == 0 && t > 0);
 		if (retval == 1)
 		{

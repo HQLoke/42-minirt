@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/05/18 15:05:39 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 15:33:19 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int	ft_sphere_intersect(t_obj *sphere, t_ray *ray, t_vec *point, t_vec *norm)
 	double	discri;
 
 	ray = ft_ray_transform(sphere->fr_world, ft_ray_copy(ray));
-	coeff[0] = ft_vec_mul_dot(ray->direction, ray->direction);
-	coeff[1] = 2 * ft_vec_mul_dot(ray->origin, ray->direction);
-	coeff[2] = ft_vec_mul_dot(ray->origin, ray->origin)
+	coeff[0] = ft_vec_mul_dot(ray->dir, ray->dir);
+	coeff[1] = 2 * ft_vec_mul_dot(ray->org, ray->dir);
+	coeff[2] = ft_vec_mul_dot(ray->org, ray->org)
 		- pow(sphere->dimension->data[0], 2) - 1;
 	discri = pow(coeff[1], 2) - 4 * coeff[0] * coeff[2];
 	if (discri >= 0)

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 23:43:27 by weng              #+#    #+#             */
-/*   Updated: 2022/05/18 14:25:27 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 15:33:19 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_ray	*ft_ray_new(t_vec *origin, t_vec *direction)
 	ray = malloc(sizeof(t_ray));
 	if (ray != NULL)
 	{
-		ray->origin = origin;
-		ray->direction = ft_vec_normalise(direction);
+		ray->org = origin;
+		ray->dir = ft_vec_normalise(direction);
 	}
 	return (ray);
 }
@@ -32,8 +32,8 @@ void	ft_ray_del(t_ray *ray)
 {
 	if (ray == NULL)
 		return ;
-	ft_vec_del(ray->origin);
-	ft_vec_del(ray->direction);
+	ft_vec_del(ray->org);
+	ft_vec_del(ray->dir);
 	free(ray);
 }
 
@@ -42,15 +42,15 @@ t_ray	*ft_ray_copy(t_ray *ray)
 {
 	t_ray	*copy;
 
-	copy = ft_ray_new(ft_vec_copy(ray->origin), ft_vec_copy(ray->direction));
+	copy = ft_ray_new(ft_vec_copy(ray->org), ft_vec_copy(ray->dir));
 	return (copy);
 }
 
 /* Transform a ray in place, given a transformation matrix */
 t_ray	*ft_ray_transform(t_mat *A, t_ray *ray)
 {
-	ray->origin = ft_mat_mul_vec(A, ray->origin);
-	ray->direction = ft_mat_mul_vec(A, ray->direction);
+	ray->org = ft_mat_mul_vec(A, ray->org);
+	ray->dir = ft_mat_mul_vec(A, ray->dir);
 	return (ray);
 }
 
@@ -65,9 +65,9 @@ t_vec	*ft_ray_calc_point(t_ray *ray, double t, t_vec *point)
 		free(point->data);
 		point->data = NULL;
 	}
-	vec = ft_vec_copy(ray->direction);
+	vec = ft_vec_copy(ray->dir);
 	vec = ft_vec_mul_scalar(vec, t);
-	vec = ft_vec_add(vec, ray->origin);
+	vec = ft_vec_add(vec, ray->org);
 	ft_memmove(point, vec, sizeof(t_vec));
 	free(vec);
 	return (point);

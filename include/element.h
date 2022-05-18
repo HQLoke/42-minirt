@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/17 13:52:54 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 15:32:54 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ typedef enum e_element
 }	t_element;
 
 /* struct representing a ray
- * @origin		the point of origin. w-coordinate = 1
- * @direction	direction of the ray. w-coordinate = 0
+ * @org	the point of origin. w-coordinate = 1
+ * @dir	direction of the ray. w-coordinate = 0
  */
 typedef struct s_ray
 {
-	t_vec	*origin;
-	t_vec	*direction;
+	t_vec	*org;
+	t_vec	*dir;
 }	t_ray;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:22:22 by weng              #+#    #+#             */
-/*   Updated: 2022/05/16 16:25:33 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 15:36:37 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	test_new(void)
 	direction = ft_vec_new(4, 4.0, 5.0, 6.0, 0.0);
 	ray = ft_ray_new(ft_vec_copy(origin), ft_vec_copy(direction));
 	direction = ft_vec_normalise(direction);
-	if (eq_vec(origin, ray->origin) == 0
-		|| eq_vec(direction, ray->direction) == 0)
+	if (eq_vec(origin, ray->org) == 0
+		|| eq_vec(direction, ray->dir) == 0)
 		printf("ft_ray_new: Error!\n");
 	else
 		printf("ft_ray_new: OK\n");
@@ -41,8 +41,8 @@ void	test_copy(void)
 			ft_vec_new(4, 1.0, 2.0, 3.0, 1.0),
 			ft_vec_new(4, 4.0, 5.0, 6.0, 0.0));
 	copy = ft_ray_copy(ray);
-	if (eq_vec(ray->origin, copy->origin) == 0
-		|| eq_vec(ray->direction, copy->direction) == 0)
+	if (eq_vec(ray->org, copy->org) == 0
+		|| eq_vec(ray->dir, copy->dir) == 0)
 		printf("ft_ray_copy: Error!\n");
 	else
 		printf("ft_ray_copy: OK\n");
@@ -67,8 +67,8 @@ void	test_transform(void)
 	copy = ft_ray_transform(transform, copy);
 	transform = ft_mat_affine_inverse(transform);
 	copy = ft_ray_transform(transform, copy);
-	if (eq_vec(ray->origin, copy->origin) == 0
-		|| eq_vec(ray->direction, copy->direction) == 0)
+	if (eq_vec(ray->org, copy->org) == 0
+		|| eq_vec(ray->dir, copy->dir) == 0)
 		printf("ft_ray_transform: Error!\n");
 	else
 		printf("ft_ray_transfrom: OK\n");
@@ -89,8 +89,8 @@ void	test_calc_point(void)
 	ray = ft_ray_new(
 			ft_vec_new(4, 0.0, 1.0, 2.0, 1.0),
 			ft_vec_new(4, 3.0, 4.0, 5.0, 0.0));
-	target = ft_vec_mul_scalar(ft_vec_copy(ray->direction), t);
-	target = ft_vec_add(target, ray->origin);
+	target = ft_vec_mul_scalar(ft_vec_copy(ray->dir), t);
+	target = ft_vec_add(target, ray->org);
 	ft_ray_calc_point(ray, t, &point);
 	if (eq_vec(&point, target) == 0)
 		printf("ft_ray_calc_point: Error!\n");
