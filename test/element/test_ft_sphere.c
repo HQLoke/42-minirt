@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:14:10 by weng              #+#    #+#             */
-/*   Updated: 2022/05/17 15:59:38 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 14:49:40 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,21 @@ void	test_intersect(void)
 {
 	t_obj	*sphere;
 	t_ray	*ray;
-	t_vec	point;
+	t_vec	*point;
 	t_vec	norm;
 	t_vec	*target_p;
 	t_vec	*target_n;
 
+	point = ft_vec_new(4);
 	sphere = ft_sphere_new(ft_vec_new(4, 4.0, 0.0, 0.0, 1.0),
 			ft_vec_new(1, 1.0),
 			ft_vec_new(3, 0.0, 0.0, 0.0));
 	ray = ft_ray_new(ft_vec_new(4, 2.0, 2.0, 0.0, 1.0),
 			ft_vec_new(4, 1.0, -1.0, 0.0, 0.0));
-	ft_sphere_intersect(sphere, ray, &point, &norm);
+	ft_sphere_intersect(sphere, ray, point, &norm);
 	target_p = ft_vec_new(4, 4 - pow(2, 0.5) / 2, pow(2, 0.5) / 2, 0.0, 1.0);
 	target_n = ft_vec_new(4, -pow(2, 0.5) / 2, pow(2, 0.5) / 2, 0.0, 0.0);
-	if (eq_vec(&point, target_p) == 0 || eq_vec(&norm, target_n) == 0)
+	if (eq_vec(point, target_p) == 0 || eq_vec(&norm, target_n) == 0)
 		printf("ft_sphere_intersect: Error!\n");
 	else
 		printf("ft_sphere_intersect: OK\n");
@@ -56,7 +57,7 @@ void	test_intersect(void)
 	ft_ray_del(ray);
 	ft_vec_del(target_p);
 	ft_vec_del(target_n);
-	free(point.data);
+	ft_vec_del(point);
 	free(norm.data);
 }
 
@@ -64,23 +65,23 @@ void	test_no_intersect(void)
 {
 	t_obj	*sphere;
 	t_ray	*ray;
-	t_vec	point;
+	t_vec	*point;
 	t_vec	norm;
 
-	point.data = NULL;
+	point = ft_vec_new(4);
 	norm.data = NULL;
 	sphere = ft_sphere_new(ft_vec_new(4, 4.0, 0.0, 0.0, 1.0),
 			ft_vec_new(1, 1.0),
 			ft_vec_new(3, 0.0, 0.0, 0.0));
 	ray = ft_ray_new(ft_vec_new(4, 2.0, 2.0, 0.0, 1.0),
 			ft_vec_new(4, -1.0, 1.0, 0.0, 0.0));
-	if (ft_sphere_intersect(sphere, ray, &point, &norm) == 1)
+	if (ft_sphere_intersect(sphere, ray, point, &norm) == 1)
 		printf("ft_sphere_intersect no intersect: Error!\n");
 	else
 		printf("ft_sphere_intersect no intersect: OK\n");
 	ft_obj_del(sphere);
 	ft_ray_del(ray);
-	free(point.data);
+	ft_vec_del(point);
 	free(norm.data);
 }
 

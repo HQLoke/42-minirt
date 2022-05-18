@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 23:43:27 by weng              #+#    #+#             */
-/*   Updated: 2022/05/16 22:13:40 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 14:25:27 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ t_vec	*ft_ray_calc_point(t_ray *ray, double t, t_vec *point)
 {
 	t_vec	*vec;
 
+	if (point->data != NULL)
+	{
+		free(point->data);
+		point->data = NULL;
+	}
 	vec = ft_vec_copy(ray->direction);
 	vec = ft_vec_mul_scalar(vec, t);
 	vec = ft_vec_add(vec, ray->origin);

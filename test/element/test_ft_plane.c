@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:45:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/17 16:06:48 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/18 14:52:32 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ void	test_intersect(void)
 {
 	t_obj	*plane;
 	t_ray	*ray;
-	t_vec	point;
+	t_vec	*point;
 	t_vec	norm;
 	t_vec	*target_p;
 	t_vec	*target_n;
 
+	point = ft_vec_new(4);
 	target_p = ft_vec_new(4, 1.0, 1.0, 0.0, 1.0);
 	target_n = ft_vec_new(4, 1.0, 1.0, 0.0, 0.0);
 	plane = ft_plane_new(
@@ -54,9 +55,9 @@ void	test_intersect(void)
 	ray = ft_ray_new(
 			ft_vec_new(4, 0.0, 0.0, 0.0, 1.0),
 			ft_vec_new(4, 1.0, 1.0, 0.0, 0.0));
-	ft_plane_intersect(plane, ray, &point, &norm);
+	ft_plane_intersect(plane, ray, point, &norm);
 	target_n = ft_vec_normalise(target_n);
-	if (eq_vec(&point, target_p) == 0 || eq_vec(&norm, target_n) == 0)
+	if (eq_vec(point, target_p) == 0 || eq_vec(&norm, target_n) == 0)
 		printf("ft_plane_intersect: Error!\n");
 	else
 		printf("ft_plane_intersect: OK\n");
@@ -64,7 +65,7 @@ void	test_intersect(void)
 	ft_ray_del(ray);
 	ft_vec_del(target_p);
 	ft_vec_del(target_n);
-	free(point.data);
+	ft_vec_del(point);
 	free(norm.data);
 }
 
@@ -72,14 +73,14 @@ void	test_no_intersect(void)
 {
 	t_obj	*plane;
 	t_ray	*ray;
-	t_vec	point;
+	t_vec	*point;
 	t_vec	norm;
 	t_vec	*target_p;
 	t_vec	*target_n;
 
 	target_p = ft_vec_new(4, 1.0, 1.0, 0.0, 1.0);
 	target_n = ft_vec_new(4, 1.0, 1.0, 0.0, 0.0);
-	point.data = NULL;
+	point = ft_vec_new(4);
 	norm.data = NULL;
 	plane = ft_plane_new(
 			ft_vec_copy(target_p),
@@ -88,7 +89,7 @@ void	test_no_intersect(void)
 	ray = ft_ray_new(
 			ft_vec_new(4, 0.0, 0.0, 0.0, 1.0),
 			ft_vec_new(4, -1.0, -1.0, 0.0, 0.0));
-	if (ft_plane_intersect(plane, ray, &point, &norm) == 1)
+	if (ft_plane_intersect(plane, ray, point, &norm) == 1)
 		printf("ft_plane_intersect no intersect: Error!\n");
 	else
 		printf("ft_plane_intersect no intersect: OK\n");
@@ -96,7 +97,7 @@ void	test_no_intersect(void)
 	ft_ray_del(ray);
 	ft_vec_del(target_p);
 	ft_vec_del(target_n);
-	free(point.data);
+	ft_vec_del(point);
 	free(norm.data);
 }
 
@@ -104,11 +105,12 @@ void	test_normal(void)
 {
 	t_obj	*plane;
 	t_ray	*ray;
-	t_vec	point;
+	t_vec	*point;
 	t_vec	norm;
 	t_vec	*target_n;
 
 	target_n = ft_vec_new(4, 1.0, 1.0, 0.0, 0.0);
+	point = ft_vec_new(4);
 	plane = ft_plane_new(
 			ft_vec_new(4, 1.0, 1.0, 0.0, 1.0),
 			ft_vec_copy(target_n),
@@ -116,7 +118,7 @@ void	test_normal(void)
 	ray = ft_ray_new(
 			ft_vec_new(4, 0.0, 0.0, 0.0, 1.0),
 			ft_vec_new(4, 1.0, 1.0, 0.0, 0.0));
-	ft_plane_intersect(plane, ray, &point, &norm);
+	ft_plane_intersect(plane, ray, point, &norm);
 	target_n = ft_vec_normalise(target_n);
 	if (eq_vec(&norm, target_n) == 0 || eq_double(ft_vec_len(&norm), 1) == 0)
 		printf("ft_plane_normal: Error!\n");
@@ -125,7 +127,7 @@ void	test_normal(void)
 	ft_obj_del(plane);
 	ft_ray_del(ray);
 	ft_vec_del(target_n);
-	free(point.data);
+	ft_vec_del(point);
 	free(norm.data);
 }
 
