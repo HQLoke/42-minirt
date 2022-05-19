@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:36:26 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/19 17:16:07 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ typedef struct s_vec
 	size_t	size;
 	double	*data;
 }	t_vec;
+
+// ft_affine_transform.c -- generate affine transformation matrices
+t_mat	*ft_affine_rotate(t_vec *orient);
+t_mat	*ft_affine_transform(t_vec *centre, t_vec *orient);
 
 // ft_affine.c -- affine transformation matrix functions
 t_mat	*ft_affine_translate(double dx, double dy, double dz);

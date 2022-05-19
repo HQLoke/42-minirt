@@ -22,6 +22,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				error_handler.c \
 				error_utils.c) \
 			$(addprefix $(LINALGDIR), \
+				ft_affine_transform.c \
 				ft_affine.c \
 				ft_mat.c \
 				ft_mat_mul.c \
