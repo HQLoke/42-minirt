@@ -13,6 +13,7 @@ UTILS_DIR	=	utils/
 
 SRCDIR	=	src
 SRCS	=	$(addprefix $(ELEMENT_DIR), \
+				ft_cylinder.c \
 				ft_plane.c \
 				ft_ray.c \
 				ft_sphere.c) \

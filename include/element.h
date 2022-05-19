@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/18 15:32:54 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/19 17:04:29 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,11 @@ typedef struct s_obj
 	t_mat		*fr_world;
 	t_intersect	intersect;
 }	t_obj;
+
+// ft_cylinder -- cylinder related functions
+t_obj	*ft_cylinder_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour);
+int		ft_cylinder_intersect(t_obj *cy, t_ray *ray, t_vec *point, t_vec *norm);
+t_vec	*ft_cylinder_normal(t_obj *cy, t_vec *point, t_vec *norm);
 
 // ft_plane.c -- plane related functions
 t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour);
