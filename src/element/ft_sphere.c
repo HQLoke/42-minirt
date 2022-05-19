@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/05/18 15:59:26 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/19 17:43:01 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,15 @@ void	ft_obj_del(t_obj *obj)
 	free(obj);
 }
 
+/* Calculate the coefficient for sphere and stores in 'coeff'. */
+static void	ft_sphere_coefficient(t_obj *sphere, t_ray *ray, double *coeff)
+{
+	coeff[0] = ft_vec_mul_dot(ray->dir, ray->dir);
+	coeff[1] = 2 * ft_vec_mul_dot(ray->org, ray->dir);
+	coeff[2] = ft_vec_mul_dot(ray->org, ray->org)
+		- pow(sphere->dimension->data[0], 2) - 1;
+}
+
 /* Returns 1 if 'ray' intersects a 'sphere', 0 otherwise. If intersection
  * occurs, the intersection point is stored in 'point', and normal
  * vector is stored in 'norm'; otherwise, 'point' and 'norm' are
@@ -67,19 +76,19 @@ int	ft_sphere_intersect(t_obj *sphere, t_ray *ray, t_vec *point, t_vec *norm)
 	double	coeff[3];
 	double	t;
 	double	discri;
+	int		retval;
 
 	ray = ft_ray_transform(sphere->fr_world, ft_ray_copy(ray));
-	coeff[0] = ft_vec_mul_dot(ray->dir, ray->dir);
-	coeff[1] = 2 * ft_vec_mul_dot(ray->org, ray->dir);
-	coeff[2] = ft_vec_mul_dot(ray->org, ray->org)
-		- pow(sphere->dimension->data[0], 2) - 1;
+	ft_sphere_coefficient(sphere, ray, coeff);
 	discri = pow(coeff[1], 2) - 4 * coeff[0] * coeff[2];
-	if (discri >= 0)
+	retval = (discri >= 0);
+	if (retval == 1)
 	{
 		t = -(coeff[1] + sqrt(discri)) / (2 * coeff[0]);
 		if (eq_double(t, 0) == 1)
 			t = -(coeff[1] - sqrt(discri)) / (2 * coeff[0]);
-		if (eq_double(t, 0) == 0 && t > 0)
+		retval = (eq_double(t, 0) == 0 && t > 0);
+		if (retval == 1)
 		{
 			point = ft_ray_calc_point(ray, t, point);
 			norm = ft_sphere_normal(sphere, point, norm);
@@ -88,7 +97,7 @@ int	ft_sphere_intersect(t_obj *sphere, t_ray *ray, t_vec *point, t_vec *norm)
 		}
 	}
 	ft_ray_del(ray);
-	return (discri >= 0 && eq_double(t, 0) == 0 && t > 0);
+	return (retval);
 }
 
 /* Calculate the normal vector at a point on a sphere, and store it in
