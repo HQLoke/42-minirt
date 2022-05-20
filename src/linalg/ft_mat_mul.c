@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:20:19 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 11:34:00 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 11:35:56 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ t_vec	*ft_mat_mul_vec(const t_mat *A, t_vec *b)
 t_mat	*ft_mat_mul(t_mat *A, const t_mat *B)
 {
 	t_mat	*mat;
-	t_mat	copy;
 	size_t	i;
 	size_t	j;
 
@@ -97,9 +96,7 @@ t_mat	*ft_mat_mul(t_mat *A, const t_mat *B)
 			mat->data[i / mat->col][i % mat->col]
 				+= A->data[i / mat->col][j] * B->data[j][i % mat->col];
 	}
-	ft_memmove(&copy, A, sizeof(t_mat));
-	ft_memmove(A, mat, sizeof(t_mat));
-	ft_memmove(mat, &copy, sizeof(t_mat));
+	ft_mat_swap(mat, A);
 	ft_mat_del(mat);
 	return (A);
 }

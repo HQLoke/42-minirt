@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 11:02:36 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 11:32:20 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_mat	*ft_mat_add(t_mat *A, const t_mat *B);
 t_mat	*ft_mat_sub(t_mat *A, const t_mat *B);
 t_mat	*ft_mat_transpose(t_mat *A);
 t_mat	*ft_mat_affine_inverse(t_mat *A);
+void	ft_mat_swap(t_mat *A, t_mat *B);
 
 // ft_vec.c -- vector construction, destruction & swap functions
 t_vec	*ft_vec_new(size_t n, ...);
