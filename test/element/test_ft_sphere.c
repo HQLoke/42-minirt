@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:14:10 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 14:08:00 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:35:03 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	test_new(void)
 	sphere = ft_sphere_new(ft_vec4_new(1, 2, 3, 1), 5, ft_vec3_new(0, 0, 0));
 	identity = ft_mat_identity(4);
 	ft_mat_mul(sphere->fr_world, sphere->to_world);
-	if (eq_mat(identity, sphere->fr_world) == 0)
+	if (eq_mat(identity, sphere->fr_world) == 0 || sphere->type != SPHERE)
 		printf("ft_sphere_new: Error!\n");
 	else
 		printf("ft_sphere_new: OK\n");

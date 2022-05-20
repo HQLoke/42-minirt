@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:45:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 14:42:17 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:34:37 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	test_new(void)
 	norm->data[3] = -norm->data[0] * point->data[0]
 		- norm->data[1] * point->data[1]
 		- norm->data[2] * point->data[2];
-	if (eq_vec(norm, plane->dimension) == 0)
+	if (eq_vec(norm, plane->dimension) == 0  || plane->type != PLANE)
 		printf("ft_plane_new: Error!\n");
 	else
 		printf("ft_plane_new: OK\n");

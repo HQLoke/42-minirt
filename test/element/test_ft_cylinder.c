@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 22:40:32 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 14:07:35 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:34:47 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	test_new(void)
 			ft_vec3_new(0, 0, 0));
 	identity = ft_mat_identity(4);
 	ft_mat_mul(cylinder->fr_world, cylinder->to_world);
-	if (eq_mat(identity, cylinder->fr_world) == 0)
+	if (eq_mat(identity, cylinder->fr_world) == 0 || cylinder->type != CYLINDER)
 		printf("ft_cylinder_new: Error!\n");
 	else
 		printf("ft_cylinder_new: OK\n");
