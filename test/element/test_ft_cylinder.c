@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 22:40:32 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 10:55:16 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 14:07:35 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	test_intersect(void)
 			ft_vec3_new(0, 0, 0));
 	ray = ft_ray_new(ft_vec4_new(4, 4, 0, 1),
 			ft_vec4_new(1, -1, 0, 0));
-	ft_cylinder_intersect(cylinder, ray, point, &norm);
+	cylinder->intersect(cylinder, ray, point, &norm);
 	target_p = ft_vec4_new(8 - pow(2, 0.5), pow(2, 0.5), 0.0, 1.0);
 	target_n = ft_vec4_new(-pow(2, 0.5) / 2, pow(2, 0.5) / 2, 0.0, 0.0);
 	if (eq_vec(point, target_p) == 0 || eq_vec(&norm, target_n) == 0)
@@ -79,7 +79,7 @@ void	test_no_intersect(void)
 			ft_vec3_new(0, 0, 0));
 	ray = ft_ray_new(ft_vec4_new(2, 2, 0, 1),
 			ft_vec4_new(-1, 1, 0, 0));
-	if (ft_cylinder_intersect(cylinder, ray, point, &norm) == 1)
+	if (cylinder->intersect(cylinder, ray, point, &norm) == 1)
 		printf("ft_cylinder_intersect no intersect: Error!\n");
 	else
 		printf("ft_cylinder_intersect no intersect: OK\n");
@@ -104,7 +104,7 @@ void	test_normal(void)
 			ft_vec3_new(0, 0, 0));
 	point = ft_vec4_new(-pow(2, 0.5), pow(2, 0.5), 0.0, 1.0);
 	target = ft_vec4_new(-pow(2, 0.5) / 2, pow(2, 0.5) / 2, 0.0, 0.0);
-	ft_cylinder_normal(cylinder, point, &norm);
+	cylinder->normal(cylinder, NULL, point, &norm);
 	if (eq_vec(&norm, target) == 0 || eq_double(ft_vec_len(&norm), 1) == 0)
 		printf("ft_cylinder_normal: Error!\n");
 	else

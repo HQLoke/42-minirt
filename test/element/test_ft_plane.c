@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:45:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 10:55:16 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 14:42:17 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	test_intersect(void)
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(1, 1, 0, 0));
-	ft_plane_intersect(plane, ray, point, &norm);
+	plane->intersect(plane, ray, point, &norm);
 	target_n = ft_vec_normalise(target_n);
 	if (eq_vec(point, target_p) == 0 || eq_vec(&norm, target_n) == 0)
 		printf("ft_plane_intersect: Error!\n");
@@ -89,7 +89,7 @@ void	test_no_intersect(void)
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(-1, -1, 0, 0));
-	if (ft_plane_intersect(plane, ray, point, &norm) == 1)
+	if (plane->intersect(plane, ray, point, &norm) == 1)
 		printf("ft_plane_intersect no intersect: Error!\n");
 	else
 		printf("ft_plane_intersect no intersect: OK\n");
@@ -118,7 +118,7 @@ void	test_normal(void)
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(1, 1, 0, 0));
-	ft_plane_intersect(plane, ray, point, &norm);
+	plane->intersect(plane, ray, point, &norm);
 	target_n = ft_vec_normalise(target_n);
 	if (eq_vec(&norm, target_n) == 0 || eq_double(ft_vec_len(&norm), 1) == 0)
 		printf("ft_plane_normal: Error!\n");

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/19 17:04:29 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 14:12:57 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 typedef struct s_obj	t_obj;	// forward declaration for object
 typedef struct s_ray	t_ray;	// forward declaration for ray
 typedef int				(*t_intersect)(t_obj *, t_ray *, t_vec *, t_vec *);
+typedef void			(*t_coeff)(t_obj *, t_ray *, double *);
+typedef t_vec*			(*t_normal)(t_obj *, t_ray *, t_vec *, t_vec *);
 
 typedef enum e_element
 {
@@ -85,17 +87,24 @@ typedef struct s_obj
 	t_mat		*to_world;
 	t_mat		*fr_world;
 	t_intersect	intersect;
+	t_coeff		coefficient;
+	t_normal	normal;
 }	t_obj;
 
-// ft_cylinder -- cylinder related functions
+// ft_cylinder.c -- cylinder related functions
 t_obj	*ft_cylinder_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour);
-int		ft_cylinder_intersect(t_obj *cy, t_ray *ray, t_vec *point, t_vec *norm);
-t_vec	*ft_cylinder_normal(t_obj *cy, t_vec *point, t_vec *norm);
+void	ft_cylinder_coefficient(t_obj *cy, t_ray *ray, double *coeff);
+t_vec	*ft_cylinder_normal(t_obj *cy, t_ray *ray, t_vec *point, t_vec *norm);
+
+// ft_obj.c -- 2nd order surface object functions
+t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour);
+void	ft_obj_del(t_obj *obj);
+int		ft_obj_intersect(t_obj *obj, t_ray *ray, t_vec *point, t_vec *norm);
 
 // ft_plane.c -- plane related functions
 t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour);
 int		ft_plane_intersect(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm);
-t_vec	*ft_plane_normal(t_obj *plane, t_vec *point, t_vec *norm);
+t_vec	*ft_plane_normal(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm);
 
 // ft_ray.c -- ray related functions
 t_ray	*ft_ray_new(t_vec *origin, t_vec *direction);
@@ -105,10 +114,8 @@ t_ray	*ft_ray_transform(t_mat *A, t_ray *ray);
 t_vec	*ft_ray_calc_point(t_ray *ray, double t, t_vec *point);
 
 // ft_sphere.c -- sphere related functions
-t_obj	*ft_sphere_new(t_vec *centre, t_vec *dimension, t_vec *colour);
-void	ft_obj_del(t_obj *sphere);
-int		ft_sphere_intersect(
-			t_obj *object, t_ray *ray, t_vec *point, t_vec *norm);
-t_vec	*ft_sphere_normal(t_obj *sphere, t_vec *point, t_vec *norm);
+t_obj	*ft_sphere_new(t_vec *ctr, double radius, t_vec *colour);
+void	ft_sphere_coefficient(t_obj *sp, t_ray *ray, double *coeff);
+t_vec	*ft_sphere_normal(t_obj *sp, t_ray *ray, t_vec *point, t_vec *norm);
 
 #endif
