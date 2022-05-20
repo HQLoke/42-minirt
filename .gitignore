@@ -11,5 +11,5 @@ minirt
 # text files
 *.txt
 
-# .dSYM folder
+# dSYM folders
 *.dSYM
