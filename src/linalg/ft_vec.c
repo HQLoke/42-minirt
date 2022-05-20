@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:26:01 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 10:51:36 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 11:01:55 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,14 @@ void	ft_vec_del_many(size_t n, ...)
 		ft_vec_del(vec);
 	}
 	va_end(arg);
+}
+
+/* Swap the content of two vectors */
+void	ft_vec_swap(t_vec *a, t_vec *b)
+{
+	t_vec	temp;
+
+	ft_memmove(&temp, a, sizeof(t_vec));
+	ft_memmove(a, b, sizeof(t_vec));
+	ft_memmove(b, &temp, sizeof(t_vec));
 }

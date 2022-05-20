@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 10:40:50 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 11:02:36 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,12 @@ t_mat	*ft_mat_sub(t_mat *A, const t_mat *B);
 t_mat	*ft_mat_transpose(t_mat *A);
 t_mat	*ft_mat_affine_inverse(t_mat *A);
 
-// ft_vec.c -- vector construction and destruction functions
+// ft_vec.c -- vector construction, destruction & swap functions
 t_vec	*ft_vec_new(size_t n, ...);
 t_vec	*ft_vec_copy(t_vec *vec);
 void	ft_vec_del(t_vec *vec);
 void	ft_vec_del_many(size_t n, ...);
+void	ft_vec_swap(t_vec *a, t_vec *b);
 
 // ft_vec_mul.c -- various multiplication functions for vectors
 t_vec	*ft_vec_mul_scalar(t_vec *a, double f);

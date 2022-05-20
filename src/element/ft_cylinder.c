@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:16:59 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 10:44:39 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 11:21:35 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,6 @@ t_vec	*ft_cylinder_normal(t_obj *cy, t_vec *point, t_vec *norm)
 {
 	t_vec	*normal;
 
-	if (norm->data != NULL)
-	{
-		free(norm->data);
-		norm->data = NULL;
-	}
 	if (eq_double(
 			pow(point->data[0], 2) + pow(point->data[1], 2),
 			pow(cy->dimension->data[0], 2)) == 0)
@@ -114,8 +109,8 @@ t_vec	*ft_cylinder_normal(t_obj *cy, t_vec *point, t_vec *norm)
 		exit(1);
 	}
 	normal = ft_vec4_new(point->data[0], point->data[1], 0.0, 0.0);
-	ft_memmove(norm, normal, sizeof(t_vec));
-	free(normal);
-	ft_vec_normalise(norm);
+	ft_vec_normalise(normal);
+	ft_vec_swap(norm, normal);
+	ft_vec_del(normal);
 	return (norm);
 }

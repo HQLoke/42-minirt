@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 10:55:16 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 11:22:32 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,6 @@ t_vec	*ft_sphere_normal(t_obj *sphere, t_vec *point, t_vec *norm)
 {
 	t_vec	*normal;
 
-	if (norm->data != NULL)
-	{
-		free(norm->data);
-		norm->data = NULL;
-	}
 	if (eq_double(
 			ft_vec_mul_dot(point, point),
 			pow(sphere->dimension->data[0], 2) + 1) == 0)
@@ -122,8 +117,8 @@ t_vec	*ft_sphere_normal(t_obj *sphere, t_vec *point, t_vec *norm)
 	normal = ft_vec4_new(0, 0, 0, 1);
 	normal = ft_vec_sub(normal, point);
 	normal = ft_vec_mul_scalar(normal, -1);
-	ft_memmove(norm, normal, sizeof(t_vec));
-	free(normal);
-	ft_vec_normalise(norm);
+	ft_vec_normalise(normal);
+	ft_vec_swap(norm, normal);
+	ft_vec_del(normal);
 	return (norm);
 }

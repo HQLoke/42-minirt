@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:26:26 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 11:24:42 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_vec	*ft_vec_mul_cross(t_vec *a, t_vec *b)
 			v_a[1] * v_b[2] - v_a[2] * v_b[1],
 			v_a[2] * v_b[0] - v_a[0] * v_b[2],
 			v_a[0] * v_b[1] - v_a[1] * v_b[0]);
-	ft_memmove(a->data, vec->data, sizeof(a->data[0]) * 3);
+	ft_vec_swap(a, vec);
 	ft_vec_del(vec);
 	return (a);
 }
