@@ -28,6 +28,7 @@ SRCS	=	$(addprefix $(ERROR_DIR), \
 			) \
 			$(addprefix $(UTILS_DIR), \
 				ft_array_size.c \
+				ft_atof.c \
 				ft_memdel.c \
 			)
 OBJDIR	=	obj

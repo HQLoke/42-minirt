@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/13 15:00:04 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 16:17:08 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	error_handler(char *scene);
 /srcs/utils
 */
 size_t	ft_array_size(char **array);
+double	ft_atof(const char *str);
 void	ft_memdel(void **ptr);
 
 #endif

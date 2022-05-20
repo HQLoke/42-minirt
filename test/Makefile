@@ -1,6 +1,6 @@
 # Implicit variables
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -I../include -g -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -I../include -I../libft -g -fsanitize=address
 LDFLAGS	=	-L.. -L../libft
 LDLIBS	=	-lrt -lft -lm
 SRCS	=	$(wildcard */test*.c)
