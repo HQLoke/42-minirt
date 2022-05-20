@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/19 17:16:07 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 10:40:50 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ t_mat	*ft_mat_affine_inverse(t_mat *A);
 // ft_vec.c -- vector construction and destruction functions
 t_vec	*ft_vec_new(size_t n, ...);
 t_vec	*ft_vec_copy(t_vec *vec);
-t_vec	*ft_vec3_new(double x, double y, double z);
 void	ft_vec_del(t_vec *vec);
 void	ft_vec_del_many(size_t n, ...);
 
@@ -89,6 +88,11 @@ t_vec	*ft_vec_mul_elem(t_vec *a, t_vec *b);
 double	ft_vec_mul_dot(t_vec *a, t_vec *b);
 t_vec	*ft_vec_mul_cross(t_vec *a, t_vec *b);
 double	ft_vec_mul_triple(t_vec *a, t_vec *b, t_vec *c);
+
+// ft_vec_new.c -- creating new vectors
+t_vec	*ft_vec2_new(double x, double y);
+t_vec	*ft_vec3_new(double x, double y, double z);
+t_vec	*ft_vec4_new(double x, double y, double z, double w);
 
 // ft_vec_op.c -- other vector operations
 t_vec	*ft_vec_add(t_vec *a, t_vec *b);

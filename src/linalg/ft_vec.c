@@ -6,14 +6,17 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:26:01 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 10:51:36 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linalg.h"
 
-/* Return a vector of size n. This function should preferably not be
- * called by the user, as it is unsafe (i.e. integer used as input).
+/* Return a vector of size n.
+ *
+ * This function should preferably not be called by the user, as it is
+ * unsafe (i.e. integer used as input). User should instead call
+ * ft_vec2_new, ft_vec3_new or ft_vec4_new instead.
  */
 t_vec	*ft_vec_new(size_t n, ...)
 {
@@ -51,12 +54,6 @@ t_vec	*ft_vec_copy(t_vec *vec)
 	retval = ft_vec_new(n);
 	ft_memmove(retval->data, vec->data, sizeof(vec->data[0]) * n);
 	return (retval);
-}
-
-/* Return a vector of size 3 */
-t_vec	*ft_vec3_new(double x, double y, double z)
-{
-	return (ft_vec_new(3, x, y, z));
 }
 
 /* Delete a vector from memory. */

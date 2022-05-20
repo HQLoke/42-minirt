@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:22:22 by weng              #+#    #+#             */
-/*   Updated: 2022/05/18 15:36:37 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 10:55:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	test_new(void)
 	t_vec	*origin;
 	t_vec	*direction;
 
-	origin = ft_vec_new(4, 1.0, 2.0, 3.0, 1.0);
-	direction = ft_vec_new(4, 4.0, 5.0, 6.0, 0.0);
+	origin = ft_vec4_new(1, 2, 3, 1);
+	direction = ft_vec4_new(4, 5, 6, 0);
 	ray = ft_ray_new(ft_vec_copy(origin), ft_vec_copy(direction));
 	direction = ft_vec_normalise(direction);
 	if (eq_vec(origin, ray->org) == 0
@@ -38,8 +38,8 @@ void	test_copy(void)
 	t_ray	*copy;
 
 	ray = ft_ray_new(
-			ft_vec_new(4, 1.0, 2.0, 3.0, 1.0),
-			ft_vec_new(4, 4.0, 5.0, 6.0, 0.0));
+			ft_vec4_new(1, 2, 3, 1),
+			ft_vec4_new(4, 5, 6, 0));
 	copy = ft_ray_copy(ray);
 	if (eq_vec(ray->org, copy->org) == 0
 		|| eq_vec(ray->dir, copy->dir) == 0)
@@ -61,8 +61,8 @@ void	test_transform(void)
 	translate = ft_affine_translate(1.0, 2.0, 3.0);
 	transform = ft_mat_mul(transform, translate);
 	ray = ft_ray_new(
-			ft_vec_new(4, 1.0, 2.0, 3.0, 1.0),
-			ft_vec_new(4, 4.0, 5.0, 6.0, 0.0));
+			ft_vec4_new(1, 2, 3, 1),
+			ft_vec4_new(4, 5, 6, 0));
 	copy = ft_ray_copy(ray);
 	copy = ft_ray_transform(transform, copy);
 	transform = ft_mat_affine_inverse(transform);
@@ -87,8 +87,8 @@ void	test_calc_point(void)
 
 	t = 12;
 	ray = ft_ray_new(
-			ft_vec_new(4, 0.0, 1.0, 2.0, 1.0),
-			ft_vec_new(4, 3.0, 4.0, 5.0, 0.0));
+			ft_vec4_new(0, 1, 2, 1),
+			ft_vec4_new(3, 4, 5, 0));
 	target = ft_vec_mul_scalar(ft_vec_copy(ray->dir), t);
 	target = ft_vec_add(target, ray->org);
 	ft_ray_calc_point(ray, t, &point);

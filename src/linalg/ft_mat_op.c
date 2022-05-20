@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:49:02 by weng              #+#    #+#             */
-/*   Updated: 2022/05/19 17:23:48 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 10:44:39 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_mat	*ft_mat_affine_inverse(t_mat *A)
 		return (NULL);
 	inv_a = ft_mat_copy(A);
 	inv_a = ft_mat_transpose(inv_a);
-	b = ft_vec_new(4, -A->data[0][3], -A->data[1][3], -A->data[2][3], 0.0);
+	b = ft_vec4_new(-A->data[0][3], -A->data[1][3], -A->data[2][3], 0.0);
 	b = ft_mat_mul_vec(inv_a, b);
 	i = -1;
 	while (++i < 3)

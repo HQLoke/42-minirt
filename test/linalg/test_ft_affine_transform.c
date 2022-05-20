@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:34:44 by weng              #+#    #+#             */
-/*   Updated: 2022/05/19 17:24:42 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 10:55:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	test_rotate_x(void)
 	t_mat	*mat;
 	t_mat	*target;
 
-	orient = ft_vec_new(4, 1.0, 0.0, 0.0, 0.0);
+	orient = ft_vec4_new(1, 0, 0, 0);
 	mat = ft_affine_rotate(orient);
 	target = ft_affine_rotate_y(M_PI / 2);
 	if (eq_mat(mat, target) == 0)
@@ -38,7 +38,7 @@ void	test_rotate_y(void)
 	t_mat	*mat;
 	t_mat	*target;
 
-	orient = ft_vec_new(4, 0.0, 1.0, 0.0, 0.0);
+	orient = ft_vec4_new(0, 1, 0, 0);
 	mat = ft_affine_rotate(orient);
 	target = ft_affine_rotate_x(-M_PI / 2);
 	if (eq_mat(mat, target) == 0)
@@ -57,7 +57,7 @@ void	test_rotate_z(void)
 	t_mat	*mat;
 	t_mat	*target;
 
-	orient = ft_vec_new(4, 0.0, 0.0, 1.0, 0.0);
+	orient = ft_vec4_new(0, 0, 1, 0);
 	mat = ft_affine_rotate(orient);
 	target = ft_mat_identity(4);
 	if (eq_mat(mat, target) == 0)
@@ -76,7 +76,7 @@ void	test_rotate_neg_z(void)
 	t_mat	*mat;
 	t_mat	*target;
 
-	orient = ft_vec_new(4, 0.0, 0.0, -1.0, 0.0);
+	orient = ft_vec4_new(0, 0, -1, 0);
 	mat = ft_affine_rotate(orient);
 	target = ft_affine_rotate_x(M_PI);
 	if (eq_mat(mat, target) == 0)

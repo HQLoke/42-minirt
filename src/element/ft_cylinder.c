@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:16:59 by weng              #+#    #+#             */
-/*   Updated: 2022/05/19 23:25:34 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 10:44:39 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ t_vec	*ft_cylinder_normal(t_obj *cy, t_vec *point, t_vec *norm)
 		perror("Point is not on a given cylinder.");
 		exit(1);
 	}
-	normal = ft_vec_new(4, point->data[0], point->data[1], 0.0, 0.0);
+	normal = ft_vec4_new(point->data[0], point->data[1], 0.0, 0.0);
 	ft_memmove(norm, normal, sizeof(t_vec));
 	free(normal);
 	ft_vec_normalise(norm);

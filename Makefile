@@ -31,6 +31,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_math.c \
 				ft_vec.c \
 				ft_vec_mul.c \
+				ft_vec_new.c \
 				ft_vec_op.c \
 			) \
 			$(addprefix $(UTILS_DIR), \

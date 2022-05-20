@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/05/19 17:43:01 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 10:55:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ t_vec	*ft_sphere_normal(t_obj *sphere, t_vec *point, t_vec *norm)
 		perror("Point is not on a given sphere.");
 		exit(1);
 	}
-	normal = ft_vec_new(4, 0.0, 0.0, 0.0, 1.0);
+	normal = ft_vec4_new(0, 0, 0, 1);
 	normal = ft_vec_sub(normal, point);
 	normal = ft_vec_mul_scalar(normal, -1);
 	ft_memmove(norm, normal, sizeof(t_vec));
