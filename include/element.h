@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/20 14:12:57 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:13:25 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef enum e_element
 	LIGHT,
 	SPHERE,
 	PLANE,
-	CYLINDER
+	CYLINDER,
+	CONE,
 }	t_element;
 
 /* struct representing a ray
@@ -90,6 +91,11 @@ typedef struct s_obj
 	t_coeff		coefficient;
 	t_normal	normal;
 }	t_obj;
+
+// ft_cone.c -- cone related functions
+t_obj	*ft_cone_new(t_vec *ctr, t_vec *orient, double height, t_vec *colour);
+void	ft_cone_coefficient(t_obj *cone, t_ray *ray, double *coeff);
+t_vec	*ft_cone_normal(t_obj *cone, t_ray *ray, t_vec *point, t_vec *norm);
 
 // ft_cylinder.c -- cylinder related functions
 t_obj	*ft_cylinder_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour);
