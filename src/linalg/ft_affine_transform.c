@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:58:17 by weng              #+#    #+#             */
-/*   Updated: 2022/05/19 17:26:06 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:40:22 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_mat	*ft_affine_rotate(t_vec *orient)
 	v->data[2][0] = -orient->data[0];
 	v->data[2][1] = -orient->data[1];
 	v2 = ft_mat_mul(ft_mat_copy(v), v);
-	v2 = ft_mat_mul_scalar(1 / (1 + orient->data[2]), v2);
+	v2 = ft_mat_mul_scalar(v2, 1 / (1 + orient->data[2]));
 	rotate = ft_mat_identity(4);
 	rotate = ft_mat_add(rotate, v);
 	rotate = ft_mat_add(rotate, v2);

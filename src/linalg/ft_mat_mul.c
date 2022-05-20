@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:20:19 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 11:35:56 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:40:32 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* Returns the multiplication of scalar value and a matrix, and assign
  * the result to the matrix A, i.e. A = sA */
-t_mat	*ft_mat_mul_scalar(double s, t_mat *A)
+t_mat	*ft_mat_mul_scalar(t_mat *A, double s)
 {
 	size_t	i;
 

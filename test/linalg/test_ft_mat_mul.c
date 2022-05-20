@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:03:44 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 10:54:17 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:40:38 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	test_scalar(void)
 	t_mat			*target;
 
 	mat = ft_mat_new(2, 2, ptr);
-	mat = ft_mat_mul_scalar(2, mat);
+	mat = ft_mat_mul_scalar(mat, 2);
 	target = ft_mat_new(2, 2, ptr2);
 	if (eq_mat(mat, target) == 0)
 		printf("ft_mat_mul_scalar: Error!\n");

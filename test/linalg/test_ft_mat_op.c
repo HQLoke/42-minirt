@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 10:59:52 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 11:31:49 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:40:48 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	test_swap(void)
 	a = ft_mat_identity(4);
 	a_copy = ft_mat_copy(a);
 	b = ft_mat_identity(4);
-	b = ft_mat_mul_scalar(-1, b);
+	b = ft_mat_mul_scalar(b, -1);
 	b_copy = ft_mat_copy(b);
 	ft_mat_swap(a, b);
 	if (eq_mat(a, b_copy) == 0 || eq_mat(b, a_copy) == 0)
