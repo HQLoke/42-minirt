@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/05/22 23:05:10 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 23:16:30 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_obj_intersect(t_obj *obj, t_ray *ray, t_vec *point, t_vec *norm)
 	ray = ft_ray_transform(obj->fr_world, ft_ray_copy(ray));
 	obj->coefficient(obj, ray, coeff);
 	discri = pow(coeff[1], 2) - 4 * coeff[0] * coeff[2];
-	retval = (discri >= 0);
+	retval = ((eq_double(discri, 0) == 0) && discri > 0);
 	if (retval == 1)
 	{
 		t = -(coeff[1] + sqrt(discri)) / (2 * coeff[0]);

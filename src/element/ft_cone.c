@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 14:46:57 by weng              #+#    #+#             */
-/*   Updated: 2022/05/22 23:04:23 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 23:12:46 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ void	ft_cone_coefficient(t_obj *cone, t_ray *ray, double *coeff)
  * For this calculation, it the height of the cone is not checked, 
  * i.e. the cone is assumed to have infinite height.
  * 
- * Also, if the ray hits the cone at the origin, it is assumed that the
- * normal will be directed backward towards the origin of the ray.
+ * Since it is assumed that the ray will not hit the object if it is
+ * coming at the tangent, the ray will never hit the object at the
+ * origin.
  * */
 t_vec	*ft_cone_normal(t_obj *cone, t_ray *ray, t_vec *point, t_vec *norm)
 {
 	t_vec	*normal;
-	t_vec	*origin;
 
 	(void) cone;
 	if (eq_double(
@@ -70,16 +70,10 @@ t_vec	*ft_cone_normal(t_obj *cone, t_ray *ray, t_vec *point, t_vec *norm)
 		perror("Point is not on a given cone.");
 		exit(1);
 	}
-	origin = ft_vec4_new(0, 0, 0, 1);
-	if (eq_vec(point, origin) == 1)
-		normal = ft_vec_mul_scalar(ft_vec_copy(ray->dir), -1);
-	else
-		normal = ft_vec4_new(
-				point->data[0], point->data[1], -point->data[2], 0.0);
+	normal = ft_vec4_new(point->data[0], point->data[1], -point->data[2], 0.0);
 	ft_vec_normalise(normal);
 	ft_vec_swap(norm, normal);
 	ft_vec_del(normal);
-	ft_vec_del(origin);
 	norm = ft_correct_normal(norm, ray);
 	return (norm);
 }

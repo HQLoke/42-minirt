@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 22:40:32 by weng              #+#    #+#             */
-/*   Updated: 2022/05/22 23:01:30 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 23:15:41 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,31 @@ void	test_no_intersect(void)
 	free(norm.data);
 }
 
+void	test_no_intersect_origin(void)
+{
+	t_obj	*cone;
+	t_ray	*ray;
+	t_vec	*point;
+	t_vec	norm;
+
+	point = ft_vec_new(4);
+	norm.data = NULL;
+	cone = ft_cone_new(ft_vec4_new(0, 0, 0, 1),
+			ft_vec4_new(0, 0, 1, 0),
+			100,
+			ft_vec3_new(0, 0, 0));
+	ray = ft_ray_new(ft_vec4_new(1, -1, 0, 1),
+			ft_vec4_new(-1, 1, 0, 0));
+	if (cone->intersect(cone, ray, point, &norm) == 1)
+		printf("ft_cone_intersect no intersect at origin: Error!\n");
+	else
+		printf("ft_cone_intersect no intersect at origin: OK\n");
+	ft_obj_del(cone);
+	ft_ray_del(ray);
+	ft_vec_del(point);
+	free(norm.data);
+}
+
 void	test_normal(void)
 {
 	t_obj	*cone;
@@ -127,6 +152,7 @@ int	main(void)
 	test_new();
 	test_intersect();
 	test_no_intersect();
+	test_no_intersect_origin();
 	test_normal();
 	return (0);
 }
