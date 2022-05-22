@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/20 15:13:25 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 16:59:40 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ t_vec	*ft_cylinder_normal(t_obj *cy, t_ray *ray, t_vec *point, t_vec *norm);
 t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour);
 void	ft_obj_del(t_obj *obj);
 int		ft_obj_intersect(t_obj *obj, t_ray *ray, t_vec *point, t_vec *norm);
+t_vec	*ft_correct_normal(t_vec *norm, t_ray *ray);
 
 // ft_plane.c -- plane related functions
 t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour);

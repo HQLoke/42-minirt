@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 22:40:32 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 15:34:43 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 23:01:30 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,27 +93,32 @@ void	test_no_intersect(void)
 void	test_normal(void)
 {
 	t_obj	*cone;
-	t_vec	*point;
+	t_ray	*ray;
 	t_vec	*target;
+	t_vec	point;
 	t_vec	norm;
 
+	point.data = NULL;
 	norm.data = NULL;
 	cone = ft_cone_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(0, 0, 1, 0),
 			100,
 			ft_vec3_new(0, 0, 0));
-	point = ft_vec4_new(-pow(2, 0.5), pow(2, 0.5), 2, 1.0);
+	ray = ft_ray_new(ft_vec4_new(-2, 2, 2, 1), ft_vec4_new(1, -1, 2, 0));
 	target = ft_vec4_new(-pow(2, 0.5), pow(2, 0.5), -2, 0.0);
 	target = ft_vec_normalise(target);
-	cone->normal(cone, NULL, point, &norm);
-	if (eq_vec(&norm, target) == 0 || eq_double(ft_vec_len(&norm), 1) == 0)
+	cone->intersect(cone, ray, &point, &norm);
+	if (eq_vec(&norm, target) == 0
+		|| eq_double(ft_vec_len(&norm), 1) == 0
+		|| ft_vec_angle(ray->dir, &norm) < M_PI / 2)
 		printf("ft_cone_normal: Error!\n");
 	else
 		printf("ft_cone_normal: OK\n");
 	ft_obj_del(cone);
-	ft_vec_del(point);
+	ft_ray_del(ray);
 	ft_vec_del(target);
+	free(point.data);
 	free(norm.data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:59:41 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 14:13:40 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 17:53:00 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_plane_intersect(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm)
 		if (retval == 1)
 		{
 			point = ft_ray_calc_point(ray, t, point);
-			norm = ft_plane_normal(plane, NULL, point, norm);
+			norm = ft_plane_normal(plane, ray, point, norm);
 		}
 	}
 	return (retval);
@@ -72,12 +72,12 @@ t_vec	*ft_plane_normal(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm)
 {
 	t_vec	*normal;
 
-	(void) ray;
 	(void) point;
 	normal = ft_vec_copy(plane->dimension);
 	normal->data[3] = 0.0;
 	ft_vec_normalise(normal);
 	ft_vec_swap(norm, normal);
 	ft_vec_del(normal);
+	norm = ft_correct_normal(norm, ray);
 	return (norm);
 }

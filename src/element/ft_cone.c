@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 14:46:57 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 15:13:19 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 23:04:23 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ t_vec	*ft_cone_normal(t_obj *cone, t_ray *ray, t_vec *point, t_vec *norm)
 	}
 	origin = ft_vec4_new(0, 0, 0, 1);
 	if (eq_vec(point, origin) == 1)
-	{
-		normal = ft_vec_copy(ray->dir);
-		normal = ft_vec_mul_scalar(normal, -1);
-	}
+		normal = ft_vec_mul_scalar(ft_vec_copy(ray->dir), -1);
 	else
 		normal = ft_vec4_new(
 				point->data[0], point->data[1], -point->data[2], 0.0);
@@ -83,5 +80,6 @@ t_vec	*ft_cone_normal(t_obj *cone, t_ray *ray, t_vec *point, t_vec *norm)
 	ft_vec_swap(norm, normal);
 	ft_vec_del(normal);
 	ft_vec_del(origin);
+	norm = ft_correct_normal(norm, ray);
 	return (norm);
 }

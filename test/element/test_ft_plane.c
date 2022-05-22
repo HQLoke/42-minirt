@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:45:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 15:34:37 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 23:02:36 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	test_new(void)
 	norm->data[3] = -norm->data[0] * point->data[0]
 		- norm->data[1] * point->data[1]
 		- norm->data[2] * point->data[2];
-	if (eq_vec(norm, plane->dimension) == 0  || plane->type != PLANE)
+	if (eq_vec(norm, plane->dimension) == 0 || plane->type != PLANE)
 		printf("ft_plane_new: Error!\n");
 	else
 		printf("ft_plane_new: OK\n");
@@ -57,7 +57,9 @@ void	test_intersect(void)
 			ft_vec4_new(1, 1, 0, 0));
 	plane->intersect(plane, ray, point, &norm);
 	target_n = ft_vec_normalise(target_n);
-	if (eq_vec(point, target_p) == 0 || eq_vec(&norm, target_n) == 0)
+	if (eq_vec(point, target_p) == 0
+		|| (eq_vec(&norm, target_n) == 0
+		&& eq_vec(&norm, ft_vec_mul_scalar(target_n, -1)) == 0))
 		printf("ft_plane_intersect: Error!\n");
 	else
 		printf("ft_plane_intersect: OK\n");
@@ -109,7 +111,7 @@ void	test_normal(void)
 	t_vec	norm;
 	t_vec	*target_n;
 
-	target_n = ft_vec4_new(1, 1, 0, 0);
+	target_n = ft_vec4_new(-1, -1, 0, 0);
 	point = ft_vec_new(4);
 	plane = ft_plane_new(
 			ft_vec4_new(1, 1, 0, 1),
@@ -120,7 +122,9 @@ void	test_normal(void)
 			ft_vec4_new(1, 1, 0, 0));
 	plane->intersect(plane, ray, point, &norm);
 	target_n = ft_vec_normalise(target_n);
-	if (eq_vec(&norm, target_n) == 0 || eq_double(ft_vec_len(&norm), 1) == 0)
+	if (eq_vec(&norm, target_n) == 0
+		|| eq_double(ft_vec_len(&norm), 1) == 0
+		|| ft_vec_angle(ray->dir, &norm) < M_PI / 2)
 		printf("ft_plane_normal: Error!\n");
 	else
 		printf("ft_plane_normal: OK\n");

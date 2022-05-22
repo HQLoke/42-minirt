@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/05/22 16:48:33 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 23:05:10 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,20 @@ int	ft_obj_intersect(t_obj *obj, t_ray *ray, t_vec *point, t_vec *norm)
 	}
 	ft_ray_del(ray);
 	return (retval && fabs(point->data[2]) <= obj->dimension->data[1] / 2);
+}
+
+/* Correct the direction of the normal vector from the surface based on
+ * the direction of the ray. Returns the corrected normal.
+ *
+ * The dot product of the ray direction vector and normal should be less
+ * than or equal to 0. Else, the normal should be reversed.
+ */
+t_vec	*ft_correct_normal(t_vec *norm, t_ray *ray)
+{
+	double	dot;
+
+	dot = ft_vec_mul_dot(norm, ray->dir);
+	if (dot > 0)
+		norm = ft_vec_mul_scalar(norm, -1);
+	return (norm);
 }

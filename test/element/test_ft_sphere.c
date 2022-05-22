@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:14:10 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 15:35:03 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 23:01:23 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,22 +80,27 @@ void	test_no_intersect(void)
 void	test_normal(void)
 {
 	t_obj	*sphere;
-	t_vec	*point;
+	t_ray	*ray;
 	t_vec	*target;
+	t_vec	point;
 	t_vec	norm;
 
+	point.data = NULL;
 	norm.data = NULL;
 	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0, 1), 2, ft_vec3_new(0, 0, 0));
-	point = ft_vec4_new(-pow(2, 0.5), pow(2, 0.5), 0.0, 1.0);
+	ray = ft_ray_new(ft_vec4_new(-2, 2, 0, 1), ft_vec4_new(1, -1, 0, 0));
 	target = ft_vec4_new(-pow(2, 0.5) / 2, pow(2, 0.5) / 2, 0.0, 0.0);
-	sphere->normal(sphere, NULL, point, &norm);
-	if (eq_vec(&norm, target) == 0 || eq_double(ft_vec_len(&norm), 1) == 0)
+	sphere->intersect(sphere, ray, &point, &norm);
+	if (eq_vec(&norm, target) == 0
+		|| eq_double(ft_vec_len(&norm), 1) == 0
+		|| ft_vec_angle(ray->dir, &norm) < M_PI / 2)
 		printf("ft_sphere_normal: Error!\n");
 	else
 		printf("ft_sphere_normal: OK\n");
 	ft_obj_del(sphere);
-	ft_vec_del(point);
+	ft_ray_del(ray);
 	ft_vec_del(target);
+	free(point.data);
 	free(norm.data);
 }
 
