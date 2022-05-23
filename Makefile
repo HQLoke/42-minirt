@@ -5,19 +5,33 @@ CFLAGS	=	-Wall -Wextra -Werror $(INCLUDE) -g3 -fsanitize=address
 FDFLAGS	=	-L. -Llibft
 FDLIBS	=	-lrt -lft
 
-# soruce and object files
+# source and object files
 ERROR_DIR	=	error/
+LINALGDIR	=	linalg/
 UTILS_DIR	=	utils/
 
 SRCDIR	=	src
-SRCS	=	$(addprefix $(ERROR_DIR),	check_objects.c \
-										check_settings.c \
-										error_handler.c \
-										error_utils.c) \
-			$(addprefix $(UTILS_DIR),	ft_array_size.c \
-										ft_atof.c \
-										ft_atol.c \
-										ft_memdel.c)
+SRCS	=	$(addprefix $(ERROR_DIR), \
+				check_objects.c \
+				check_settings.c \
+				error_handler.c \
+				error_utils.c) \
+			$(addprefix $(LINALGDIR), \
+				ft_affine.c \
+				ft_mat.c \
+				ft_mat_mul.c \
+				ft_mat_op.c \
+				ft_math.c \
+				ft_vec.c \
+				ft_vec_mul.c \
+				ft_vec_op.c \
+			) \
+			$(addprefix $(UTILS_DIR), \
+				ft_array_size.c \
+				ft_atof.c \
+				ft_atol.c \
+				ft_memdel.c \
+			)
 OBJDIR	=	obj
 OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))
 
@@ -28,7 +42,7 @@ LIBRT	=	librt.a
 
 LIBFT_PATH = ./libft
 
-#Color and format
+# colour and format
 BOLD = \e[1m
 PURPLE = \e[1;35m
 GREEN = \e[1;32m
@@ -40,11 +54,8 @@ all: $(NAME)
 $(LIBFT_PATH)/libft.a:
 	$(MAKE) -C $(LIBFT_PATH)
 
-$(OBJDIR):
-	@mkdir $@
-
 $(NAME): $(LIBFT_PATH)/libft.a $(LIBRT)
-	$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(MAIN) $(FDFLAGS) $(FDLIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(MAIN) $(FDFLAGS) $(FDLIBS)
 	@printf "$(NEWLINE)$(GREEN)Successfully created $(GREEN)$@$(GREEN)!\n$(NO_COLOR)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
