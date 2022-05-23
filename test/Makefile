@@ -13,7 +13,7 @@ echo:
 	echo $(MAINS)
 
 librt:
-	make --no-print-directory -C .. librt.a
+	@make --no-print-directory -C .. librt.a
 
 %: */test_%.c librt
 	@$(CC) $(CPPFLAGS) $(CFLAGS) $< -o $@ $(LDFLAGS) $(LDLIBS)

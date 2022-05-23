@@ -7,10 +7,11 @@ void	test_atof(char *str)
 
 	original = atof(str);
 	retval = ft_atof(str);
-	printf("Original is %lf\n  Retval is %lf\n\n", original, retval);
+	if (fabs(original - retval) > 0)
+		printf("Original is %.20lf\n  Retval is %.20lf\n\n", original, retval);
 }
 
-int main(void)
+int	main(void)
 {
 	test_atof("1");
 	test_atof("999");
@@ -30,6 +31,5 @@ int main(void)
 	test_atof("-2147483648.00000000");
 	test_atof("2147483647.2147483647");
 	test_atof("-2147483648.2147483648");
-
 	return (0);
 }

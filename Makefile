@@ -16,6 +16,7 @@ SRCS	=	$(addprefix $(ERROR_DIR),	check_objects.c \
 										error_utils.c) \
 			$(addprefix $(UTILS_DIR),	ft_array_size.c \
 										ft_atof.c \
+										ft_atol.c \
 										ft_memdel.c)
 OBJDIR	=	obj
 OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))
