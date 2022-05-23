@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/20 16:17:08 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/23 10:50:00 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <limits.h>
+# include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -50,6 +51,7 @@ void	error_handler(char *scene);
 */
 size_t	ft_array_size(char **array);
 double	ft_atof(const char *str);
+long	ft_atol(const char *s);
 void	ft_memdel(void **ptr);
 
 #endif
