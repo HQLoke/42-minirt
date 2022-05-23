@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:28:12 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/23 11:37:24 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	eq_double(double a, double b)
 {
 	double	lhs;
 
+	if (a == INFINITY || a == -INFINITY || b == INFINITY || b == -INFINITY)
+		return (a == b);
 	lhs = fabs(a - b);
 	return (lhs <= (DBL_EPSILON * fabs(a + b)) || lhs <= DBL_EPSILON);
 }
