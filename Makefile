@@ -29,7 +29,6 @@ SRCS	=	$(addprefix $(ERROR_DIR), \
 			$(addprefix $(UTILS_DIR), \
 				ft_array_size.c \
 				ft_atof.c \
-				ft_atol.c \
 				ft_memdel.c \
 			)
 OBJDIR	=	obj
@@ -81,4 +80,9 @@ re: fclean all
 norm:
 	norminette include/* src/*
 
-.PHONY: libft clean norm
+test:
+	@gcc  -g3 -fsanitize=address -Iinclude -Ilibft -o 123TEST TEST.c -Llibft -lft
+	@./123TEST
+	@rm 123TEST
+
+.PHONY: libft clean norm test
