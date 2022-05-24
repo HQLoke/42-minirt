@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/23 10:50:00 by hloke            ###   ########.fr       */
+/*   Updated: 2022/05/23 16:26:38 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	error_handler(char *scene);
 */
 size_t	ft_array_size(char **array);
 double	ft_atof(const char *str);
-long	ft_atol(const char *s);
 void	ft_memdel(void **ptr);
 
 #endif
