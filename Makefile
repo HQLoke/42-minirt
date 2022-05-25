@@ -13,6 +13,7 @@ UTILS_DIR	=	utils/
 
 SRCDIR	=	src
 SRCS	=	$(addprefix $(ELEMENT_DIR), \
+				ft_camera.c \
 				ft_cone.c \
 				ft_cylinder.c \
 				ft_obj.c \

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/22 16:59:40 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/25 22:42:07 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef t_vec*			(*t_normal)(t_obj *, t_ray *, t_vec *, t_vec *);
 
 typedef enum e_element
 {
-	AMBIENT,
 	CAMERA,
+	AMBIENT,
 	LIGHT,
 	SPHERE,
 	PLANE,
@@ -62,10 +62,17 @@ x, y, z coordinates of the viewpoint: -50.0, 0.0, 20.6
 3D normalized orientation vector. In range [-1, 1] for each x, y, z axis
 FOV: Horizontal field of view in degrees in range [0, 180]
 */
-typedef struct s_camera
+typedef struct s_cam
 {
-	int	dummy;
-}	t_camera;
+	double	fov;
+	double	near;
+	double	lx;
+	double	ly;
+	int		reso_x;
+	int		reso_y;
+	t_mat	*to_world;
+	t_mat	*fr_world;
+}	t_cam;
 
 typedef struct s_light
 {
@@ -91,6 +98,11 @@ typedef struct s_obj
 	t_coeff		coefficient;
 	t_normal	normal;
 }	t_obj;
+
+// ft_camera.c -- camera related functions
+t_cam	*ft_camera_new(t_vec *ctr, t_vec *orient, double fov);
+t_ray	*ft_camera_ray(t_cam *camera, int i, int j);
+void	ft_camera_del(t_cam *camera);
 
 // ft_cone.c -- cone related functions
 t_obj	*ft_cone_new(t_vec *ctr, t_vec *orient, double height, t_vec *colour);
