@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:34:22 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/12 10:30:39 by hloke            ###   ########.fr       */
+/*   Updated: 2022/05/25 10:17:19 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,22 +80,26 @@ Check line one-by-one. Split line using space to obtain element information
 */
 static void	check_line(char *line, int line_num, t_list **error)
 {
-	char	**info;
+	char		**info;
+	const char	*spec[] = {"A", "L", "C", "pl", "sp", "cy"};
+	const void	(*func[])(char **, int, t_list **) = {
+		&check_ambient, &check_light, &check_camera, &check_plane,
+		&check_sphere, &check_cylinder
+	};
+	const int	n = sizeof(spec) / sizeof(spec[0]);
+	int			i;
 
 	info = ft_split(line, ' ');
-	if (ft_strcmp(info[0], "A") == 0)
-		check_ambient(info, line_num, error);
-	else if (ft_strcmp(info[0], "C") == 0)
-		check_camera(info, line_num, error);
-	else if (ft_strcmp(info[0], "L") == 0)
-		check_light(info, line_num, error);
-	else if (ft_strcmp(info[0], "sp") == 0)
-		check_sphere(info, line_num, error);
-	else if (ft_strcmp(info[0], "pl") == 0)
-		check_plane(info, line_num, error);
-	else if (ft_strcmp(info[0], "cy") == 0)
-		check_cylinder(info, line_num, error);
-	else
+	i = -1;
+	while (++i < n)
+	{
+		if (ft_strcmp(info[0], spec[i]) == 0)
+		{
+			func[i](info, line_num, error);
+			break ;
+		}
+	}
+	if (i == n)
 		ft_lstadd_back(error, ft_lstnew("Invalid type identifier", line_num));
 	ft_memdel((void **)info);
 }
