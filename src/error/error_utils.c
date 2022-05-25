@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:00:03 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/12 16:01:06 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/25 11:14:03 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	check_rgb(char *val, int line_num, t_list **err)
 	else if (ret == 2)
 		ft_lstadd_back(err, ft_lstnew("RGB colors must be in range [0, 255]", \
 			line_num));
-	ft_memdel((void **)tmp);
+	ft_memdel(tmp, free);
 }
 
 /*
@@ -79,7 +79,7 @@ void	check_vector(char *val, int line_num, t_list **err)
 	else if (ret == 2)
 		ft_lstadd_back(err, ft_lstnew("Each axis in normalized orientation "
 				"vector must be in range [-1, 1]", line_num));
-	ft_memdel((void **)tmp);
+	ft_memdel(tmp, free);
 }
 
 /*
@@ -97,5 +97,5 @@ void	check_xyz(char *val, int line_num, t_list **err)
 	else if (ret == 2)
 		ft_lstadd_back(err, ft_lstnew("Each axis must be in range "
 				"[-2147483648, 2147483647]", line_num));
-	ft_memdel((void **)tmp);
+	ft_memdel(tmp, free);
 }

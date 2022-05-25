@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:34:22 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/25 10:53:26 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/25 11:13:52 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	check_line(char *line, int line_num, t_list **error)
 	}
 	if (i == n)
 		ft_lstadd_back(error, ft_lstnew("Invalid type identifier", line_num));
-	ft_memdel((void **)info);
+	ft_memdel(info, free);
 }
 
 /*
