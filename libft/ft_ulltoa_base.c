@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:58:41 by weng              #+#    #+#             */
-/*   Updated: 2021/10/05 10:58:42 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/25 14:22:29 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ static void	ft_lltoa_base_aux(
 		long long n, char *base, long long baselen, char *s)
 {
 	int		r;
-	char	c;
+	char	*ptr;
 
 	if (n <= -baselen || n >= baselen)
 		ft_lltoa_base_aux(n / baselen, base, baselen, s);
 	r = n % baselen;
 	if (r < 0)
 		r *= -1;
-	c = base[r];
-	ft_strlcat(s, &c, ft_strlen(s) + 2);
+	ptr = s;
+	while (*ptr != '\0')
+		ptr++;
+	*ptr = base[r];
 }
 
 /*
@@ -74,13 +76,15 @@ static void	ft_ulltoa_base_aux(
 		unsigned long long n, char *base, unsigned long long baselen, char *s)
 {
 	int		r;
-	char	c;
+	char	*ptr;
 
 	if (n >= baselen)
 		ft_ulltoa_base_aux(n / baselen, base, baselen, s);
 	r = n % baselen;
-	c = base[r];
-	ft_strlcat(s, &c, ft_strlen(s) + 2);
+	ptr = s;
+	while (*ptr != '\0')
+		ptr++;
+	*ptr = base[r];
 }
 
 /*
