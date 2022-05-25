@@ -3,27 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_array_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 09:06:59 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/12 09:07:09 by hloke            ###   ########.fr       */
+/*   Updated: 2022/05/25 11:23:07 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /*
-Given a 2D array, return the number of elements in the array
+Return the size of a NULL terminated array of pointers.
 */
-size_t	ft_array_size(char **array)
+size_t	ft_array_size(const void *array)
 {
-	size_t	num;
+	const void	**arr;
+	size_t		num;
 
+	arr = (const void **)array;
 	num = 0;
-	if (array != NULL)
+	if (arr != NULL)
 	{
-		while (array[num] != NULL)
-			num += 1;
+		while (arr[num] != NULL)
+			++num;
 	}
 	return (num);
 }
