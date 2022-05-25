@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:34:22 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/25 10:17:19 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/25 10:53:26 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	check_line(char *line, int line_num, t_list **error)
 {
 	char		**info;
 	const char	*spec[] = {"A", "L", "C", "pl", "sp", "cy"};
-	const void	(*func[])(char **, int, t_list **) = {
+	static void	(*func[])(char **, int, t_list **) = {
 		&check_ambient, &check_light, &check_camera, &check_plane,
 		&check_sphere, &check_cylinder
 	};
