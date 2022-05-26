@@ -6,17 +6,33 @@ FDFLAGS	=	-L. -Llibft
 FDLIBS	=	-lrt -lft
 
 # source and object files
+ELEMENT_DIR	=	element/
 ERROR_DIR	=	error/
 LINALGDIR	=	linalg/
 UTILS_DIR	=	utils/
 
 SRCDIR	=	src
-SRCS	=	$(addprefix $(ERROR_DIR), \
+SRCS	=	$(addprefix $(ELEMENT_DIR), \
+				ft_ambient.c \
+				ft_camera.c \
+				ft_cone.c \
+				ft_cylinder.c \
+				ft_light.c \
+				ft_obj.c \
+				ft_plane.c \
+				ft_point.c \
+				ft_ray.c \
+				ft_sphere.c \
+				ft_spot.c \
+			) \
+			$(addprefix $(ERROR_DIR), \
 				check_objects.c \
 				check_settings.c \
 				error_handler.c \
-				error_utils.c) \
+				error_utils.c \
+			) \
 			$(addprefix $(LINALGDIR), \
+				ft_affine_transform.c \
 				ft_affine.c \
 				ft_mat.c \
 				ft_mat_mul.c \
@@ -24,6 +40,7 @@ SRCS	=	$(addprefix $(ERROR_DIR), \
 				ft_math.c \
 				ft_vec.c \
 				ft_vec_mul.c \
+				ft_vec_new.c \
 				ft_vec_op.c \
 			) \
 			$(addprefix $(UTILS_DIR), \

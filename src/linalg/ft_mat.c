@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:56:24 by weng              #+#    #+#             */
-/*   Updated: 2022/05/11 17:23:25 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/17 13:53:55 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ t_mat	*ft_mat_identity(size_t n)
 /* Free memory associated with a matrix. */
 t_mat	*ft_mat_del(t_mat *mat)
 {
+	if (mat == NULL)
+		return (NULL);
 	if (mat->data != NULL)
 	{
 		while (mat->row-- > 0)

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 10:59:52 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:40:48 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,35 @@ void	test_affine_inverse(void)
 	ft_mat_del(target);
 }
 
+void	test_swap(void)
+{
+	t_mat	*a;
+	t_mat	*a_copy;
+	t_mat	*b;
+	t_mat	*b_copy;
+
+	a = ft_mat_identity(4);
+	a_copy = ft_mat_copy(a);
+	b = ft_mat_identity(4);
+	b = ft_mat_mul_scalar(b, -1);
+	b_copy = ft_mat_copy(b);
+	ft_mat_swap(a, b);
+	if (eq_mat(a, b_copy) == 0 || eq_mat(b, a_copy) == 0)
+		printf("ft_mat_swap: Error!\n");
+	else
+		printf("ft_mat_swap: OK\n");
+	ft_mat_del(a);
+	ft_mat_del(a_copy);
+	ft_mat_del(b);
+	ft_mat_del(b_copy);
+}
+
 int	main(void)
 {
 	test_add();
 	test_sub();
 	test_transpose();
 	test_affine_inverse();
+	test_swap();
 	return (0);
 }

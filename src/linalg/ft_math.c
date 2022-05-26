@@ -20,7 +20,7 @@ int	eq_double(double a, double b)
 	if (a == INFINITY || a == -INFINITY || b == INFINITY || b == -INFINITY)
 		return (a == b);
 	lhs = fabs(a - b);
-	return (lhs <= (DBL_EPSILON * fabs(a + b)) || lhs <= DBL_EPSILON);
+	return (lhs <= (FLT_EPSILON * fabs(a + b)) || lhs <= FLT_EPSILON);
 }
 
 /* Returns true if two matrices are equal, false otherwise. */

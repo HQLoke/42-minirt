@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:49:02 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 11:37:07 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_mat	*ft_mat_sub(t_mat *A, const t_mat *B)
 t_mat	*ft_mat_transpose(t_mat *A)
 {
 	t_mat	*mat;
-	t_mat	copy;
 	size_t	i;
 	size_t	row;
 	size_t	col;
@@ -63,9 +62,7 @@ t_mat	*ft_mat_transpose(t_mat *A)
 		col = i % A->col;
 		mat->data[col][row] = A->data[row][col];
 	}
-	ft_memmove(&copy, A, sizeof(t_mat));
-	ft_memmove(A, mat, sizeof(t_mat));
-	ft_memmove(mat, &copy, sizeof(t_mat));
+	ft_mat_swap(mat, A);
 	ft_mat_del(mat);
 	return (A);
 }
@@ -83,13 +80,14 @@ t_mat	*ft_mat_transpose(t_mat *A)
 t_mat	*ft_mat_affine_inverse(t_mat *A)
 {
 	t_mat	*inv_a;
-	t_mat	copy;
 	t_vec	*b;
 	size_t	i;
 
+	if (A == NULL || A->row != A->col)
+		return (NULL);
 	inv_a = ft_mat_copy(A);
 	inv_a = ft_mat_transpose(inv_a);
-	b = ft_vec_new(4, -A->data[0][3], -A->data[1][3], -A->data[2][3], 0.0);
+	b = ft_vec4_new(-A->data[0][3], -A->data[1][3], -A->data[2][3], 0.0);
 	b = ft_mat_mul_vec(inv_a, b);
 	i = -1;
 	while (++i < 3)
@@ -97,10 +95,17 @@ t_mat	*ft_mat_affine_inverse(t_mat *A)
 		inv_a->data[3][i] = 0;
 		inv_a->data[i][3] = b->data[i];
 	}
-	ft_memmove(&copy, A, sizeof(t_mat));
-	ft_memmove(A, inv_a, sizeof(t_mat));
-	ft_memmove(inv_a, &copy, sizeof(t_mat));
+	ft_mat_swap(inv_a, A);
 	ft_mat_del(inv_a);
 	ft_vec_del(b);
 	return (A);
+}
+
+void	ft_mat_swap(t_mat *A, t_mat *B)
+{
+	t_mat	temp;
+
+	ft_memmove(&temp, A, sizeof(t_mat));
+	ft_memmove(A, B, sizeof(t_mat));
+	ft_memmove(B, &temp, sizeof(t_mat));
 }

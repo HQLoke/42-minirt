@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 00:14:12 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/22 16:28:02 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,15 @@ double	ft_vec_len(t_vec *a)
 /* Return the angle between two vectors an radians */
 double	ft_vec_angle(t_vec *a, t_vec *b)
 {
-	return (acos(ft_vec_mul_dot(a, b) / ft_vec_len(a) / ft_vec_len(b)));
+	double	val;
+
+	val = ft_vec_mul_dot(a, b) / ft_vec_len(a) / ft_vec_len(b);
+	if (eq_double(-1, val) == 1)
+		return (M_PI);
+	else if (eq_double(1, val) == 1)
+		return (0);
+	else
+		return (acos(val));
 }
 
 /* Normalise an input vector in-place */

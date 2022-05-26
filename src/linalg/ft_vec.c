@@ -6,14 +6,17 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:26:01 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 11:01:55 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linalg.h"
 
-/* Return a vector of size n. This function should preferably not be
- * called by the user, as it is unsafe (i.e. integer used as input).
+/* Return a vector of size n.
+ *
+ * This function should preferably not be called by the user, as it is
+ * unsafe (i.e. integer used as input). User should instead call
+ * ft_vec2_new, ft_vec3_new or ft_vec4_new instead.
  */
 t_vec	*ft_vec_new(size_t n, ...)
 {
@@ -53,12 +56,6 @@ t_vec	*ft_vec_copy(t_vec *vec)
 	return (retval);
 }
 
-/* Return a vector of size 3 */
-t_vec	*ft_vec3_new(double x, double y, double z)
-{
-	return (ft_vec_new(3, x, y, z));
-}
-
 /* Delete a vector from memory. */
 void	ft_vec_del(t_vec *vec)
 {
@@ -80,4 +77,14 @@ void	ft_vec_del_many(size_t n, ...)
 		ft_vec_del(vec);
 	}
 	va_end(arg);
+}
+
+/* Swap the content of two vectors */
+void	ft_vec_swap(t_vec *a, t_vec *b)
+{
+	t_vec	temp;
+
+	ft_memmove(&temp, a, sizeof(t_vec));
+	ft_memmove(a, b, sizeof(t_vec));
+	ft_memmove(b, &temp, sizeof(t_vec));
 }

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:32:53 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 11:05:36 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,33 @@ void	test_del_many(void)
 	printf("ft_vec_del_many:\n");
 }
 
+void	test_swap(void)
+{
+	t_vec	*a;
+	t_vec	*a_copy;
+	t_vec	*b;
+	t_vec	*b_copy;
+
+	a = ft_vec4_new(1, 2, 3, 4);
+	a_copy = ft_vec_copy(a);
+	b = ft_vec4_new(5, 6, 7, 8);
+	b_copy = ft_vec_copy(b);
+	ft_vec_swap(a, b);
+	if (eq_vec(a, b_copy) == 0 || eq_vec(b, a_copy) == 0)
+		printf("ft_vec_swap: Error!\n");
+	else
+		printf("ft_vec_swap: OK\n");
+	ft_vec_del(a);
+	ft_vec_del(a_copy);
+	ft_vec_del(b);
+	ft_vec_del(b_copy);
+}
+
 int	main(void)
 {
 	test_new();
 	test_copy();
 	test_del_many();
+	test_swap();
 	return (0);
 }

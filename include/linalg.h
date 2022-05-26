@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:36:26 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:40:05 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ typedef struct s_vec
 	double	*data;
 }	t_vec;
 
+// ft_affine_transform.c -- generate affine transformation matrices
+t_mat	*ft_affine_rotate(t_vec *orient);
+t_mat	*ft_affine_transform(t_vec *centre, t_vec *orient);
+
 // ft_affine.c -- affine transformation matrix functions
 t_mat	*ft_affine_translate(double dx, double dy, double dz);
 t_mat	*ft_affine_scale(double scale);
@@ -61,7 +65,7 @@ t_mat	*ft_mat_identity(size_t n);
 t_mat	*ft_mat_del(t_mat *mat);
 
 // ft_mat_mul.c -- various multiplication functions for matrices
-t_mat	*ft_mat_mul_scalar(double s, t_mat *A);
+t_mat	*ft_mat_mul_scalar(t_mat *A, double s);
 t_mat	*ft_mat_mul_elem(t_mat *A, const t_mat *B);
 t_vec	*ft_mat_mul_vec(const t_mat *A, t_vec *b);
 t_mat	*ft_mat_mul(t_mat *A, const t_mat *B);
@@ -71,13 +75,14 @@ t_mat	*ft_mat_add(t_mat *A, const t_mat *B);
 t_mat	*ft_mat_sub(t_mat *A, const t_mat *B);
 t_mat	*ft_mat_transpose(t_mat *A);
 t_mat	*ft_mat_affine_inverse(t_mat *A);
+void	ft_mat_swap(t_mat *A, t_mat *B);
 
-// ft_vec.c -- vector construction and destruction functions
+// ft_vec.c -- vector construction, destruction & swap functions
 t_vec	*ft_vec_new(size_t n, ...);
 t_vec	*ft_vec_copy(t_vec *vec);
-t_vec	*ft_vec3_new(double x, double y, double z);
 void	ft_vec_del(t_vec *vec);
 void	ft_vec_del_many(size_t n, ...);
+void	ft_vec_swap(t_vec *a, t_vec *b);
 
 // ft_vec_mul.c -- various multiplication functions for vectors
 t_vec	*ft_vec_mul_scalar(t_vec *a, double f);
@@ -85,6 +90,11 @@ t_vec	*ft_vec_mul_elem(t_vec *a, t_vec *b);
 double	ft_vec_mul_dot(t_vec *a, t_vec *b);
 t_vec	*ft_vec_mul_cross(t_vec *a, t_vec *b);
 double	ft_vec_mul_triple(t_vec *a, t_vec *b, t_vec *c);
+
+// ft_vec_new.c -- creating new vectors
+t_vec	*ft_vec2_new(double x, double y);
+t_vec	*ft_vec3_new(double x, double y, double z);
+t_vec	*ft_vec4_new(double x, double y, double z, double w);
 
 // ft_vec_op.c -- other vector operations
 t_vec	*ft_vec_add(t_vec *a, t_vec *b);

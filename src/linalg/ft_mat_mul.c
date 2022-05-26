@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:20:19 by weng              #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/20 15:40:32 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* Returns the multiplication of scalar value and a matrix, and assign
  * the result to the matrix A, i.e. A = sA */
-t_mat	*ft_mat_mul_scalar(double s, t_mat *A)
+t_mat	*ft_mat_mul_scalar(t_mat *A, double s)
 {
 	size_t	i;
 
@@ -69,7 +69,7 @@ t_vec	*ft_mat_mul_vec(const t_mat *A, t_vec *b)
 			val += A->data[i][j] * b->data[j];
 		vec->data[i] = val;
 	}
-	ft_memmove(b->data, vec->data, sizeof(b->data[0]) * b->size);
+	ft_vec_swap(b, vec);
 	ft_vec_del(vec);
 	return (b);
 }
@@ -79,7 +79,6 @@ t_vec	*ft_mat_mul_vec(const t_mat *A, t_vec *b)
 t_mat	*ft_mat_mul(t_mat *A, const t_mat *B)
 {
 	t_mat	*mat;
-	t_mat	copy;
 	size_t	i;
 	size_t	j;
 
@@ -97,9 +96,7 @@ t_mat	*ft_mat_mul(t_mat *A, const t_mat *B)
 			mat->data[i / mat->col][i % mat->col]
 				+= A->data[i / mat->col][j] * B->data[j][i % mat->col];
 	}
-	ft_memmove(&copy, A, sizeof(t_mat));
-	ft_memmove(A, mat, sizeof(t_mat));
-	ft_memmove(mat, &copy, sizeof(t_mat));
+	ft_mat_swap(mat, A);
 	ft_mat_del(mat);
 	return (A);
 }
