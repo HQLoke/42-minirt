@@ -13,18 +13,24 @@ UTILS_DIR	=	utils/
 
 SRCDIR	=	src
 SRCS	=	$(addprefix $(ELEMENT_DIR), \
+				ft_ambient.c \
 				ft_camera.c \
 				ft_cone.c \
 				ft_cylinder.c \
+				ft_light.c \
 				ft_obj.c \
 				ft_plane.c \
+				ft_point.c \
 				ft_ray.c \
-				ft_sphere.c) \
+				ft_sphere.c \
+				ft_spot.c \
+			) \
 			$(addprefix $(ERROR_DIR), \
 				check_objects.c \
 				check_settings.c \
 				error_handler.c \
-				error_utils.c) \
+				error_utils.c \
+			) \
 			$(addprefix $(LINALGDIR), \
 				ft_affine_transform.c \
 				ft_affine.c \
