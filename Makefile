@@ -8,7 +8,8 @@ FDLIBS	=	-lrt -lft
 # source and object files
 ELEMENT_DIR	=	element/
 ERROR_DIR	=	error/
-LINALGDIR	=	linalg/
+IMAGE_DIR	=	image/
+LINALG_DIR	=	linalg/
 UTILS_DIR	=	utils/
 
 SRCDIR	=	src
@@ -31,7 +32,11 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				error_handler.c \
 				error_utils.c \
 			) \
-			$(addprefix $(LINALGDIR), \
+			$(addprefix $(IMAGE_DIR), \
+				ft_image.c \
+				ft_image8.c \
+			) \
+			$(addprefix $(LINALG_DIR), \
 				ft_affine_transform.c \
 				ft_affine.c \
 				ft_mat.c \
