@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:13:04 by weng              #+#    #+#             */
-/*   Updated: 2022/05/28 22:38:49 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/28 22:52:50 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ t_img8	*ft_image_2_image8(t_img *img);
 // ppm_maker.c -- ppm related functions
 int		ft_image8_2_ppm3(t_img8 *img, const char *pathname);
 int		ft_image8_2_ppm6(t_img8 *img, const char *pathname);
+int		ft_image_2_ppm(t_img *img, const char *pathname, int type);
 
 #endif

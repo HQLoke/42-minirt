@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:40:36 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/28 22:37:54 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/28 22:51:37 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,21 @@ int	ft_image8_2_ppm6(t_img8 *img, const char *pathname)
 	ft_putchar_fd('\n', fd);
 	close(fd);
 	return (1);
+}
+
+/* Convert a t_img image to ppm of a given type */
+int	ft_image_2_ppm(t_img *img, const char *pathname, int type)
+{
+	t_img8	*img_bit;
+	int		retval;
+
+	if ((type == 3 || type == 6) == 0)
+		return (0);
+	img_bit = ft_image_2_image8(img);
+	if (type == 3)
+		retval = ft_image8_2_ppm3(img_bit, pathname);
+	else
+		retval = ft_image8_2_ppm6(img_bit, pathname);
+	ft_image8_del(img_bit);
+	return (retval);
 }
