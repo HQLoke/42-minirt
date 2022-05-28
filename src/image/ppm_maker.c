@@ -3,43 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ppm_maker.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:40:36 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/28 18:38:08 by hloke            ###   ########.fr       */
+/*   Updated: 2022/05/28 22:27:06 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "image.h"
 
-void	ppm_maker(t_img8 *img)
+static int	ft_ppm_header(
+	const char *pathname, char *type, size_t row, size_t col)
 {
-	size_t	r;
-	size_t	c;
-	int		fd;
-	char	*tmp;
+	int	fd;
 
-	fd = open("./file1.ppm", O_CREAT | O_WRONLY, 0);
+	fd = open(pathname, O_CREAT | O_TRUNC | O_WRONLY, S_IWUSR);
 	if (fd == -1)
-		perror("cannot create file.");
-	write(fd, "P6\n", 3);
-	tmp = ft_itoa(img->row);
-	write(fd, tmp, ft_strlen(tmp));
-	free (tmp);
-	tmp = ft_itoa(img->col);
-	write(fd, tmp, ft_strlen(tmp));
-	free (tmp);
-	r = -1;
-	while (++r < img->row)
 	{
-		c = -1;
-		while (++c < img->col)
-		{
-			write(fd, img->data[(r * img->row * img->col) + (c * 3 + 0)], 1);
-			write(fd, img->data[(r * img->row * img->col) + (c * 3 + 1)], 1);
-			write(fd, img->data[(r * img->row * img->col) + (c * 3 + 2)], 1);
-		}
-		printf("\n");
+		perror("Cannot create ppm file.");
+		return (fd);
 	}
+	ft_putendl_fd(type, fd);
+	ft_putnbr_fd(col, fd);
+	ft_putstr_fd(" ", fd);
+	ft_putnbr_fd(row, fd);
+	ft_putstr_fd("\n", fd);
+	ft_putnbr_fd(255, fd);
+	ft_putstr_fd("\n", fd);
+	return (fd);
+}
+
+/* Converts a t_img8 image to a ppm P6 format. */
+int	ft_image8_2_ppm6(t_img8 *img, const char *pathname)
+{
+	int		fd;
+
+	fd = ft_ppm_header(pathname, "P6", img->row, img->col);
+	if (fd == -1)
+		return (0);
+	write(fd, img->data, img->row * img->col * 3);
+	ft_putchar_fd('\n', fd);
 	close(fd);
+	return (1);
 }

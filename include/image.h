@@ -6,12 +6,16 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:13:04 by weng              #+#    #+#             */
-/*   Updated: 2022/05/27 11:05:28 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/28 22:33:14 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMAGE_H
 # define IMAGE_H
+
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 # include "linalg.h"
 
@@ -42,5 +46,8 @@ void	ft_image8_del(t_img8 *img);
 int		ft_image8_set(t_img8 *img, size_t i, size_t j, t_vec *colour);
 t_vec	*ft_image8_get(t_img8 *img, size_t i, size_t j);
 t_img8	*ft_image_2_image8(t_img *img);
+
+// ppm_maker.c -- ppm related functions
+int		ft_image8_2_ppm6(t_img8 *img, const char *pathname);
 
 #endif

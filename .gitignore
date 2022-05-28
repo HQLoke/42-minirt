@@ -13,3 +13,6 @@ minirt
 
 # dSYM folders
 *.dSYM
+
+# ppm files
+*.ppm
