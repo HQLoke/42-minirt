@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:40:36 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/28 22:27:06 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/28 22:37:54 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,28 @@ static int	ft_ppm_header(
 	ft_putnbr_fd(255, fd);
 	ft_putstr_fd("\n", fd);
 	return (fd);
+}
+
+/* Converts a t_img8 image to a ppm P3 format. */
+int	ft_image8_2_ppm3(t_img8 *img, const char *pathname)
+{
+	int		fd;
+	size_t	i;
+
+	fd = ft_ppm_header(pathname, "P3", img->row, img->col);
+	if (fd == -1)
+		return (0);
+	i = -1;
+	while (++i < img->row * img->col * 3)
+	{
+		ft_putnbr_fd(img->data[i], fd);
+		if (i % 3 != 2)
+			ft_putchar_fd(' ', fd);
+		else
+			ft_putchar_fd('\n', fd);
+	}
+	close(fd);
+	return (1);
 }
 
 /* Converts a t_img8 image to a ppm P6 format. */

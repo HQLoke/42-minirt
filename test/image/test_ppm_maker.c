@@ -6,11 +6,24 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 22:31:43 by weng              #+#    #+#             */
-/*   Updated: 2022/05/28 22:32:14 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/28 22:38:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "image.h"
+
+void	test_image8_2_ppm3(void)
+{
+	t_img8	*img;
+
+	img = ft_image8_new(200, 100);
+	ft_memset(img->data, 255, img->row * img->col * 3);
+	if (ft_image8_2_ppm3(img, "test_p3.ppm") == 0)
+		printf("ft_image8_2_ppm3: Error!\n");
+	else
+		printf("ft_image8_2_ppm3: OK\n");
+	ft_image8_del(img);
+}
 
 void	test_image8_2_ppm6(void)
 {
@@ -27,6 +40,7 @@ void	test_image8_2_ppm6(void)
 
 int	main(void)
 {
+	test_image8_2_ppm3();
 	test_image8_2_ppm6();
 	return (0);
 }
