@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:12:30 by weng              #+#    #+#             */
-/*   Updated: 2022/05/27 10:06:00 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/29 14:54:00 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_img	*ft_image_new(size_t row, size_t col)
 {
 	t_img	*img;
 
-	if (row == 0 || col == 0)
+	if (row == 0 || col == 0
+		|| row * col / col != row || row * col * 3 / 3 != row * col)
 		return (NULL);
 	img = malloc(sizeof(t_img));
 	if (img != NULL)

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:34 by weng              #+#    #+#             */
-/*   Updated: 2022/05/27 11:06:04 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/29 14:58:53 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ void	test_new(void)
 		printf("ft_image8_new: Error!\n");
 	else
 		printf("ft_image8_new: OK\n");
+	ft_image8_del(img);
+}
+
+void	test_null(void)
+{
+	t_img8	*img;
+
+	img = ft_image8_new(SIZE_MAX, 2);
+	if (img != NULL)
+		printf("ft_image8_new null: Error!\n");
+	else
+		printf("ft_image8_new null: OK\n");
 	ft_image8_del(img);
 }
 
@@ -115,7 +127,9 @@ void	test_convert(void)
 int	main(void)
 {
 	test_new();
+	test_null();
 	test_set();
+	test_get();
 	test_convert();
 	return (0);
 }

@@ -6,16 +6,17 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:13:04 by weng              #+#    #+#             */
-/*   Updated: 2022/05/28 22:52:50 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/29 14:56:52 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMAGE_H
 # define IMAGE_H
 
+# include <fcntl.h>
+# include <stdint.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-# include <fcntl.h>
 
 # include "linalg.h"
 
