@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:34 by weng              #+#    #+#             */
-/*   Updated: 2022/05/29 14:58:53 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/29 15:07:24 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ void	test_get(void)
 	i = 1;
 	j = 2;
 	img = ft_image8_new(10, 20);
-	colour = ft_vec3_new(1, 2, 3);
+	colour = ft_vec3_new(0.1, 0.2, 0.3);
 	ft_image8_set(img, i, j, colour);
 	output = ft_image8_get(img, i, j);
-	if (fabs(colour->data[0] - output->data[0]) > 0.003
-		|| fabs(colour->data[1] - output->data[1]) > 0.003
-		|| fabs(colour->data[2] - output->data[2]) > 0.003)
+	if (fabs(colour->data[0] - output->data[0]) > (1.0 / 255.9999)
+		|| fabs(colour->data[1] - output->data[1]) > (1.0 / 255.9999)
+		|| fabs(colour->data[2] - output->data[2]) > (1.0 / 255.9999))
 		printf("ft_image8_get: Error!\n");
 	else
 		printf("ft_image8_get: OK\n");
