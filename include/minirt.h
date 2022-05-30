@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/28 22:29:02 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/30 14:15:51 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@
 # include "libft.h"
 # include "linalg.h"
 
-typedef struct s_vector
+/* represents a data when an object is hit by a ray */
+typedef struct s_hit
 {
-	double	x;
-	double	y;
-	double	z;
-}	t_vector;
+	t_obj	*obj;
+	t_vec	*point;
+	t_vec	*norm;
+}	t_hit;
 
 /*
 /srcs/error
@@ -52,5 +53,14 @@ void	error_handler(char *scene);
 size_t	ft_array_size(const void *array);
 double	ft_atof(const char *str);
 void	ft_memdel(void *ptr, void (*del)(void *));
+
+// ft_trace -- ray tracing related functions
+t_obj	*ft_hit_objs(t_ray *ray, t_list *objs, t_vec *point, t_vec *norm);
+int		ft_hit_light(t_light *light, t_ray *ray, t_list *objs);
+t_vec	*ft_light_intensity(
+			t_light *light, t_list *objs, t_vec *point, t_vec *norm);
+t_vec	*ft_sum_intensities(
+			t_list	*lights, t_list *objs, t_vec *point, t_vec *norm);
+t_vec	*ft_diffuse(t_hit *hit, t_list *objs, t_list *lights);
 
 #endif

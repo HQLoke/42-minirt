@@ -10,6 +10,7 @@ ELEMENT_DIR	=	element/
 ERROR_DIR	=	error/
 IMAGE_DIR	=	image/
 LINALG_DIR	=	linalg/
+TRACE_DIR	=	trace/
 UTILS_DIR	=	utils/
 
 SRCDIR	=	src
@@ -47,6 +48,9 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_vec_mul.c \
 				ft_vec_new.c \
 				ft_vec_op.c \
+			) \
+			$(addprefix $(TRACE_DIR), \
+				ft_diffuse.c \
 			) \
 			$(addprefix $(UTILS_DIR), \
 				ft_array_size.c \

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:03:17 by weng              #+#    #+#             */
-/*   Updated: 2022/05/26 15:20:05 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/30 13:35:45 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
  * @colour	3D vector representing the colour of the light, each element
  * 			having the range [0, 1]
  */
-t_light	*ft_ambient_new(t_vec *ctr, double ratio, t_vec *colour)
+t_light	*ft_ambient_new(double ratio, t_vec *colour)
 {
 	t_light	*light;
 
 	colour = ft_vec_mul_scalar(colour, ratio);
-	light = ft_light_new(ctr, NULL, NULL, colour);
+	light = ft_light_new(NULL, NULL, NULL, colour);
 	if (light == NULL)
 		return (NULL);
 	light->type = AMBIENT;
