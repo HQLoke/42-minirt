@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:18:50 by weng              #+#    #+#             */
-/*   Updated: 2022/05/26 15:20:27 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/30 09:33:40 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_vec	*ft_point_intensity(t_light *light, t_ray *ray)
 	fraction = 1 / (
 			light->param->data[0]
 			+ light->param->data[1] * distance
-			+ light->param->data[2] * distance);
+			+ light->param->data[2] * distance * distance);
 	ft_vec_del(vec);
 	return (ft_vec_mul_scalar(ft_vec_copy(light->colour), fraction));
 }
