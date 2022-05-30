@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:26:26 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 11:24:42 by weng             ###   ########.fr       */
+/*   Updated: 2022/05/30 14:19:51 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_vec	*ft_vec_mul_elem(t_vec *a, t_vec *b)
 	n = a->size;
 	while (n-- > 0)
 		a->data[n] *= b->data[n];
-	b->data[0] = -123;
 	return (a);
 }
 
