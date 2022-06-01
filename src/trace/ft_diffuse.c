@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:06:13 by weng              #+#    #+#             */
-/*   Updated: 2022/06/01 16:10:39 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/01 16:39:19 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,18 @@ t_vec	*ft_light_intensity(t_hit *hit, t_light *light, t_list *objs)
 	return (intensity);
 }
 
-/* Return the total intensity at a point, given multiple light and
- * objects. The first light source must be the ambient light source. */
-t_vec	*ft_sum_intensities(t_hit *hit, t_list *lights, t_list *objs)
+/* Return the total intensity at a point, given multiple light and objects. */
+t_vec	*ft_sum_intensities(
+	t_hit *hit, t_light *ambient, t_list *lights, t_list *objs)
 {
 	t_vec	*vec;
 	t_vec	*intensity;
 	t_light	*light;
 
-	light = lights->content;
-	if (light->type != AMBIENT)
-	{
-		perror("The first light source must be an ambient light source.\n");
-		return (NULL);
-	}
-	vec = ft_light_intensity(hit, light, objs);
-	lights = lights->next;
+	if (ambient != NULL)
+		vec = ft_light_intensity(hit, ambient, objs);
+	else
+		vec = ft_vec3_new(0, 0, 0);
 	while (lights != NULL)
 	{
 		light = lights->content;
@@ -87,12 +83,12 @@ t_vec	*ft_sum_intensities(t_hit *hit, t_list *lights, t_list *objs)
 
 /* Return the diffuse component of the lighting formula. None of the
  * light component can have an intensity value more than 1. */
-t_vec	*ft_diffuse(t_hit *hit, t_list *lights, t_list *objs)
+t_vec	*ft_diffuse(t_hit *hit, t_light	*ambient, t_list *lights, t_list *objs)
 {
 	t_vec	*intensity;
 	size_t	i;
 
-	intensity = ft_sum_intensities(hit, lights, objs);
+	intensity = ft_sum_intensities(hit, ambient, lights, objs);
 	intensity = ft_vec_mul_elem(intensity, hit->obj->colour);
 	i = -1;
 	while (++i < intensity->size)

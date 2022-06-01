@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:05:44 by weng              #+#    #+#             */
-/*   Updated: 2022/06/01 16:21:49 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/01 16:52:26 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	test_sum_intensity(void)
 	l1 = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
 	l2 = ft_point_new(ft_vec4_new(10, 10, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
 	l3 = ft_point_new(ft_vec4_new(-10, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
-	ft_lstadd_back(&light, ft_lstnew(ambient, 0));
 	ft_lstadd_back(&light, ft_lstnew(l1, 0));
 	ft_lstadd_back(&light, ft_lstnew(l2, 0));
 	ft_lstadd_back(&light, ft_lstnew(l3, 0));
@@ -109,11 +108,12 @@ void	test_sum_intensity(void)
 			+ l2->param->data[1] * 10 * sqrt(2)
 			+ l2->param->data[2] * 10 * 10 * 2) * cos(M_PI / 4);
 	target = ft_vec_mul_scalar(ft_vec_copy(l1->colour), factor);
-	intensity = ft_sum_intensities(hit, light, NULL);
+	intensity = ft_sum_intensities(hit, ambient, light, NULL);
 	if (eq_vec(target, intensity) == 0)
 		printf("ft_sum_intensities: Error!\n");
 	else
 		printf("ft_sum_intensities: OK\n");
+	ft_light_del(ambient);
 	ft_lstclear(&light, (void (*)(void *)) ft_light_del);
 	ft_hit_del(hit);
 	ft_vec_del(intensity);
@@ -134,7 +134,6 @@ void	test_diffuse(void)
 	light = NULL;
 	ambient = ft_ambient_new(0.2, ft_vec3_new(1, 1, 1));
 	l1 = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
-	ft_lstadd_back(&light, ft_lstnew(ambient, 0));
 	ft_lstadd_back(&light, ft_lstnew(l1, 0));
 	obj = ft_sphere_new(
 			ft_vec4_new(-1, 0, 0, 1), 1, ft_vec3_new(0.1, 0.3, 0.5));
@@ -146,11 +145,12 @@ void	test_diffuse(void)
 			+ l1->param->data[2] * 5 * 5);
 	target = ft_vec_mul_scalar(ft_vec_copy(l1->colour), factor);
 	target = ft_vec_mul_elem(target, obj->colour);
-	intensity = ft_diffuse(hit, light, NULL);
+	intensity = ft_diffuse(hit, ambient, light, NULL);
 	if (eq_vec(target, intensity) == 0)
 		printf("ft_diffuse: Error!\n");
 	else
 		printf("ft_diffuse: OK\n");
+	ft_light_del(ambient);
 	ft_lstclear(&light, (void (*)(void *)) ft_light_del);
 	ft_obj_del(obj);
 	ft_hit_del(hit);
