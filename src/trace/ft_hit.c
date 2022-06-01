@@ -6,14 +6,14 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:24:23 by weng              #+#    #+#             */
-/*   Updated: 2022/06/01 15:58:02 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/01 16:17:20 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /* Create an empty hit object, with it's obj member pointing to NULL. */
-t_hit	*ft_hit_new(void)
+t_hit	*ft_hit_new(t_vec *point, t_vec *norm)
 {
 	t_hit	*hit;
 
@@ -21,8 +21,14 @@ t_hit	*ft_hit_new(void)
 	if (hit == NULL)
 		return (NULL);
 	hit->obj = NULL;
-	hit->point = ft_vec4_new(0, 0, 0, 0);
-	hit->norm = ft_vec4_new(0, 0, 0, 0);
+	if (point == NULL)
+		hit->point = ft_vec4_new(0, 0, 0, 0);
+	else
+		hit->point = point;
+	if (norm == NULL)
+		hit->norm = ft_vec4_new(0, 0, 0, 0);
+	else
+		hit->norm = norm;
 	if (hit->point == NULL || hit->norm == NULL)
 		return (ft_hit_del(hit));
 	else
@@ -38,7 +44,7 @@ t_hit	*ft_hit_objs(t_ray *ray, t_list *objs)
 	t_obj	*obj;
 	t_hit	*hit;
 
-	hit = ft_hit_new();
+	hit = ft_hit_new(NULL, NULL);
 	hit->distance = INFINITY;
 	while (objs != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/01 15:49:49 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/01 16:14:50 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,12 @@ void	ft_memdel(void *ptr, void (*del)(void *));
 
 // ft_diffuse.c -- ray tracing related functions
 int		ft_hit_light(t_light *light, t_ray *ray, t_list *objs);
-t_vec	*ft_light_intensity(
-			t_light *light, t_list *objs, t_vec *point, t_vec *norm);
-t_vec	*ft_sum_intensities(
-			t_list	*lights, t_list *objs, t_vec *point, t_vec *norm);
-t_vec	*ft_diffuse(t_hit *hit, t_list *objs, t_list *lights);
+t_vec	*ft_light_intensity(t_hit *hit, t_light *light, t_list *objs);
+t_vec	*ft_sum_intensities(t_hit *hit, t_list	*lights, t_list *objs);
+t_vec	*ft_diffuse(t_hit *hit, t_list *lights, t_list *objs);
 
 // ft_hit.c -- object-ray interaction related functions
-t_hit	*ft_hit_new(void);
+t_hit	*ft_hit_new(t_vec *point, t_vec *norm);
 t_hit	*ft_hit_objs(t_ray *ray, t_list *objs);
 t_hit	*ft_hit_del(t_hit *hit);
 
