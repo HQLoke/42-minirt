@@ -6,40 +6,11 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:05:44 by weng              #+#    #+#             */
-/*   Updated: 2022/05/30 14:30:37 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/01 15:56:57 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void	test_hit_obj(void)
-{
-	t_obj	*obj1;
-	t_obj	*obj2;
-	t_obj	*obj_min;
-	t_list	*objs;
-	t_ray	*ray;
-	t_vec	point;
-	t_vec	norm;
-
-	point.data = NULL;
-	norm.data = NULL;
-	objs = NULL;
-	obj1 = ft_sphere_new(ft_vec4_new(10, 0, 0, 1), 1, ft_vec3_new(1, 1, 1));
-	obj2 = ft_sphere_new(ft_vec4_new(5, 0, 0, 1), 1, ft_vec3_new(1, 1, 1));
-	ft_lstadd_back(&objs, ft_lstnew(obj1, 0));
-	ft_lstadd_back(&objs, ft_lstnew(obj2, 0));
-	ray = ft_ray_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
-	obj_min = ft_hit_objs(ray, objs, &point, &norm);
-	if (obj_min != obj2)
-		printf("ft_hit_objs: Error!\n");
-	else
-		printf("ft_hit_objs: OK\n");
-	ft_lstclear(&objs, (void (*)(void *)) ft_obj_del);
-	ft_ray_del(ray);
-	free(point.data);
-	free(norm.data);
-}
 
 void	test_hit_light(void)
 {
@@ -96,8 +67,8 @@ void	test_light_intensity(void)
 	point = ft_vec4_new(0, 0, 0, 1);
 	norm = ft_vec4_new(1, 0, 0, 0);
 	factor = light->param->data[0]
-			+ light->param->data[1] * 5
-			+ light->param->data[2] * 5 * 5;
+		+ light->param->data[1] * 5
+		+ light->param->data[2] * 5 * 5;
 	target = ft_vec_mul_scalar(ft_vec_copy(light->colour), 1 / factor);
 	intensity = ft_light_intensity(light, NULL, point, norm);
 	if (eq_vec(target, intensity) == 0)
@@ -116,8 +87,8 @@ void	test_sum_intensity(void)
 	t_list	*light;
 	t_light	*ambient;
 	t_light	*l1;
-	t_light *l2;
-	t_light *l3;
+	t_light	*l2;
+	t_light	*l3;
 	t_vec	*point;
 	t_vec	*norm;
 	t_vec	*intensity;
@@ -201,7 +172,6 @@ void	test_diffuse(void)
 
 int	main(void)
 {
-	test_hit_obj();
 	test_hit_light();
 	test_hit_light_false();
 	test_light_intensity();

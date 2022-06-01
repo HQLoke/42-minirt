@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/30 14:15:51 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/01 15:49:49 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_hit
 	t_obj	*obj;
 	t_vec	*point;
 	t_vec	*norm;
+	double	distance;
 }	t_hit;
 
 /*
@@ -54,13 +55,17 @@ size_t	ft_array_size(const void *array);
 double	ft_atof(const char *str);
 void	ft_memdel(void *ptr, void (*del)(void *));
 
-// ft_trace -- ray tracing related functions
-t_obj	*ft_hit_objs(t_ray *ray, t_list *objs, t_vec *point, t_vec *norm);
+// ft_diffuse.c -- ray tracing related functions
 int		ft_hit_light(t_light *light, t_ray *ray, t_list *objs);
 t_vec	*ft_light_intensity(
 			t_light *light, t_list *objs, t_vec *point, t_vec *norm);
 t_vec	*ft_sum_intensities(
 			t_list	*lights, t_list *objs, t_vec *point, t_vec *norm);
 t_vec	*ft_diffuse(t_hit *hit, t_list *objs, t_list *lights);
+
+// ft_hit.c -- object-ray interaction related functions
+t_hit	*ft_hit_new(void);
+t_hit	*ft_hit_objs(t_ray *ray, t_list *objs);
+t_hit	*ft_hit_del(t_hit *hit);
 
 #endif

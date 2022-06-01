@@ -51,6 +51,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 			) \
 			$(addprefix $(TRACE_DIR), \
 				ft_diffuse.c \
+				ft_hit.c \
 			) \
 			$(addprefix $(UTILS_DIR), \
 				ft_array_size.c \
