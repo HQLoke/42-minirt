@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:49:29 by weng              #+#    #+#             */
-/*   Updated: 2022/05/26 15:22:34 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/02 14:21:08 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* Return a new spot light.
  * @centre	4D vector representing the centre of the light
  * @dir		4D vector representing the direction of the light
- * @ratio	inverse of constant attenuation constant kc, range [0, 1]
+ * @ratio	1 - linear attenuation constant kl, range [0, 1]
  * @colour	3D vector representing the colour of the light, each element
  * 			having the range [0, 1]
  * 
@@ -27,7 +27,7 @@ t_light	*ft_spot_new(t_vec *ctr, t_vec *dir, double ratio, t_vec *colour)
 	t_light	*light;
 	t_vec	*param;
 
-	param = ft_vec4_new(1 / ratio, 1, 1, 10);
+	param = ft_vec4_new(1, 1 - ratio, 0, 10);
 	light = ft_light_new(ctr, ft_vec_normalise(dir), param, colour);
 	if (light == NULL)
 		return (NULL);

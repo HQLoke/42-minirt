@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:18:50 by weng              #+#    #+#             */
-/*   Updated: 2022/05/30 09:33:40 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/02 14:21:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* Return a new point light.
  * @centre	4D vector representing the centre of the light
- * @ratio	inverse of constant attenuation constant kc, range [0, 1]
+ * @ratio	1 - linear attenuation constant kl, range [0, 1]
  * @colour	3D vector representing the colour of the light, each element
  * 			having the range [0, 1]
  * 
@@ -26,7 +26,7 @@ t_light	*ft_point_new(t_vec *ctr, double ratio, t_vec *colour)
 	t_light	*light;
 	t_vec	*param;
 
-	param = ft_vec3_new(1 / ratio, 1, 1);
+	param = ft_vec3_new(1, 1 - ratio, 0);
 	light = ft_light_new(ctr, NULL, param, colour);
 	if (light == NULL)
 		return (NULL);
