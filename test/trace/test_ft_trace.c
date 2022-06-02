@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:36:05 by weng              #+#    #+#             */
-/*   Updated: 2022/06/02 14:26:47 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/02 17:30:23 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	test_render(void)
 	ft_lstadd_back(&lights, ft_lstnew(light, 0));
 	objs = NULL;
 	sphere = ft_sphere_new(
-			ft_vec4_new(0, 0, 0, 1), 1, ft_vec3_new(1, 0, 0));
+			ft_vec4_new(0, 0, 0.1, 1), 1, ft_vec3_new(1, 0, 0));
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
 	img = ft_render(cam, ambient, lights, objs);
 	if (ft_image_2_ppm(img, "test_render.ppm", 6) == 0)

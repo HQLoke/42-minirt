@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/05/22 23:16:30 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/02 17:31:47 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,18 @@ int	ft_obj_intersect(t_obj *obj, t_ray *ray, t_vec *point, t_vec *norm)
 	{
 		t = -(coeff[1] + sqrt(discri)) / (2 * coeff[0]);
 		point = ft_ray_calc_point(ray, t, point);
-		if (eq_double(t, 0) == 1
-			|| t <= 0
+		if (eq_double(t, 0) == 1 || t <= 0
 			|| fabs(point->data[2]) > obj->dimension->data[1] / 2)
 			t = -(coeff[1] - sqrt(discri)) / (2 * coeff[0]);
 		point = ft_ray_calc_point(ray, t, point);
 		norm = obj->normal(obj, ray, point, norm);
+		retval = (fabs(point->data[2]) <= obj->dimension->data[1] / 2);
 		ft_mat_mul_vec(obj->to_world, point);
 		ft_mat_mul_vec(obj->to_world, norm);
 		retval = (eq_double(t, 0) == 0 && t > 0);
 	}
 	ft_ray_del(ray);
-	return (retval && fabs(point->data[2]) <= obj->dimension->data[1] / 2);
+	return (retval);
 }
 
 /* Correct the direction of the normal vector from the surface based on
