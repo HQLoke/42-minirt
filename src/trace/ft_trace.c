@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:29:53 by weng              #+#    #+#             */
-/*   Updated: 2022/06/02 11:28:11 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/02 23:24:38 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vec	*ft_trace(t_ray *ray, t_light *ambient, t_list *lights, t_list *objs)
 		else
 			return (ft_vec3_new(0, 0, 0));
 	}
-	vec = ft_diffuse(hit, ambient, lights, objs);
+	vec = ft_limit_colour(hit, ambient, lights, objs);
 	ft_hit_del(hit);
 	return (vec);
 }

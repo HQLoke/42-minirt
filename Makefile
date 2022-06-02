@@ -51,8 +51,8 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_vec_op.c \
 			) \
 			$(addprefix $(TRACE_DIR), \
-				ft_diffuse.c \
 				ft_hit.c \
+				ft_phong.c \
 				ft_trace.c \
 			) \
 			$(addprefix $(UTILS_DIR), \

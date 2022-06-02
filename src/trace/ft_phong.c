@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_diffuse.c                                       :+:      :+:    :+:   */
+/*   ft_phong.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:06:13 by weng              #+#    #+#             */
-/*   Updated: 2022/06/01 16:39:19 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/02 23:28:42 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,43 @@ t_vec	*ft_light_intensity(t_hit *hit, t_light *light, t_list *objs)
 	return (intensity);
 }
 
-/* Return the total intensity at a point, given multiple light and objects. */
-t_vec	*ft_sum_intensities(
+/* Calculates the specular component of the Phong lighting model. The
+ * surface's specular reflection colour is implicitly assumed to be
+ * (1, 1, 1) simplistically under this implementation. */
+double	ft_specular(t_hit *hit, t_light *light)
+{
+	t_vec	*lightdir;
+	t_vec	*halfway;
+	double	retval;
+
+	if (hit->ray == NULL)
+		return (0);
+	lightdir = ft_vec_sub(ft_vec_copy(light->centre), hit->point);
+	retval = 0;
+	if (ft_vec_mul_dot(lightdir, hit->norm) > 0)
+	{
+		halfway = ft_vec_sub(ft_vec_copy(lightdir), hit->ray->dir);
+		halfway = ft_vec_normalise(halfway);
+		retval = ft_vec_mul_dot(hit->norm, halfway);
+		ft_vec_del(halfway);
+		if (retval < 0)
+			retval = 0;
+		else
+			retval = pow(retval, 100);
+	}
+	ft_vec_del(lightdir);
+	return (retval);
+}
+
+/* Return the total intensity at a point based on full Phong reflection
+ * model, given multiple light and objects. */
+t_vec	*ft_phong_reflection(
 	t_hit *hit, t_light *ambient, t_list *lights, t_list *objs)
 {
 	t_vec	*vec;
 	t_vec	*intensity;
 	t_light	*light;
+	double	specular;
 
 	if (ambient != NULL)
 		vec = ft_light_intensity(hit, ambient, objs);
@@ -73,6 +103,8 @@ t_vec	*ft_sum_intensities(
 		intensity = ft_light_intensity(hit, light, objs);
 		if (intensity != NULL)
 		{
+			specular = ft_specular(hit, light);
+			intensity = ft_vec_mul_scalar(intensity, 1 + specular);
 			vec = ft_vec_add(vec, intensity);
 			ft_vec_del(intensity);
 		}
@@ -81,14 +113,15 @@ t_vec	*ft_sum_intensities(
 	return (vec);
 }
 
-/* Return the diffuse component of the lighting formula. None of the
- * light component can have an intensity value more than 1. */
-t_vec	*ft_diffuse(t_hit *hit, t_light	*ambient, t_list *lights, t_list *objs)
+/* Limit all the components of a pixel to be less than 1, and return the
+ * colour of the pixel. */
+t_vec	*ft_limit_colour(
+	t_hit *hit, t_light *ambient, t_list *lights, t_list *objs)
 {
 	t_vec	*intensity;
 	size_t	i;
 
-	intensity = ft_sum_intensities(hit, ambient, lights, objs);
+	intensity = ft_phong_reflection(hit, ambient, lights, objs);
 	intensity = ft_vec_mul_elem(intensity, hit->obj->colour);
 	i = -1;
 	while (++i < intensity->size)

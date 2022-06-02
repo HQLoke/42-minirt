@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_ft_diffuse.c                                  :+:      :+:    :+:   */
+/*   test_ft_phong.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:05:44 by weng              #+#    #+#             */
-/*   Updated: 2022/06/02 23:18:01 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/02 23:26:50 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,11 @@ void	test_sum_intensity(void)
 			+ l2->param->data[1] * 10 * sqrt(2)
 			+ l2->param->data[2] * 10 * 10 * 2) * cos(M_PI / 4);
 	target = ft_vec_mul_scalar(ft_vec_copy(l1->colour), factor);
-	intensity = ft_sum_intensities(hit, ambient, light, NULL);
+	intensity = ft_phong_reflection(hit, ambient, light, NULL);
 	if (eq_vec(target, intensity) == 0)
-		printf("ft_sum_intensities: Error!\n");
+		printf("ft_phong_reflection: Error!\n");
 	else
-		printf("ft_sum_intensities: OK\n");
+		printf("ft_phong_reflection: OK\n");
 	ft_light_del(ambient);
 	ft_lstclear(&light, (void (*)(void *)) ft_light_del);
 	ft_hit_del(hit);
@@ -120,7 +120,7 @@ void	test_sum_intensity(void)
 	ft_vec_del(target);
 }
 
-void	test_diffuse(void)
+void	test_clip(void)
 {
 	t_list	*light;
 	t_light	*ambient;
@@ -145,11 +145,11 @@ void	test_diffuse(void)
 			+ l1->param->data[2] * 5 * 5);
 	target = ft_vec_mul_scalar(ft_vec_copy(l1->colour), factor);
 	target = ft_vec_mul_elem(target, obj->colour);
-	intensity = ft_diffuse(hit, ambient, light, NULL);
+	intensity = ft_limit_colour(hit, ambient, light, NULL);
 	if (eq_vec(target, intensity) == 0)
-		printf("ft_diffuse: Error!\n");
+		printf("ft_limit_colour: Error!\n");
 	else
-		printf("ft_diffuse: OK\n");
+		printf("ft_limit_colour: OK\n");
 	ft_light_del(ambient);
 	ft_lstclear(&light, (void (*)(void *)) ft_light_del);
 	ft_obj_del(obj);
@@ -164,6 +164,6 @@ int	main(void)
 	test_hit_light_false();
 	test_light_intensity();
 	test_sum_intensity();
-	test_diffuse();
+	test_clip();
 	return (0);
 }
