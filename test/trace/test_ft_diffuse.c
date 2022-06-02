@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:05:44 by weng              #+#    #+#             */
-/*   Updated: 2022/06/01 16:52:26 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/02 23:18:01 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	test_light_intensity(void)
 	double	factor;
 
 	light = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
-	hit = ft_hit_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
+	hit = ft_hit_new(NULL, ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	factor = light->param->data[0]
 		+ light->param->data[1] * 5
 		+ light->param->data[2] * 5 * 5;
@@ -99,7 +99,7 @@ void	test_sum_intensity(void)
 	ft_lstadd_back(&light, ft_lstnew(l1, 0));
 	ft_lstadd_back(&light, ft_lstnew(l2, 0));
 	ft_lstadd_back(&light, ft_lstnew(l3, 0));
-	hit = ft_hit_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
+	hit = ft_hit_new(NULL, ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	factor = 0.2;
 	factor += 1 / (l1->param->data[0]
 			+ l1->param->data[1] * 5
@@ -137,7 +137,7 @@ void	test_diffuse(void)
 	ft_lstadd_back(&light, ft_lstnew(l1, 0));
 	obj = ft_sphere_new(
 			ft_vec4_new(-1, 0, 0, 1), 1, ft_vec3_new(0.1, 0.3, 0.5));
-	hit = ft_hit_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
+	hit = ft_hit_new(NULL, ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	hit->obj = obj;
 	factor = 0.2;
 	factor += 1 / (l1->param->data[0]

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/01 17:08:15 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/02 22:19:10 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_hit
 	t_obj	*obj;
 	t_vec	*point;
 	t_vec	*norm;
+	t_ray	*ray;
 	double	distance;
 }	t_hit;
 
@@ -63,7 +64,7 @@ t_vec	*ft_sum_intensities(
 t_vec	*ft_diffuse(t_hit *hit, t_light *ambient, t_list *lights, t_list *objs);
 
 // ft_hit.c -- object-ray interaction related functions
-t_hit	*ft_hit_new(t_vec *point, t_vec *norm);
+t_hit	*ft_hit_new(t_ray *ray, t_vec *point, t_vec *norm);
 t_hit	*ft_hit_objs(t_ray *ray, t_list *objs);
 t_hit	*ft_hit_del(t_hit *hit);
 

@@ -6,14 +6,14 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:24:23 by weng              #+#    #+#             */
-/*   Updated: 2022/06/01 16:17:20 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/02 22:23:56 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /* Create an empty hit object, with it's obj member pointing to NULL. */
-t_hit	*ft_hit_new(t_vec *point, t_vec *norm)
+t_hit	*ft_hit_new(t_ray *ray, t_vec *point, t_vec *norm)
 {
 	t_hit	*hit;
 
@@ -21,6 +21,7 @@ t_hit	*ft_hit_new(t_vec *point, t_vec *norm)
 	if (hit == NULL)
 		return (NULL);
 	hit->obj = NULL;
+	hit->ray = ray;
 	if (point == NULL)
 		hit->point = ft_vec4_new(0, 0, 0, 0);
 	else
@@ -44,7 +45,7 @@ t_hit	*ft_hit_objs(t_ray *ray, t_list *objs)
 	t_obj	*obj;
 	t_hit	*hit;
 
-	hit = ft_hit_new(NULL, NULL);
+	hit = ft_hit_new(ray, NULL, NULL);
 	hit->distance = INFINITY;
 	while (objs != NULL)
 	{
@@ -66,9 +67,9 @@ t_hit	*ft_hit_objs(t_ray *ray, t_list *objs)
 	return (hit);
 }
 
-/* Deletes a t_hit element. The 'obj' pointer will not be freed, since
- * it is just the address pointing to the actual object in a list,
- * rather than a deep copy. */
+/* Deletes a t_hit element. The 'obj' and 'ray' pointers will not be
+ * freed, since they are just the address pointing to the actual object
+ * or ray rather than a deep copy. */
 t_hit	*ft_hit_del(t_hit *hit)
 {
 	if (hit == NULL)
