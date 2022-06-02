@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/01 16:33:59 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/01 17:08:15 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,9 @@ t_vec	*ft_diffuse(t_hit *hit, t_light *ambient, t_list *lights, t_list *objs);
 t_hit	*ft_hit_new(t_vec *point, t_vec *norm);
 t_hit	*ft_hit_objs(t_ray *ray, t_list *objs);
 t_hit	*ft_hit_del(t_hit *hit);
+
+// ft_trace.c -- rendering and tracing related function
+t_vec	*ft_trace(t_ray *ray, t_light *ambient, t_list *lights, t_list *objs);
+t_img	*ft_render(t_cam *cam, t_light *ambient, t_list *lights, t_list *objs);
 
 #endif

@@ -36,6 +36,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 			$(addprefix $(IMAGE_DIR), \
 				ft_image.c \
 				ft_image8.c \
+				ppm_maker.c \
 			) \
 			$(addprefix $(LINALG_DIR), \
 				ft_affine_transform.c \
@@ -52,6 +53,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 			$(addprefix $(TRACE_DIR), \
 				ft_diffuse.c \
 				ft_hit.c \
+				ft_trace.c \
 			) \
 			$(addprefix $(UTILS_DIR), \
 				ft_array_size.c \
