@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:05:44 by weng              #+#    #+#             */
-/*   Updated: 2022/06/02 23:26:50 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/03 10:51:02 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void	test_clip(void)
 	t_light	*l1;
 	t_obj	*obj;
 	t_hit	*hit;
+	t_vec	*colour;
 	t_vec	*intensity;
 	t_vec	*target;
 	double	factor;
@@ -144,7 +145,8 @@ void	test_clip(void)
 			+ l1->param->data[1] * 5
 			+ l1->param->data[2] * 5 * 5);
 	target = ft_vec_mul_scalar(ft_vec_copy(l1->colour), factor);
-	target = ft_vec_mul_elem(target, obj->colour);
+	colour = obj->colour(obj, hit->point);
+	target = ft_vec_mul_elem(target, colour);
 	intensity = ft_limit_colour(hit, ambient, light, NULL);
 	if (eq_vec(target, intensity) == 0)
 		printf("ft_limit_colour: Error!\n");
@@ -154,6 +156,7 @@ void	test_clip(void)
 	ft_lstclear(&light, (void (*)(void *)) ft_light_del);
 	ft_obj_del(obj);
 	ft_hit_del(hit);
+	ft_vec_del(colour);
 	ft_vec_del(intensity);
 	ft_vec_del(target);
 }

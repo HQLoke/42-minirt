@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:06:13 by weng              #+#    #+#             */
-/*   Updated: 2022/06/02 23:28:42 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/03 10:52:09 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,16 +118,19 @@ t_vec	*ft_phong_reflection(
 t_vec	*ft_limit_colour(
 	t_hit *hit, t_light *ambient, t_list *lights, t_list *objs)
 {
+	t_vec	*colour;
 	t_vec	*intensity;
 	size_t	i;
 
+	colour = hit->obj->colour(hit->obj, hit->point);
 	intensity = ft_phong_reflection(hit, ambient, lights, objs);
-	intensity = ft_vec_mul_elem(intensity, hit->obj->colour);
+	intensity = ft_vec_mul_elem(intensity, colour);
 	i = -1;
 	while (++i < intensity->size)
 	{
 		if (intensity->data[i] > 1)
 			intensity->data[i] = 1;
 	}
+	ft_vec_del(colour);
 	return (intensity);
 }

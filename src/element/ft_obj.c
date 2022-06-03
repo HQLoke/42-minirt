@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/06/02 17:31:47 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/03 10:46:01 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour)
 	if (obj == NULL)
 		return (NULL);
 	obj->dimension = dim;
-	obj->colour = colour;
+	obj->base_colour = colour;
 	orient = ft_vec_normalise(orient);
 	obj->to_world = ft_affine_transform(ctr, orient);
 	obj->fr_world = ft_mat_affine_inverse(ft_mat_copy(obj->to_world));
@@ -37,6 +37,7 @@ t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour)
 		ft_obj_del(obj);
 		return (NULL);
 	}
+	obj->colour = ft_obj_colour;
 	return (obj);
 }
 
@@ -46,7 +47,7 @@ void	ft_obj_del(t_obj *obj)
 	if (obj == NULL)
 		return ;
 	ft_vec_del(obj->dimension);
-	ft_vec_del(obj->colour);
+	ft_vec_del(obj->base_colour);
 	ft_mat_del(obj->to_world);
 	ft_mat_del(obj->fr_world);
 	free(obj);
@@ -104,4 +105,10 @@ t_vec	*ft_correct_normal(t_vec *norm, t_ray *ray)
 	if (dot > 0)
 		norm = ft_vec_mul_scalar(norm, -1);
 	return (norm);
+}
+
+t_vec	*ft_obj_colour(t_obj *obj, t_vec *point)
+{
+	(void) point;
+	return (ft_vec_copy(obj->base_colour));
 }

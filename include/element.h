@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/30 13:35:57 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/03 10:46:22 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef int				(*t_intersect)(
 typedef void			(*t_coeff)(t_obj *obj, t_ray *ray, double *coeff);
 typedef t_vec*			(*t_normal)(
 	t_obj *obj, t_ray *ray, t_vec *point, t_vec *norm);
+typedef t_vec*			(*t_colour)(t_obj *obj, t_vec *point);
 typedef t_vec*			(*t_intense)(t_light *light, t_ray *ray);
 
 typedef enum e_element
@@ -105,12 +106,13 @@ typedef struct s_obj
 {
 	t_element	type;
 	t_vec		*dimension;
-	t_vec		*colour;
+	t_vec		*base_colour;
 	t_mat		*to_world;
 	t_mat		*fr_world;
 	t_intersect	intersect;
 	t_coeff		coefficient;
 	t_normal	normal;
+	t_colour	colour;
 }	t_obj;
 
 // ft_ambient.c -- ambient light source related functions
@@ -141,11 +143,13 @@ t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour);
 void	ft_obj_del(t_obj *obj);
 int		ft_obj_intersect(t_obj *obj, t_ray *ray, t_vec *point, t_vec *norm);
 t_vec	*ft_correct_normal(t_vec *norm, t_ray *ray);
+t_vec	*ft_obj_colour(t_obj *obj, t_vec *point);
 
 // ft_plane.c -- plane related functions
 t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour);
 int		ft_plane_intersect(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm);
 t_vec	*ft_plane_normal(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm);
+t_vec	*ft_plane_colour(t_obj *plane, t_vec *point);
 
 // ft_point.c -- point light related functions
 t_light	*ft_point_new(t_vec *ctr, double ratio, t_vec *colour);

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:59:41 by weng              #+#    #+#             */
-/*   Updated: 2022/05/22 17:53:00 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/03 10:44:18 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour)
 	plane->type = PLANE;
 	norm->data[3] = -ft_vec_mul_dot(norm, point);
 	plane->dimension = norm;
-	plane->colour = colour;
+	plane->base_colour = colour;
 	plane->to_world = NULL;
 	plane->fr_world = NULL;
 	ft_vec_del(point);
 	plane->intersect = ft_plane_intersect;
 	plane->coefficient = NULL;
 	plane->normal = ft_plane_normal;
+	plane->colour = ft_plane_colour;
 	return (plane);
 }
 
@@ -80,4 +81,10 @@ t_vec	*ft_plane_normal(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm)
 	ft_vec_del(normal);
 	norm = ft_correct_normal(norm, ray);
 	return (norm);
+}
+
+t_vec	*ft_plane_colour(t_obj *plane, t_vec *point)
+{
+	(void) point;
+	return (ft_vec_copy(plane->base_colour));
 }
