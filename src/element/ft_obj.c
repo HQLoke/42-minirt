@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/06/03 10:46:01 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/04 11:32:43 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour)
 		return (NULL);
 	}
 	obj->colour = ft_obj_colour;
+	obj->checkerboard = NULL;
+	obj->disruption = 0;
 	return (obj);
 }
 
@@ -107,8 +109,15 @@ t_vec	*ft_correct_normal(t_vec *norm, t_ray *ray)
 	return (norm);
 }
 
+/* Implement the colour disruption when appropriate. */
 t_vec	*ft_obj_colour(t_obj *obj, t_vec *point)
 {
-	(void) point;
-	return (ft_vec_copy(obj->base_colour));
+	t_vec	*colour;
+
+	if (obj->disruption == 0 || obj->checkerboard == NULL)
+		return (ft_vec_copy(obj->base_colour));
+	point = ft_mat_mul_vec(obj->fr_world, ft_vec_copy(point));
+	colour = obj->checkerboard(obj, point);
+	ft_vec_del(point);
+	return (colour);
 }

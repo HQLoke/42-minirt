@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/03 10:46:22 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/04 17:28:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ typedef struct s_obj
 	t_coeff		coefficient;
 	t_normal	normal;
 	t_colour	colour;
+	t_colour	checkerboard;
+	int			disruption;
 }	t_obj;
 
 // ft_ambient.c -- ambient light source related functions
@@ -123,6 +125,9 @@ t_vec	*ft_ambient_intensity(t_light *light, t_ray *ray);
 t_cam	*ft_camera_new(t_vec *ctr, t_vec *orient, double fov);
 t_ray	*ft_camera_ray(t_cam *camera, int i, int j);
 void	ft_camera_del(t_cam *camera);
+
+// ft_checkerboard.c -- checkerboard colour disruption functions
+t_vec	*ft_sphere_checkerboard(t_obj *sp, t_vec *point);
 
 // ft_cone.c -- cone related functions
 t_obj	*ft_cone_new(t_vec *ctr, t_vec *orient, double height, t_vec *colour);
@@ -149,7 +154,6 @@ t_vec	*ft_obj_colour(t_obj *obj, t_vec *point);
 t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour);
 int		ft_plane_intersect(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm);
 t_vec	*ft_plane_normal(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm);
-t_vec	*ft_plane_colour(t_obj *plane, t_vec *point);
 
 // ft_point.c -- point light related functions
 t_light	*ft_point_new(t_vec *ctr, double ratio, t_vec *colour);
@@ -163,9 +167,11 @@ t_ray	*ft_ray_transform(t_mat *A, t_ray *ray);
 t_vec	*ft_ray_calc_point(t_ray *ray, double t, t_vec *point);
 
 // ft_sphere.c -- sphere related functions
-t_obj	*ft_sphere_new(t_vec *ctr, double radius, t_vec *colour);
+t_obj	*ft_sphere_new(
+			t_vec *ctr, double radius, t_vec *colour, int disruption);
 void	ft_sphere_coefficient(t_obj *sp, t_ray *ray, double *coeff);
 t_vec	*ft_sphere_normal(t_obj *sp, t_ray *ray, t_vec *point, t_vec *norm);
+t_vec	*ft_sphere_colour(t_obj *sp, t_vec *point);
 
 // ft_spot.c -- spot light related functions
 t_light	*ft_spot_new(t_vec *ctr, t_vec *dir, double ratio, t_vec *colour);

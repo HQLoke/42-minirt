@@ -17,6 +17,7 @@ SRCDIR	=	src
 SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_ambient.c \
 				ft_camera.c \
+				ft_checkerboard.c \
 				ft_cone.c \
 				ft_cylinder.c \
 				ft_light.c \

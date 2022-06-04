@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:05:44 by weng              #+#    #+#             */
-/*   Updated: 2022/06/03 10:51:02 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/04 10:46:19 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	test_hit_light(void)
 	light = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
 	ray = ft_ray_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	objs = NULL;
-	obj = ft_sphere_new(ft_vec4_new(10, 0, 0, 1), 1, ft_vec3_new(1, 1, 1));
+	obj = ft_sphere_new(ft_vec4_new(10, 0, 0, 1), 1, ft_vec3_new(1, 1, 1), 0);
 	ft_lstadd_back(&objs, ft_lstnew(obj, 0));
 	if (ft_hit_light(light, ray, objs) == 0)
 		printf("ft_hit_light: Error!\n");
@@ -43,7 +43,7 @@ void	test_hit_light_false(void)
 	light = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
 	ray = ft_ray_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	objs = NULL;
-	obj = ft_sphere_new(ft_vec4_new(4, 0, 0, 1), 1, ft_vec3_new(1, 1, 1));
+	obj = ft_sphere_new(ft_vec4_new(4, 0, 0, 1), 1, ft_vec3_new(1, 1, 1), 0);
 	ft_lstadd_back(&objs, ft_lstnew(obj, 0));
 	if (ft_hit_light(light, ray, objs) == 1)
 		printf("ft_hit_light blocked: Error!\n");
@@ -137,7 +137,7 @@ void	test_clip(void)
 	l1 = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
 	ft_lstadd_back(&light, ft_lstnew(l1, 0));
 	obj = ft_sphere_new(
-			ft_vec4_new(-1, 0, 0, 1), 1, ft_vec3_new(0.1, 0.3, 0.5));
+			ft_vec4_new(-1, 0, 0, 1), 1, ft_vec3_new(0.1, 0.3, 0.5), 0);
 	hit = ft_hit_new(NULL, ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	hit->obj = obj;
 	factor = 0.2;

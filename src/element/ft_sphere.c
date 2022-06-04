@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/05/22 17:00:33 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/04 17:10:53 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
  * @param radius	the radius of the sphere
  * @param colour	3D vector containing the colour of the sphere
  * */
-t_obj	*ft_sphere_new(t_vec *ctr, double radius, t_vec *colour)
+t_obj	*ft_sphere_new(
+	t_vec *ctr, double radius, t_vec *colour, int disruption)
 {
 	t_obj	*sp;
 	t_vec	*orient;
 	t_vec	*dim;
 
-	orient = ft_vec4_new(0, 0, 1, 0);
+	orient = ft_vec4_new(0, 1, 0, 0);
 	dim = ft_vec2_new(radius, 2 * radius);
 	sp = ft_obj_new(ctr, orient, dim, colour);
 	if (sp == NULL)
@@ -32,6 +33,8 @@ t_obj	*ft_sphere_new(t_vec *ctr, double radius, t_vec *colour)
 	sp->intersect = ft_obj_intersect;
 	sp->coefficient = ft_sphere_coefficient;
 	sp->normal = ft_sphere_normal;
+	sp->checkerboard = ft_sphere_checkerboard;
+	sp->disruption = disruption;
 	return (sp);
 }
 

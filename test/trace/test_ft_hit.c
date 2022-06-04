@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:49:04 by weng              #+#    #+#             */
-/*   Updated: 2022/06/01 15:55:48 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/04 10:46:00 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	test_hit_obj(void)
 	t_ray	*ray;
 
 	objs = NULL;
-	obj1 = ft_sphere_new(ft_vec4_new(10, 0, 0, 1), 1, ft_vec3_new(1, 1, 1));
-	obj2 = ft_sphere_new(ft_vec4_new(5, 0, 0, 1), 1, ft_vec3_new(1, 1, 1));
+	obj1 = ft_sphere_new(ft_vec4_new(10, 0, 0, 1), 1, ft_vec3_new(1, 1, 1), 0);
+	obj2 = ft_sphere_new(ft_vec4_new(5, 0, 0, 1), 1, ft_vec3_new(1, 1, 1), 0);
 	ft_lstadd_back(&objs, ft_lstnew(obj1, 0));
 	ft_lstadd_back(&objs, ft_lstnew(obj2, 0));
 	ray = ft_ray_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
