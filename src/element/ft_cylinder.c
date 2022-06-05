@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:16:59 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:07:53 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 04:05:57 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,20 @@
  					of cylinder
  * @param orient	4D vector containning the orientation vector
  * @param dim		2D vector containing the radius and height of cylinder
- * @param colour	3D vector containing the colour of the cylinder
+ * @param opt		pointer to a data structure containing the object options
  * */
-t_obj	*ft_cylinder_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour)
+t_obj	*ft_cylinder_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt)
 {
-	t_opt	opt;
 	t_obj	*cy;
 
-	opt.colour = colour;
-	opt.disruption = 0;
-	cy = ft_obj_new(ctr, orient, dim, &opt);
+	cy = ft_obj_new(ctr, orient, dim, opt);
 	if (cy == NULL)
 		return (NULL);
 	cy->type = CYLINDER;
 	cy->intersect = ft_obj_intersect;
 	cy->coefficient = ft_cylinder_coefficient;
 	cy->normal = ft_cylinder_normal;
+	cy->checkerboard = ft_cylinder_checkerboard;
 	return (cy);
 }
 

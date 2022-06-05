@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:13:38 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:38:55 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 04:06:07 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,25 @@ t_vec	*ft_cone_checkerboard(t_obj *cone, t_vec *point)
 
 	(void) cone;
 	steps = (2 * M_PI * 1) / 0.5;
+	steps = steps - (steps % 2);
+	angle = 360.0 / steps * M_PI / 180;
+	phi = atan2(point->data[1], point->data[0]);
+	steps = (int)(point->data[2] / 0.5) + (int)(phi / angle)
+		+ (point->data[1] < 0) + (point->data[2] < 0);
+	if (steps % 2 == 0)
+		return (ft_vec3_new(0.75, 0.75, 0.75));
+	else
+		return (ft_vec3_new(0.25, 0.25, 0.25));
+}
+
+/* return a checkerboard colour on a cylinder given a point on the local view */
+t_vec	*ft_cylinder_checkerboard(t_obj *cy, t_vec *point)
+{
+	int		steps;
+	double	angle;
+	double	phi;
+
+	steps = (2 * M_PI * cy->dimension->data[0]) / 0.5;
 	steps = steps - (steps % 2);
 	angle = 360.0 / steps * M_PI / 180;
 	phi = atan2(point->data[1], point->data[0]);
