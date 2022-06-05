@@ -1,0 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_ft_checkerboard.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/05 11:00:58 by weng              #+#    #+#             */
+/*   Updated: 2022/06/05 18:09:23 by weng             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minirt.h"
+
+void	test_plane(void)
+{
+	t_cam	*cam;
+	t_light	*ambient;
+	t_light	*light;
+	t_list	*lights;
+	t_obj	*plane;
+	t_list	*objs;
+	t_img	*img;
+
+	cam = ft_camera_new(
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
+	lights = NULL;
+	light = ft_point_new(ft_vec4_new(3, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
+	ft_lstadd_back(&lights, ft_lstnew(light, 0));
+	objs = NULL;
+	plane = ft_plane_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 1, 1, 0),
+			ft_vec3_new(1, 0, 0), 1);
+	ft_lstadd_back(&objs, ft_lstnew(plane, 0));
+	img = ft_render(cam, ambient, lights, objs);
+	if (ft_image_2_ppm(img, "test_plane_checkerboard.ppm", 6) == 0)
+		printf("ft_plane_checkerboard: Error!\n");
+	else
+		printf("ft_plane_checkerboard: OK\n");
+	ft_camera_del(cam);
+	ft_light_del(ambient);
+	ft_lstclear(&lights, (void (*)(void *)) ft_light_del);
+	ft_lstclear(&objs, (void (*)(void *)) ft_obj_del);
+	ft_image_del(img);
+}
+
+void	test_sphere(void)
+{
+	t_cam	*cam;
+	t_light	*ambient;
+	t_light	*light;
+	t_list	*lights;
+	t_obj	*sphere;
+	t_list	*objs;
+	t_img	*img;
+
+	cam = ft_camera_new(
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
+	lights = NULL;
+	light = ft_point_new(ft_vec4_new(5, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
+	ft_lstadd_back(&lights, ft_lstnew(light, 0));
+	objs = NULL;
+	sphere = ft_sphere_new(
+			ft_vec4_new(0, 0, 0.1, 1), 1, ft_vec3_new(1, 0, 0), 1);
+	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
+	img = ft_render(cam, ambient, lights, objs);
+	if (ft_image_2_ppm(img, "test_sphere_checkerboard.ppm", 6) == 0)
+		printf("ft_sphere_checkerboard: Error!\n");
+	else
+		printf("ft_sphere_checkerboard: OK\n");
+	ft_camera_del(cam);
+	ft_light_del(ambient);
+	ft_lstclear(&lights, (void (*)(void *)) ft_light_del);
+	ft_lstclear(&objs, (void (*)(void *)) ft_obj_del);
+	ft_image_del(img);
+}
+
+int	main(void)
+{
+	test_plane();
+	test_sphere();
+	return (0);
+}

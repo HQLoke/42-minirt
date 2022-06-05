@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:59:41 by weng              #+#    #+#             */
-/*   Updated: 2022/06/04 11:32:30 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/05 18:04:37 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,22 @@
  * @param norm		4D vector containing the normal of the plane
  * @param colour	3D vector containing the colour of the plane
  * */
-t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour)
+t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour, int disruption)
 {
 	t_obj	*plane;
+	t_vec	*dim;
 
-	plane = malloc(sizeof(t_obj));
+	dim = ft_vec_copy(norm);
+	dim->data[3] = -ft_vec_mul_dot(norm, point);
+	plane = ft_obj_new(point, norm, dim, colour);
 	if (plane == NULL)
 		return (NULL);
 	plane->type = PLANE;
-	norm->data[3] = -ft_vec_mul_dot(norm, point);
-	plane->dimension = norm;
-	plane->base_colour = colour;
-	plane->to_world = NULL;
-	plane->fr_world = NULL;
-	ft_vec_del(point);
 	plane->intersect = ft_plane_intersect;
 	plane->coefficient = NULL;
 	plane->normal = ft_plane_normal;
-	plane->colour = ft_obj_colour;
-	plane->checkerboard = NULL;
-	plane->disruption = 0;
+	plane->checkerboard = ft_plane_checkerboard;
+	plane->disruption = disruption;
 	return (plane);
 }
 

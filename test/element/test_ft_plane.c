@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:45:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/22 23:02:36 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 00:24:37 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	test_new(void)
 	plane = ft_plane_new(
 			ft_vec_copy(point),
 			ft_vec_copy(norm),
-			ft_vec3_new(0, 0, 0));
+			ft_vec3_new(0, 0, 0),
+			0);
 	norm->data[3] = -norm->data[0] * point->data[0]
 		- norm->data[1] * point->data[1]
 		- norm->data[2] * point->data[2];
@@ -51,7 +52,8 @@ void	test_intersect(void)
 	plane = ft_plane_new(
 			ft_vec_copy(target_p),
 			ft_vec_copy(target_n),
-			ft_vec3_new(1, 2, 3));
+			ft_vec3_new(1, 2, 3),
+			0);
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(1, 1, 0, 0));
@@ -59,7 +61,7 @@ void	test_intersect(void)
 	target_n = ft_vec_normalise(target_n);
 	if (eq_vec(point, target_p) == 0
 		|| (eq_vec(&norm, target_n) == 0
-		&& eq_vec(&norm, ft_vec_mul_scalar(target_n, -1)) == 0))
+			&& eq_vec(&norm, ft_vec_mul_scalar(target_n, -1)) == 0))
 		printf("ft_plane_intersect: Error!\n");
 	else
 		printf("ft_plane_intersect: OK\n");
@@ -87,7 +89,8 @@ void	test_no_intersect(void)
 	plane = ft_plane_new(
 			ft_vec_copy(target_p),
 			ft_vec_copy(target_n),
-			ft_vec3_new(1, 2, 3));
+			ft_vec3_new(1, 2, 3),
+			0);
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(-1, -1, 0, 0));
@@ -116,7 +119,8 @@ void	test_normal(void)
 	plane = ft_plane_new(
 			ft_vec4_new(1, 1, 0, 1),
 			ft_vec_copy(target_n),
-			ft_vec3_new(1, 2, 3));
+			ft_vec3_new(1, 2, 3),
+			0);
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(1, 1, 0, 0));
