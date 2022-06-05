@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:54:17 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 03:16:34 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,22 @@ void	ft_obj_del(t_obj *obj)
  * */
 int	ft_obj_intersect(t_obj *obj, t_ray *ray, t_vec *point, t_vec *norm)
 {
-	double	coeff[3];
+	double	co[3];
 	double	t;
 	double	discri;
 	int		retval;
 
 	ray = ft_ray_transform(obj->fr_world, ft_ray_copy(ray));
-	obj->coefficient(obj, ray, coeff);
-	discri = pow(coeff[1], 2) - 4 * coeff[0] * coeff[2];
+	obj->coefficient(obj, ray, co);
+	discri = pow(co[1], 2) - 4 * co[0] * co[2];
 	retval = ((eq_double(discri, 0) == 0) && discri > 0);
 	if (retval == 1)
 	{
-		t = -(coeff[1] + sqrt(discri)) / (2 * coeff[0]);
+		t = -(co[1] + sqrt(discri) * (1 - 2 * (co[0] < 0))) / (2 * co[0]);
 		point = ft_ray_calc_point(ray, t, point);
 		if (eq_double(t, 0) == 1 || t <= 0
 			|| fabs(point->data[2]) > obj->dimension->data[1] / 2)
-			t = -(coeff[1] - sqrt(discri)) / (2 * coeff[0]);
+			t = -(co[1] - sqrt(discri) * (1 - 2 * (co[0] < 0))) / (2 * co[0]);
 		point = ft_ray_calc_point(ray, t, point);
 		norm = obj->normal(obj, ray, point, norm);
 		retval = (fabs(point->data[2]) <= obj->dimension->data[1] / 2);
