@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/06 01:15:16 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 01:33:27 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,11 +134,12 @@ t_ray	*ft_camera_ray(t_cam *camera, int i, int j);
 void	ft_camera_del(t_cam *camera);
 
 // ft_checkerboard.c -- checkerboard colour disruption functions
+t_vec	*ft_cone_checkerboard(t_obj *cone, t_vec *point);
 t_vec	*ft_plane_checkerboard(t_obj *plane, t_vec *point);
 t_vec	*ft_sphere_checkerboard(t_obj *sp, t_vec *point);
 
 // ft_cone.c -- cone related functions
-t_obj	*ft_cone_new(t_vec *ctr, t_vec *orient, double height, t_vec *colour);
+t_obj	*ft_cone_new(t_vec *ctr, t_vec *orient, double height, t_opt *opt);
 void	ft_cone_coefficient(t_obj *cone, t_ray *ray, double *coeff);
 t_vec	*ft_cone_normal(t_obj *cone, t_ray *ray, t_vec *point, t_vec *norm);
 

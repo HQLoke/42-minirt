@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 22:40:32 by weng              #+#    #+#             */
-/*   Updated: 2022/05/22 23:15:41 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 01:25:58 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 void	test_new(void)
 {
+	t_opt	opt;
 	t_obj	*cone;
 	t_mat	*identity;
 
+	opt.colour = ft_vec3_new(0, 0, 0);
+	opt.disruption = 0;
 	cone = ft_cone_new(
 			ft_vec4_new(1, 2, 3, 1),
 			ft_vec4_new(4, 5, 6, 0),
 			10,
-			ft_vec3_new(0, 0, 0));
+			&opt);
 	identity = ft_mat_identity(4);
 	ft_mat_mul(cone->fr_world, cone->to_world);
 	if (eq_mat(identity, cone->fr_world) == 0 || cone->type != CONE)
@@ -34,6 +37,7 @@ void	test_new(void)
 
 void	test_intersect(void)
 {
+	t_opt	opt;
 	t_obj	*cone;
 	t_ray	*ray;
 	t_vec	*point;
@@ -43,10 +47,12 @@ void	test_intersect(void)
 
 	point = ft_vec_new(4);
 	norm.data = NULL;
+	opt.colour = ft_vec3_new(0, 0, 0);
+	opt.disruption = 0;
 	cone = ft_cone_new(ft_vec4_new(8, 0, 0, 1),
 			ft_vec4_new(0, 0, 1, 0),
 			100,
-			ft_vec3_new(0, 0, 0));
+			&opt);
 	ray = ft_ray_new(ft_vec4_new(4, 4, 2, 1),
 			ft_vec4_new(1, -1, 0, 0));
 	cone->intersect(cone, ray, point, &norm);
@@ -67,6 +73,7 @@ void	test_intersect(void)
 
 void	test_no_intersect(void)
 {
+	t_opt	opt;
 	t_obj	*cone;
 	t_ray	*ray;
 	t_vec	*point;
@@ -74,10 +81,12 @@ void	test_no_intersect(void)
 
 	point = ft_vec_new(4);
 	norm.data = NULL;
+	opt.colour = ft_vec3_new(0, 0, 0);
+	opt.disruption = 0;
 	cone = ft_cone_new(ft_vec4_new(4, 0, 0, 1),
 			ft_vec4_new(0, 0, 1, 0),
 			100,
-			ft_vec3_new(0, 0, 0));
+			&opt);
 	ray = ft_ray_new(ft_vec4_new(2, 2, 0, 1),
 			ft_vec4_new(-1, 1, 0, 0));
 	if (cone->intersect(cone, ray, point, &norm) == 1)
@@ -92,6 +101,7 @@ void	test_no_intersect(void)
 
 void	test_no_intersect_origin(void)
 {
+	t_opt	opt;
 	t_obj	*cone;
 	t_ray	*ray;
 	t_vec	*point;
@@ -99,10 +109,12 @@ void	test_no_intersect_origin(void)
 
 	point = ft_vec_new(4);
 	norm.data = NULL;
+	opt.colour = ft_vec3_new(0, 0, 0);
+	opt.disruption = 0;
 	cone = ft_cone_new(ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(0, 0, 1, 0),
 			100,
-			ft_vec3_new(0, 0, 0));
+			&opt);
 	ray = ft_ray_new(ft_vec4_new(1, -1, 0, 1),
 			ft_vec4_new(-1, 1, 0, 0));
 	if (cone->intersect(cone, ray, point, &norm) == 1)
@@ -117,6 +129,7 @@ void	test_no_intersect_origin(void)
 
 void	test_normal(void)
 {
+	t_opt	opt;
 	t_obj	*cone;
 	t_ray	*ray;
 	t_vec	*target;
@@ -125,11 +138,13 @@ void	test_normal(void)
 
 	point.data = NULL;
 	norm.data = NULL;
+	opt.colour = ft_vec3_new(0, 0, 0);
+	opt.disruption = 0;
 	cone = ft_cone_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(0, 0, 1, 0),
 			100,
-			ft_vec3_new(0, 0, 0));
+			&opt);
 	ray = ft_ray_new(ft_vec4_new(-2, 2, 2, 1), ft_vec4_new(1, -1, 2, 0));
 	target = ft_vec4_new(-pow(2, 0.5), pow(2, 0.5), -2, 0.0);
 	target = ft_vec_normalise(target);

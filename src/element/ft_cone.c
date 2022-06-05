@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 14:46:57 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:07:31 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 02:35:01 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,22 @@
  					of cone
  * @param orient	4D vector containning the orientation vector
  * @param height	height of the cone
- * @param colour	3D vector containing the colour of the cone
+ * @param opt		pointer to a data structure containing the object options
  * */
-t_obj	*ft_cone_new(t_vec *ctr, t_vec *orient, double height, t_vec *colour)
+t_obj	*ft_cone_new(t_vec *ctr, t_vec *orient, double height, t_opt *opt)
 {
-	t_opt	opt;
 	t_obj	*cone;
 	t_vec	*dim;
 
 	dim = ft_vec2_new(0, height);
-	opt.colour = colour;
-	opt.disruption = 0;
-	cone = ft_obj_new(ctr, orient, dim, &opt);
+	cone = ft_obj_new(ctr, orient, dim, opt);
 	if (cone == NULL)
 		return (NULL);
 	cone->type = CONE;
 	cone->intersect = ft_obj_intersect;
 	cone->coefficient = ft_cone_coefficient;
 	cone->normal = ft_cone_normal;
+	cone->checkerboard = ft_cone_checkerboard;
 	return (cone);
 }
 
