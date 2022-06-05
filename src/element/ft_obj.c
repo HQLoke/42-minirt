@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/06/04 11:32:43 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 01:08:35 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 /* Return a new 2nd order object.
  * @param ctr		4D vector containing the coordinates of the centre of object
- * @param orient	4D vector containning the orientation vector
+ * @param orient	4D vector containing the orientation vector
  * @param dim		2D vector containing the radius and height of object
- * @param colour	3D vector containing the colour of the object
+ * @param opt		pointer to a data structure containing the object options
  * */
-t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour)
+t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt)
 {
 	t_obj	*obj;
 
@@ -26,7 +26,7 @@ t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour)
 	if (obj == NULL)
 		return (NULL);
 	obj->dimension = dim;
-	obj->base_colour = colour;
+	obj->base_colour = opt->colour;
 	orient = ft_vec_normalise(orient);
 	obj->to_world = ft_affine_transform(ctr, orient);
 	obj->fr_world = ft_mat_affine_inverse(ft_mat_copy(obj->to_world));
@@ -39,7 +39,7 @@ t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour)
 	}
 	obj->colour = ft_obj_colour;
 	obj->checkerboard = NULL;
-	obj->disruption = 0;
+	obj->disruption = opt->disruption;
 	return (obj);
 }
 

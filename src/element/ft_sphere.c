@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/06/04 17:10:53 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 01:08:48 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 /* Return a new sphere object.
  * @param ctr		4D vector containing the coordinates of the centre of sphere
  * @param radius	the radius of the sphere
- * @param colour	3D vector containing the colour of the sphere
+ * @param opt		pointer to a data structure containing the object options
  * */
-t_obj	*ft_sphere_new(
-	t_vec *ctr, double radius, t_vec *colour, int disruption)
+t_obj	*ft_sphere_new(t_vec *ctr, double radius, t_opt *opt)
 {
 	t_obj	*sp;
 	t_vec	*orient;
@@ -26,7 +25,7 @@ t_obj	*ft_sphere_new(
 
 	orient = ft_vec4_new(0, 1, 0, 0);
 	dim = ft_vec2_new(radius, 2 * radius);
-	sp = ft_obj_new(ctr, orient, dim, colour);
+	sp = ft_obj_new(ctr, orient, dim, opt);
 	if (sp == NULL)
 		return (NULL);
 	sp->type = SPHERE;
@@ -34,7 +33,6 @@ t_obj	*ft_sphere_new(
 	sp->coefficient = ft_sphere_coefficient;
 	sp->normal = ft_sphere_normal;
 	sp->checkerboard = ft_sphere_checkerboard;
-	sp->disruption = disruption;
 	return (sp);
 }
 

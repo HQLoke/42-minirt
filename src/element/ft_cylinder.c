@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:16:59 by weng              #+#    #+#             */
-/*   Updated: 2022/05/22 17:52:26 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 01:07:53 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@
  * */
 t_obj	*ft_cylinder_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_vec *colour)
 {
+	t_opt	opt;
 	t_obj	*cy;
 
-	cy = ft_obj_new(ctr, orient, dim, colour);
+	opt.colour = colour;
+	opt.disruption = 0;
+	cy = ft_obj_new(ctr, orient, dim, &opt);
 	if (cy == NULL)
 		return (NULL);
 	cy->type = CYLINDER;

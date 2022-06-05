@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:36:05 by weng              #+#    #+#             */
-/*   Updated: 2022/06/04 10:50:39 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 01:03:49 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,16 @@ void	test_trace_diffuse(void)
 	t_light	*ambient;
 	t_ray	*ray;
 	t_obj	*sphere;
+	t_opt	opt;
 	t_list	*objs;
 	t_vec	*output;
 	t_vec	*target;
 
 	ambient = ft_ambient_new(0.1, ft_vec3_new(1, 1, 1));
 	ray = ft_ray_new(ft_vec4_new(-10, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
-	sphere = ft_sphere_new(
-			ft_vec4_new(0, 0, 0, 1), 1, ft_vec3_new(0.1, 0.3, 0.5), 0);
+	opt.colour = ft_vec3_new(0.1, 0.3, 0.5);
+	opt.disruption = 0;
+	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0, 1), 1, &opt);
 	objs = NULL;
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
 	target = ft_vec3_new(0.01, 0.03, 0.05);
@@ -68,6 +70,7 @@ void	test_render(void)
 	t_light	*light;
 	t_list	*lights;
 	t_obj	*sphere;
+	t_opt	opt;
 	t_list	*objs;
 	t_img	*img;
 
@@ -78,8 +81,9 @@ void	test_render(void)
 	light = ft_point_new(ft_vec4_new(5, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
 	ft_lstadd_back(&lights, ft_lstnew(light, 0));
 	objs = NULL;
-	sphere = ft_sphere_new(
-			ft_vec4_new(0, 0, 0.1, 1), 1, ft_vec3_new(1, 0, 0), 1);
+	opt.colour = ft_vec3_new(1, 0, 0);
+	opt.disruption = 1;
+	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0.1, 1), 1, &opt);
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
 	img = ft_render(cam, ambient, lights, objs);
 	if (ft_image_2_ppm(img, "test_render.ppm", 6) == 0)

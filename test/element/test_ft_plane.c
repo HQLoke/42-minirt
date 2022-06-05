@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:45:06 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 00:24:37 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 00:57:27 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ void	test_new(void)
 	t_obj	*plane;
 	t_vec	*point;
 	t_vec	*norm;
+	t_opt	opt;
 
 	point = ft_vec4_new(0, 1, 2, 1);
 	norm = ft_vec4_new(3, 4, 5, 0);
-	plane = ft_plane_new(
-			ft_vec_copy(point),
-			ft_vec_copy(norm),
-			ft_vec3_new(0, 0, 0),
-			0);
+	opt.colour = ft_vec3_new(0, 0, 0);
+	opt.disruption = 0;
+	plane = ft_plane_new(ft_vec_copy(point), ft_vec_copy(norm), &opt);
 	norm->data[3] = -norm->data[0] * point->data[0]
 		- norm->data[1] * point->data[1]
 		- norm->data[2] * point->data[2];
@@ -45,15 +44,15 @@ void	test_intersect(void)
 	t_vec	norm;
 	t_vec	*target_p;
 	t_vec	*target_n;
+	t_opt	opt;
 
 	point = ft_vec_new(4);
+	norm.data = NULL;
 	target_p = ft_vec4_new(1, 1, 0, 1);
 	target_n = ft_vec4_new(1, 1, 0, 0);
-	plane = ft_plane_new(
-			ft_vec_copy(target_p),
-			ft_vec_copy(target_n),
-			ft_vec3_new(1, 2, 3),
-			0);
+	opt.colour = ft_vec3_new(1, 2, 3);
+	opt.disruption = 0;
+	plane = ft_plane_new(ft_vec_copy(target_p), ft_vec_copy(target_n), &opt);
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(1, 1, 0, 0));
@@ -81,16 +80,15 @@ void	test_no_intersect(void)
 	t_vec	norm;
 	t_vec	*target_p;
 	t_vec	*target_n;
+	t_opt	opt;
 
 	target_p = ft_vec4_new(1, 1, 0, 1);
 	target_n = ft_vec4_new(1, 1, 0, 0);
 	point = ft_vec_new(4);
 	norm.data = NULL;
-	plane = ft_plane_new(
-			ft_vec_copy(target_p),
-			ft_vec_copy(target_n),
-			ft_vec3_new(1, 2, 3),
-			0);
+	opt.colour = ft_vec3_new(1, 2, 3);
+	opt.disruption = 0;
+	plane = ft_plane_new(ft_vec_copy(target_p), ft_vec_copy(target_n), &opt);
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(-1, -1, 0, 0));
@@ -113,14 +111,13 @@ void	test_normal(void)
 	t_vec	*point;
 	t_vec	norm;
 	t_vec	*target_n;
+	t_opt	opt;
 
 	target_n = ft_vec4_new(-1, -1, 0, 0);
 	point = ft_vec_new(4);
-	plane = ft_plane_new(
-			ft_vec4_new(1, 1, 0, 1),
-			ft_vec_copy(target_n),
-			ft_vec3_new(1, 2, 3),
-			0);
+	opt.colour = ft_vec3_new(1, 2, 3);
+	opt.disruption = 0;
+	plane = ft_plane_new(ft_vec4_new(1, 1, 0, 1), ft_vec_copy(target_n), &opt);
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(1, 1, 0, 0));

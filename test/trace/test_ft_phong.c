@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:05:44 by weng              #+#    #+#             */
-/*   Updated: 2022/06/04 10:46:19 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 01:03:03 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ void	test_hit_light(void)
 	t_light	*light;
 	t_ray	*ray;
 	t_list	*objs;
+	t_opt	opt;
 	t_obj	*obj;
 
 	light = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
 	ray = ft_ray_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	objs = NULL;
-	obj = ft_sphere_new(ft_vec4_new(10, 0, 0, 1), 1, ft_vec3_new(1, 1, 1), 0);
+	opt.colour = ft_vec3_new(1, 1, 1);
+	opt.disruption = 0;
+	obj = ft_sphere_new(ft_vec4_new(10, 0, 0, 1), 1, &opt);
 	ft_lstadd_back(&objs, ft_lstnew(obj, 0));
 	if (ft_hit_light(light, ray, objs) == 0)
 		printf("ft_hit_light: Error!\n");
@@ -38,12 +41,15 @@ void	test_hit_light_false(void)
 	t_light	*light;
 	t_ray	*ray;
 	t_list	*objs;
+	t_opt	opt;
 	t_obj	*obj;
 
 	light = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
 	ray = ft_ray_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	objs = NULL;
-	obj = ft_sphere_new(ft_vec4_new(4, 0, 0, 1), 1, ft_vec3_new(1, 1, 1), 0);
+	opt.colour = ft_vec3_new(1, 1, 1);
+	opt.disruption = 0;
+	obj = ft_sphere_new(ft_vec4_new(4, 0, 0, 1), 1, &opt);
 	ft_lstadd_back(&objs, ft_lstnew(obj, 0));
 	if (ft_hit_light(light, ray, objs) == 1)
 		printf("ft_hit_light blocked: Error!\n");
@@ -125,6 +131,7 @@ void	test_clip(void)
 	t_list	*light;
 	t_light	*ambient;
 	t_light	*l1;
+	t_opt	opt;
 	t_obj	*obj;
 	t_hit	*hit;
 	t_vec	*colour;
@@ -136,8 +143,9 @@ void	test_clip(void)
 	ambient = ft_ambient_new(0.2, ft_vec3_new(1, 1, 1));
 	l1 = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
 	ft_lstadd_back(&light, ft_lstnew(l1, 0));
-	obj = ft_sphere_new(
-			ft_vec4_new(-1, 0, 0, 1), 1, ft_vec3_new(0.1, 0.3, 0.5), 0);
+	opt.colour = ft_vec3_new(0.1, 0.3, 0.5);
+	opt.disruption = 0;
+	obj = ft_sphere_new(ft_vec4_new(-1, 0, 0, 1), 1, &opt);
 	hit = ft_hit_new(NULL, ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	hit->obj = obj;
 	factor = 0.2;

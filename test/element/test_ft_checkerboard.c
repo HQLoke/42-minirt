@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 11:00:58 by weng              #+#    #+#             */
-/*   Updated: 2022/06/05 18:09:23 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 01:13:51 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	test_plane(void)
 	t_obj	*plane;
 	t_list	*objs;
 	t_img	*img;
+	t_opt	opt;
 
 	cam = ft_camera_new(
 			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
@@ -29,8 +30,10 @@ void	test_plane(void)
 	light = ft_point_new(ft_vec4_new(3, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
 	ft_lstadd_back(&lights, ft_lstnew(light, 0));
 	objs = NULL;
+	opt.colour = ft_vec3_new(1, 0, 0);
+	opt.disruption = 1;
 	plane = ft_plane_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 1, 1, 0),
-			ft_vec3_new(1, 0, 0), 1);
+			&opt);
 	ft_lstadd_back(&objs, ft_lstnew(plane, 0));
 	img = ft_render(cam, ambient, lights, objs);
 	if (ft_image_2_ppm(img, "test_plane_checkerboard.ppm", 6) == 0)
@@ -52,6 +55,7 @@ void	test_sphere(void)
 	t_list	*lights;
 	t_obj	*sphere;
 	t_list	*objs;
+	t_opt	opt;
 	t_img	*img;
 
 	cam = ft_camera_new(
@@ -61,8 +65,9 @@ void	test_sphere(void)
 	light = ft_point_new(ft_vec4_new(5, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
 	ft_lstadd_back(&lights, ft_lstnew(light, 0));
 	objs = NULL;
-	sphere = ft_sphere_new(
-			ft_vec4_new(0, 0, 0.1, 1), 1, ft_vec3_new(1, 0, 0), 1);
+	opt.colour = ft_vec3_new(1, 0, 0);
+	opt.disruption = 1;
+	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0.1, 1), 1, &opt);
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
 	img = ft_render(cam, ambient, lights, objs);
 	if (ft_image_2_ppm(img, "test_sphere_checkerboard.ppm", 6) == 0)

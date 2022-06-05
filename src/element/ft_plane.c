@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:59:41 by weng              #+#    #+#             */
-/*   Updated: 2022/06/05 18:04:37 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 01:10:29 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 /* Return a new plane object.
  * @param point		4D vector containing the coordinates of a point on the plane
  * @param norm		4D vector containing the normal of the plane
- * @param colour	3D vector containing the colour of the plane
+ * @param opt		pointer to a data structure containing the object options.
  * */
-t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour, int disruption)
+t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_opt *opt)
 {
 	t_obj	*plane;
 	t_vec	*dim;
 
 	dim = ft_vec_copy(norm);
 	dim->data[3] = -ft_vec_mul_dot(norm, point);
-	plane = ft_obj_new(point, norm, dim, colour);
+	plane = ft_obj_new(point, norm, dim, opt);
 	if (plane == NULL)
 		return (NULL);
 	plane->type = PLANE;
@@ -32,7 +32,6 @@ t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_vec *colour, int disruption)
 	plane->coefficient = NULL;
 	plane->normal = ft_plane_normal;
 	plane->checkerboard = ft_plane_checkerboard;
-	plane->disruption = disruption;
 	return (plane);
 }
 
