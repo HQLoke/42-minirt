@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:08:35 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/06 01:54:17 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_obj_intersect(t_obj *obj, t_ray *ray, t_vec *point, t_vec *norm)
 		retval = (fabs(point->data[2]) <= obj->dimension->data[1] / 2);
 		ft_mat_mul_vec(obj->to_world, point);
 		ft_mat_mul_vec(obj->to_world, norm);
-		retval = (eq_double(t, 0) == 0 && t > 0);
+		retval &= (eq_double(t, 0) == 0 && t > 0);
 	}
 	ft_ray_del(ray);
 	return (retval);
