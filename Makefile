@@ -38,6 +38,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_image.c \
 				ft_image8.c \
 				ppm_maker.c \
+				ppm_reader.c \
 			) \
 			$(addprefix $(LINALG_DIR), \
 				ft_affine_transform.c \

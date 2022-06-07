@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:13:04 by weng              #+#    #+#             */
-/*   Updated: 2022/06/07 15:20:00 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 16:25:45 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ int		ft_image8_set(t_img8 *img, size_t i, size_t j, t_vec *colour);
 t_vec	*ft_image8_get(t_img8 *img, size_t i, size_t j);
 t_img	*ft_image8_2_image(t_img8 *img);
 
-// ppm_maker.c -- ppm related functions
+// ppm_maker.c -- ppm writer related functions
 int		ft_image8_2_ppm3(t_img8 *img, const char *pathname);
 int		ft_image8_2_ppm6(t_img8 *img, const char *pathname);
 int		ft_image_2_ppm(t_img *img, const char *pathname, int type);
+
+// ppm_reader.c -- ppm reader related functions
+t_img	*ft_ppm_2_image(const char *pathname);
 
 #endif
