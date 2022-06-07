@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:12:30 by weng              #+#    #+#             */
-/*   Updated: 2022/05/29 14:54:00 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 14:58:47 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,17 @@ t_vec	*ft_image_get(t_img *img, size_t i, size_t j)
 	ft_memmove(
 		vec->data, &img->data[(i * img->col + j) * 3], 3 * sizeof(double));
 	return (vec);
+}
+
+/* Convert a double precision image to an 8 bit image. */
+t_img8	*ft_image_2_image8(t_img *img)
+{
+	t_img8	*retval;
+	size_t	i;
+
+	retval = ft_image8_new(img->row, img->col);
+	i = img->row * img->col * 3;
+	while (i-- > 0)
+		retval->data[i] = (int)(img->data[i] * 255.9999);
+	return (retval);
 }

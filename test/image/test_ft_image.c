@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:34 by weng              #+#    #+#             */
-/*   Updated: 2022/05/29 14:57:34 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 15:28:42 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,37 @@ void	test_get(void)
 	ft_vec_del(output);
 }
 
+void	test_convert(void)
+{
+	t_img	*img;
+	t_img8	*img_bit;
+	t_vec	*colour;
+	size_t	i;
+	size_t	j;
+
+	i = 1;
+	j = 2;
+	img = ft_image_new(10, 20);
+	colour = ft_vec3_new(0, 0.5, 1);
+	ft_image_set(img, i, j, colour);
+	img_bit = ft_image_2_image8(img);
+	if (img_bit->data[(i * img_bit->col + j) * 3 + 0] != 0
+		|| img_bit->data[(i * img_bit->col + j) * 3 + 1] != 127
+		|| img_bit->data[(i * img_bit->col + j) * 3 + 2] != 255)
+		printf("ft_image_2_image8: Error!\n");
+	else
+		printf("ft_image_2_image8: OK\n");
+	ft_image_del(img);
+	ft_image8_del(img_bit);
+	ft_vec_del(colour);
+}
+
 int	main(void)
 {
 	test_new();
 	test_null();
 	test_set();
 	test_get();
+	test_convert();
 	return (0);
 }

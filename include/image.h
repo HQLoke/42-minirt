@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:13:04 by weng              #+#    #+#             */
-/*   Updated: 2022/05/29 14:56:52 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 15:20:00 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ t_img	*ft_image_new(size_t row, size_t col);
 void	ft_image_del(t_img *img);
 int		ft_image_set(t_img *img, size_t i, size_t j, t_vec *colour);
 t_vec	*ft_image_get(t_img *img, size_t i, size_t j);
+t_img8	*ft_image_2_image8(t_img *img);
 
 // ft_image8.c -- 8 bit image related functions
 t_img8	*ft_image8_new(size_t row, size_t col);
 void	ft_image8_del(t_img8 *img);
 int		ft_image8_set(t_img8 *img, size_t i, size_t j, t_vec *colour);
 t_vec	*ft_image8_get(t_img8 *img, size_t i, size_t j);
-t_img8	*ft_image_2_image8(t_img *img);
+t_img	*ft_image8_2_image(t_img8 *img);
 
 // ppm_maker.c -- ppm related functions
 int		ft_image8_2_ppm3(t_img8 *img, const char *pathname);

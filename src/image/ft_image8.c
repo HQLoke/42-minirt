@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:12:30 by weng              #+#    #+#             */
-/*   Updated: 2022/05/29 14:53:46 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 15:03:56 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ t_vec	*ft_image8_get(t_img8 *img, size_t i, size_t j)
 	return (vec);
 }
 
-/* Convert a double precision image to an 8 bit image. */
-t_img8	*ft_image_2_image8(t_img *img)
+/* Convert an 8 bit image to a double precision image. */
+t_img	*ft_image8_2_image(t_img8 *img)
 {
-	t_img8	*retval;
+	t_img	*retval;
 	size_t	i;
 
-	retval = ft_image8_new(img->row, img->col);
+	retval = ft_image_new(img->row, img->col);
 	i = img->row * img->col * 3;
 	while (i-- > 0)
-		retval->data[i] = (int)(img->data[i] * 255.9999);
+		retval->data[i] = img->data[i] / 255.0;
 	return (retval);
 }
