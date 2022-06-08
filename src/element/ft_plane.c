@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:59:41 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:10:29 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 22:26:59 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,21 @@ int	ft_plane_intersect(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm)
 	return (retval);
 }
 
+/* Return the altered normal on a plane, given a point. */
+t_vec	*ft_plane_norm_map(t_obj *plane, t_vec *point, t_vec *norm)
+{
+	double	x;
+	double	y;
+	t_vec	*colour;
+
+	x = fmod(fmod(point->data[0], 10) + 10 + 5, 10) / 10;
+	y = fmod(fmod(point->data[1], 10) + 10 + 5, 10) / 10;
+	colour = ft_image_get(plane->norm_map,
+			(int)(y * plane->norm_map->row),
+			(int)(x * plane->norm_map->col));
+	return (ft_bump_norm(colour, norm));
+}
+
 /* Calculate the normal vector of a plane. */
 t_vec	*ft_plane_normal(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm)
 {
@@ -77,5 +92,7 @@ t_vec	*ft_plane_normal(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm)
 	ft_vec_swap(norm, normal);
 	ft_vec_del(normal);
 	norm = ft_correct_normal(norm, ray);
+	if (plane->norm_map != NULL)
+		norm = ft_plane_norm_map(plane, point, norm);
 	return (norm);
 }

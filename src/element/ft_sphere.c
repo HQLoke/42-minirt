@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/06/08 16:46:44 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 22:26:52 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ void	ft_sphere_coefficient(t_obj *sp, t_ray *ray, double *coeff)
 	coeff[1] = 2 * ft_vec_mul_dot(ray->org, ray->dir);
 	coeff[2] = ft_vec_mul_dot(ray->org, ray->org)
 		- pow(sp->dimension->data[0], 2) - 1;
+}
+
+/* Return the altered normal on a sphere, given a point. */
+t_vec	*ft_sphere_norm_map(t_obj *sp, t_vec *point, t_vec *norm)
+{
+	double	theta;
+	double	phi;
+	t_vec	*colour;
+
+	theta = acos(point->data[2] / sp->dimension->data[0]);
+	phi = atan2(point->data[1], point->data[0]);
+	colour = ft_image_get(sp->norm_map,
+			(int)(theta / M_PI * sp->norm_map->row),
+			(int)((phi / M_PI / 2 + 0.5) * sp->norm_map->col));
+	return (ft_bump_norm(colour, norm));
 }
 
 /* Calculate the normal vector at a point on a sphere, and store it in

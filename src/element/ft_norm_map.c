@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 17:12:33 by weng              #+#    #+#             */
-/*   Updated: 2022/06/08 15:37:55 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 22:36:54 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,13 @@ t_img	*ft_norm_map(const char *pathname)
 	return (img);
 }
 
-/* Return the normal map on a sphere */
-t_vec	*ft_sphere_norm_map(t_obj *sp, t_vec *point, t_vec *norm)
+/* Update the 'norm' vector by using the 'colour' vector from a normal
+ * map. The colour vector is freed, and the norm vector is updated. */
+t_vec	*ft_bump_norm(t_vec *colour, t_vec *norm)
 {
-	double	theta;
-	double	phi;
-	t_vec	*colour;
 	t_vec	*bump;
 	t_mat	*transform;
 
-	theta = acos(point->data[2] / sp->dimension->data[0]);
-	phi = atan2(point->data[1], point->data[0]);
-	colour = ft_image_get(sp->norm_map,
-			(int)(theta / M_PI * sp->norm_map->row),
-			(int)((phi / M_PI / 2 + 0.5) * sp->norm_map->col));
 	bump = ft_vec4_new(colour->data[0], colour->data[1], colour->data[2], 0);
 	transform = ft_affine_rotate(norm);
 	bump = ft_mat_mul_vec(transform, bump);

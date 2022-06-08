@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/08 15:26:23 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 22:25:34 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,8 @@ void	ft_light_del(t_light *light);
 
 // ft_norm_map.c -- norm map related functions
 t_img	*ft_norm_map(const char *pathname);
-t_vec	*ft_sphere_norm_map(t_obj *sp, t_vec *point, t_vec *norm);
+t_vec	*ft_bump_norm(t_vec *colour, t_vec *norm);
+t_vec	*ft_plane_norm_map(t_obj *plane, t_vec *point, t_vec *norm);
 
 // ft_obj.c -- 2nd order surface object functions
 t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt);
@@ -186,8 +187,8 @@ t_vec	*ft_ray_calc_point(t_ray *ray, double t, t_vec *point);
 // ft_sphere.c -- sphere related functions
 t_obj	*ft_sphere_new(t_vec *ctr, double radius, t_opt *opt);
 void	ft_sphere_coefficient(t_obj *sp, t_ray *ray, double *coeff);
+t_vec	*ft_sphere_norm_map(t_obj *sp, t_vec *point, t_vec *norm);
 t_vec	*ft_sphere_normal(t_obj *sp, t_ray *ray, t_vec *point, t_vec *norm);
-t_vec	*ft_sphere_colour(t_obj *sp, t_vec *point);
 
 // ft_spot.c -- spot light related functions
 t_light	*ft_spot_new(t_vec *ctr, t_vec *dir, double ratio, t_vec *colour);
