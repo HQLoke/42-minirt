@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/08 22:25:34 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 23:11:02 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ t_vec	*ft_sphere_checkerboard(t_obj *sp, t_vec *point);
 // ft_cone.c -- cone related functions
 t_obj	*ft_cone_new(t_vec *ctr, t_vec *orient, double height, t_opt *opt);
 void	ft_cone_coefficient(t_obj *cone, t_ray *ray, double *coeff);
+t_vec	*ft_cone_norm_map(t_obj *cone, t_vec *point, t_vec *norm);
 t_vec	*ft_cone_normal(t_obj *cone, t_ray *ray, t_vec *point, t_vec *norm);
 
 // ft_cylinder.c -- cylinder related functions
