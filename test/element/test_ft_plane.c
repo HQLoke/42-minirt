@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:45:06 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 00:57:27 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 17:40:54 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	test_new(void)
 	norm = ft_vec4_new(3, 4, 5, 0);
 	opt.colour = ft_vec3_new(0, 0, 0);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	plane = ft_plane_new(ft_vec_copy(point), ft_vec_copy(norm), &opt);
 	norm->data[3] = -norm->data[0] * point->data[0]
 		- norm->data[1] * point->data[1]
@@ -52,6 +53,7 @@ void	test_intersect(void)
 	target_n = ft_vec4_new(1, 1, 0, 0);
 	opt.colour = ft_vec3_new(1, 2, 3);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	plane = ft_plane_new(ft_vec_copy(target_p), ft_vec_copy(target_n), &opt);
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
@@ -88,6 +90,7 @@ void	test_no_intersect(void)
 	norm.data = NULL;
 	opt.colour = ft_vec3_new(1, 2, 3);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	plane = ft_plane_new(ft_vec_copy(target_p), ft_vec_copy(target_n), &opt);
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),
@@ -117,6 +120,7 @@ void	test_normal(void)
 	point = ft_vec_new(4);
 	opt.colour = ft_vec3_new(1, 2, 3);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	plane = ft_plane_new(ft_vec4_new(1, 1, 0, 1), ft_vec_copy(target_n), &opt);
 	ray = ft_ray_new(
 			ft_vec4_new(0, 0, 0, 1),

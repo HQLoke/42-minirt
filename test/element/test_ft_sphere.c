@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:14:10 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:06:04 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 17:41:12 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	test_new(void)
 
 	opt.colour = ft_vec3_new(0, 0, 0);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	sphere = ft_sphere_new(ft_vec4_new(1, 2, 3, 1), 5, &opt);
 	identity = ft_mat_identity(4);
 	ft_mat_mul(sphere->fr_world, sphere->to_world);
@@ -45,6 +46,7 @@ void	test_intersect(void)
 	norm.data = NULL;
 	opt.colour = ft_vec3_new(0, 0, 0);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	sphere = ft_sphere_new(ft_vec4_new(8, 0, 0, 1), 2, &opt);
 	ray = ft_ray_new(ft_vec4_new(4, 4, 0, 1), ft_vec4_new(1, -1, 0, 0));
 	sphere->intersect(sphere, ray, point, &norm);
@@ -74,6 +76,7 @@ void	test_no_intersect(void)
 	norm.data = NULL;
 	opt.colour = ft_vec3_new(0, 0, 0);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	sphere = ft_sphere_new(ft_vec4_new(4, 0, 0, 1), 1, &opt);
 	ray = ft_ray_new(ft_vec4_new(2, 2, 0, 1), ft_vec4_new(-1, 1, 0, 0));
 	if (sphere->intersect(sphere, ray, point, &norm) == 1)
@@ -99,6 +102,7 @@ void	test_normal(void)
 	norm.data = NULL;
 	opt.colour = ft_vec3_new(0, 0, 0);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0, 1), 2, &opt);
 	ray = ft_ray_new(ft_vec4_new(-2, 2, 0, 1), ft_vec4_new(1, -1, 0, 0));
 	target = ft_vec4_new(-pow(2, 0.5) / 2, pow(2, 0.5) / 2, 0.0, 0.0);

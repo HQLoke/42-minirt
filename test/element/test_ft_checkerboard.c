@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 11:00:58 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 04:11:36 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 17:39:45 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	test_cone(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(1, 0, 0);
 	opt.disruption = 1;
+	opt.norm_map = NULL;
 	cone = ft_cone_new(
 			ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 0.75, 1, 0), 2, &opt);
 	ft_lstadd_back(&objs, ft_lstnew(cone, 0));
@@ -67,6 +68,7 @@ void	test_cylinder(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(1, 0, 0);
 	opt.disruption = 1;
+	opt.norm_map = NULL;
 	cy = ft_cylinder_new(
 			ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 0.75, 1, 0),
 			ft_vec2_new(1, 2), &opt);
@@ -101,6 +103,7 @@ void	test_plane(void)
 	light = ft_point_new(ft_vec4_new(3, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
 	ft_lstadd_back(&lights, ft_lstnew(light, 0));
 	objs = NULL;
+	opt.norm_map = NULL;
 	opt.colour = ft_vec3_new(1, 0, 0);
 	opt.disruption = 1;
 	plane = ft_plane_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 1, 1, 0),
@@ -138,6 +141,7 @@ void	test_sphere(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(1, 0, 0);
 	opt.disruption = 1;
+	opt.norm_map = NULL;
 	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0.1, 1), 1, &opt);
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
 	img = ft_render(cam, ambient, lights, objs);

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 03:16:34 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 11:57:49 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt)
 	obj->colour = ft_obj_colour;
 	obj->checkerboard = NULL;
 	obj->disruption = opt->disruption;
+	obj->norm_map = NULL;
 	return (obj);
 }
 
@@ -52,6 +53,7 @@ void	ft_obj_del(t_obj *obj)
 	ft_vec_del(obj->base_colour);
 	ft_mat_del(obj->to_world);
 	ft_mat_del(obj->fr_world);
+	ft_image_del(obj->norm_map);
 	free(obj);
 }
 

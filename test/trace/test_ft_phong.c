@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:05:44 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:03:03 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 17:41:25 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	test_hit_light(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(1, 1, 1);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	obj = ft_sphere_new(ft_vec4_new(10, 0, 0, 1), 1, &opt);
 	ft_lstadd_back(&objs, ft_lstnew(obj, 0));
 	if (ft_hit_light(light, ray, objs) == 0)
@@ -49,6 +50,7 @@ void	test_hit_light_false(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(1, 1, 1);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	obj = ft_sphere_new(ft_vec4_new(4, 0, 0, 1), 1, &opt);
 	ft_lstadd_back(&objs, ft_lstnew(obj, 0));
 	if (ft_hit_light(light, ray, objs) == 1)
@@ -145,6 +147,7 @@ void	test_clip(void)
 	ft_lstadd_back(&light, ft_lstnew(l1, 0));
 	opt.colour = ft_vec3_new(0.1, 0.3, 0.5);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	obj = ft_sphere_new(ft_vec4_new(-1, 0, 0, 1), 1, &opt);
 	hit = ft_hit_new(NULL, ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	hit->obj = obj;

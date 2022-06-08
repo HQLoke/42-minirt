@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/06 04:05:49 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 17:28:37 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ELEMENT_H
 
 # include "linalg.h"
+# include "image.h"
 
 typedef struct s_obj	t_obj;	// forward declaration for object
 typedef struct s_ray	t_ray;	// forward declaration for ray
@@ -115,6 +116,7 @@ typedef struct s_obj
 	t_colour	colour;
 	t_colour	checkerboard;
 	int			disruption;
+	t_img		*norm_map;
 }	t_obj;
 
 /* struct representing options to be passed during object initializsation */
@@ -122,6 +124,7 @@ typedef struct s_opt
 {
 	t_vec	*colour;
 	int		disruption;
+	char	*norm_map;
 }	t_opt;
 
 // ft_ambient.c -- ambient light source related functions

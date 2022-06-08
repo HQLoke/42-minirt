@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:49:04 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:12:13 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 17:41:15 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	test_hit_obj(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(1, 1, 1);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	obj1 = ft_sphere_new(ft_vec4_new(10, 0, 0, 1), 1, &opt);
 	opt.colour = ft_vec3_new(1, 1, 1);
 	obj2 = ft_sphere_new(ft_vec4_new(5, 0, 0, 1), 1, &opt);

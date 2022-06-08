@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:36:05 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:03:49 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 17:41:37 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	test_trace_diffuse(void)
 	ray = ft_ray_new(ft_vec4_new(-10, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	opt.colour = ft_vec3_new(0.1, 0.3, 0.5);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0, 1), 1, &opt);
 	objs = NULL;
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
@@ -83,6 +84,7 @@ void	test_render(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(1, 0, 0);
 	opt.disruption = 1;
+	opt.norm_map = NULL;
 	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0.1, 1), 1, &opt);
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
 	img = ft_render(cam, ambient, lights, objs);

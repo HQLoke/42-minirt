@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 22:40:32 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:25:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/07 17:40:23 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	test_new(void)
 
 	opt.colour = ft_vec3_new(0, 0, 0);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	cone = ft_cone_new(
 			ft_vec4_new(1, 2, 3, 1),
 			ft_vec4_new(4, 5, 6, 0),
@@ -49,6 +50,7 @@ void	test_intersect(void)
 	norm.data = NULL;
 	opt.colour = ft_vec3_new(0, 0, 0);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	cone = ft_cone_new(ft_vec4_new(8, 0, 0, 1),
 			ft_vec4_new(0, 0, 1, 0),
 			100,
@@ -83,6 +85,7 @@ void	test_no_intersect(void)
 	norm.data = NULL;
 	opt.colour = ft_vec3_new(0, 0, 0);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	cone = ft_cone_new(ft_vec4_new(4, 0, 0, 1),
 			ft_vec4_new(0, 0, 1, 0),
 			100,
@@ -111,6 +114,7 @@ void	test_no_intersect_origin(void)
 	norm.data = NULL;
 	opt.colour = ft_vec3_new(0, 0, 0);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	cone = ft_cone_new(ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(0, 0, 1, 0),
 			100,
@@ -140,6 +144,7 @@ void	test_normal(void)
 	norm.data = NULL;
 	opt.colour = ft_vec3_new(0, 0, 0);
 	opt.disruption = 0;
+	opt.norm_map = NULL;
 	cone = ft_cone_new(
 			ft_vec4_new(0, 0, 0, 1),
 			ft_vec4_new(0, 0, 1, 0),
