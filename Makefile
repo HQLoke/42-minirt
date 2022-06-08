@@ -21,6 +21,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_cone.c \
 				ft_cylinder.c \
 				ft_light.c \
+				ft_norm_map.c \
 				ft_obj.c \
 				ft_plane.c \
 				ft_point.c \

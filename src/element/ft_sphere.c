@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 01:08:48 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 16:46:44 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ t_vec	*ft_sphere_normal(t_obj *sp, t_ray *ray, t_vec *point, t_vec *norm)
 	ft_vec_swap(norm, normal);
 	ft_vec_del(normal);
 	norm = ft_correct_normal(norm, ray);
+	if (sp->norm_map != NULL)
+		norm = ft_sphere_norm_map(sp, point, norm);
 	return (norm);
 }

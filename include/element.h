@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/07 17:28:37 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 15:26:23 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,10 @@ t_vec	*ft_cylinder_normal(t_obj *cy, t_ray *ray, t_vec *point, t_vec *norm);
 // ft_light.c -- light related functions
 t_light	*ft_light_new(t_vec *ctr, t_vec *dir, t_vec *param, t_vec *colour);
 void	ft_light_del(t_light *light);
+
+// ft_norm_map.c -- norm map related functions
+t_img	*ft_norm_map(const char *pathname);
+t_vec	*ft_sphere_norm_map(t_obj *sp, t_vec *point, t_vec *norm);
 
 // ft_obj.c -- 2nd order surface object functions
 t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt);
