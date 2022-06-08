@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:35:27 by weng              #+#    #+#             */
-/*   Updated: 2022/06/07 17:29:35 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 17:09:00 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_img8	*ft_ppm_2_image8(FILE *stream)
 	if (data == NULL)
 		ft_perror("ft_ppm_2_image: failed memory allocation.\n");
 	size[2] = size[0] * size[1] * 3;
-	fgets(data, size[2] + 1, stream);
+	fread(data, size[2] + 1, sizeof(char), stream);
 	if (data == NULL)
 		ft_perror("ft_ppm_2_image: can't read data from image file.\n");
 	img = ft_image8_new(size[1], size[0]);
