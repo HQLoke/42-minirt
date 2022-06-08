@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/08 23:11:02 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 23:15:05 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ t_vec	*ft_cone_normal(t_obj *cone, t_ray *ray, t_vec *point, t_vec *norm);
 // ft_cylinder.c -- cylinder related functions
 t_obj	*ft_cylinder_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt);
 void	ft_cylinder_coefficient(t_obj *cy, t_ray *ray, double *coeff);
+t_vec	*ft_cylinder_norm_map(t_obj *cy, t_vec *point, t_vec *norm);
 t_vec	*ft_cylinder_normal(t_obj *cy, t_ray *ray, t_vec *point, t_vec *norm);
 
 // ft_light.c -- light related functions

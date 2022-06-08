@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:16:59 by weng              #+#    #+#             */
-/*   Updated: 2022/06/06 04:05:57 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/08 23:32:45 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,23 @@ void	ft_cylinder_coefficient(t_obj *cy, t_ray *ray, double *coeff)
 		- pow(ray->org->data[2], 2) - pow(cy->dimension->data[0], 2) - 1;
 }
 
+/* Return the altered normal on a cylinder, given a point. */
+t_vec	*ft_cylinder_norm_map(t_obj *cy, t_vec *point, t_vec *norm)
+{
+	double	p;
+	double	y;
+	double	phi;
+	t_vec	*colour;
+
+	p = 2 * M_PI * cy->dimension->data[0];
+	y = fmod(fmod(point->data[2], p) + 1.5 * p, p) / p;
+	phi = atan2(point->data[1], point->data[0]);
+	colour = ft_image_get(cy->norm_map,
+			(int)(y * cy->norm_map->row),
+			(int)((phi / M_PI / 2 + 0.5) * cy->norm_map->col));
+	return (ft_bump_norm(colour, norm));
+}
+
 /* Calculate the normal vector at a point on a cylinder, and store it in
  * the 'normal' vector. If the point given is not on the surface, and
  * error message will be printed.
@@ -68,5 +85,7 @@ t_vec	*ft_cylinder_normal(t_obj *cy, t_ray *ray, t_vec *point, t_vec *norm)
 	ft_vec_swap(norm, normal);
 	ft_vec_del(normal);
 	norm = ft_correct_normal(norm, ray);
+	if (cy->norm_map != NULL)
+		norm = ft_cylinder_norm_map(cy, point, norm);
 	return (norm);
 }
