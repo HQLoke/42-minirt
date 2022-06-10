@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:36:05 by weng              #+#    #+#             */
-/*   Updated: 2022/06/07 17:41:37 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 11:31:28 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	test_trace_diffuse(void)
 	opt.colour = ft_vec3_new(0.1, 0.3, 0.5);
 	opt.disruption = 0;
 	opt.norm_map = NULL;
-	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0, 1), 1, &opt);
+	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 1, 0, 0),
+			ft_vec2_new(1, 2), &opt);
 	objs = NULL;
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
 	target = ft_vec3_new(0.01, 0.03, 0.05);
@@ -85,7 +86,8 @@ void	test_render(void)
 	opt.colour = ft_vec3_new(1, 0, 0);
 	opt.disruption = 1;
 	opt.norm_map = NULL;
-	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0.1, 1), 1, &opt);
+	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0.1, 1), ft_vec4_new(0, 1, 0, 0),
+			ft_vec2_new(1, 2), &opt);
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
 	img = ft_render(cam, ambient, lights, objs);
 	if (ft_image_2_ppm(img, "test_render.ppm", 6) == 0)

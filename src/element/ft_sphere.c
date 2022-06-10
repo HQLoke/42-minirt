@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/06/08 22:26:52 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 11:31:46 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 /* Return a new sphere object.
  * @param ctr		4D vector containing the coordinates of the centre of sphere
- * @param radius	the radius of the sphere
+ * @param orient	4D vector containning the orientation vector
+ * @param dim		2D vector containing the radius and height of sphere.
+ * 					Setting height more than double the radius will not
+ * 					have any effect.
  * @param opt		pointer to a data structure containing the object options
  * */
-t_obj	*ft_sphere_new(t_vec *ctr, double radius, t_opt *opt)
+t_obj	*ft_sphere_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt)
 {
 	t_obj	*sp;
-	t_vec	*orient;
-	t_vec	*dim;
 
-	orient = ft_vec4_new(0, 1, 0, 0);
-	dim = ft_vec2_new(radius, 2 * radius);
 	sp = ft_obj_new(ctr, orient, dim, opt);
 	if (sp == NULL)
 		return (NULL);

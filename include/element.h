@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/08 23:15:05 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 11:29:17 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ t_ray	*ft_ray_transform(t_mat *A, t_ray *ray);
 t_vec	*ft_ray_calc_point(t_ray *ray, double t, t_vec *point);
 
 // ft_sphere.c -- sphere related functions
-t_obj	*ft_sphere_new(t_vec *ctr, double radius, t_opt *opt);
+t_obj	*ft_sphere_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt);
 void	ft_sphere_coefficient(t_obj *sp, t_ray *ray, double *coeff);
 t_vec	*ft_sphere_norm_map(t_obj *sp, t_vec *point, t_vec *norm);
 t_vec	*ft_sphere_normal(t_obj *sp, t_ray *ray, t_vec *point, t_vec *norm);
