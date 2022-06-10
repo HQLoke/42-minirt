@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 11:00:58 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 11:33:52 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 11:53:06 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	test_cone(void)
 	t_img	*img;
 
 	cam = ft_camera_new(
-			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, -1, 0), 70);
 	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
 	lights = NULL;
 	light = ft_point_new(ft_vec4_new(5, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
@@ -60,7 +60,7 @@ void	test_cylinder(void)
 	t_img	*img;
 
 	cam = ft_camera_new(
-			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, -1, 0), 70);
 	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
 	lights = NULL;
 	light = ft_point_new(ft_vec4_new(5, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
@@ -97,7 +97,7 @@ void	test_plane(void)
 	t_opt	opt;
 
 	cam = ft_camera_new(
-			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, -1, 0), 70);
 	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
 	lights = NULL;
 	light = ft_point_new(ft_vec4_new(3, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
@@ -133,7 +133,7 @@ void	test_sphere(void)
 	t_img	*img;
 
 	cam = ft_camera_new(
-			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, -1, 0), 70);
 	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
 	lights = NULL;
 	light = ft_point_new(ft_vec4_new(5, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));

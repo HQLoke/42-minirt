@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 22:39:14 by weng              #+#    #+#             */
-/*   Updated: 2022/05/25 23:49:21 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 11:52:51 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	test_new_x(void)
 	t_ray	*ray4;
 	t_vec	*target;
 
-	cam = ft_camera_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0), 60);
+	cam = ft_camera_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(-1, 0, 0, 0), 60);
 	ray1 = ft_camera_ray(cam, cam->reso_x / 2 - 1, cam->reso_y / 2 - 1);
 	ray2 = ft_camera_ray(cam, cam->reso_x / 2 - 1, cam->reso_y / 2);
 	ray3 = ft_camera_ray(cam, cam->reso_x / 2, cam->reso_y / 2 - 1);
@@ -53,7 +53,7 @@ void	test_new_y(void)
 	t_ray	*ray4;
 	t_vec	*target;
 
-	cam = ft_camera_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 1, 0, 0), 60);
+	cam = ft_camera_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, -1, 0, 0), 60);
 	ray1 = ft_camera_ray(cam, cam->reso_x / 2 - 1, cam->reso_y / 2 - 1);
 	ray2 = ft_camera_ray(cam, cam->reso_x / 2 - 1, cam->reso_y / 2);
 	ray3 = ft_camera_ray(cam, cam->reso_x / 2, cam->reso_y / 2 - 1);
@@ -85,7 +85,7 @@ void	test_new_z(void)
 	t_ray	*ray4;
 	t_vec	*target;
 
-	cam = ft_camera_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 0, 1, 0), 60);
+	cam = ft_camera_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 0, -1, 0), 60);
 	ray1 = ft_camera_ray(cam, cam->reso_x / 2 - 1, cam->reso_y / 2 - 1);
 	ray2 = ft_camera_ray(cam, cam->reso_x / 2 - 1, cam->reso_y / 2);
 	ray3 = ft_camera_ray(cam, cam->reso_x / 2, cam->reso_y / 2 - 1);
@@ -117,7 +117,7 @@ void	test_angle_horizontal(void)
 	t_ray	*ray4;
 	double	angle;
 
-	cam = ft_camera_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 0, 1, 0), 60);
+	cam = ft_camera_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 0, -1, 0), 60);
 	ray1 = ft_camera_ray(cam, 0, cam->reso_y / 2 - 1);
 	ray2 = ft_camera_ray(cam, 0, cam->reso_y / 2);
 	ray3 = ft_camera_ray(cam, cam->reso_x - 1, cam->reso_y / 2 - 1);
@@ -146,7 +146,7 @@ void	test_angle_vertical(void)
 	double	angle;
 	double	target;
 
-	cam = ft_camera_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 0, 1, 0), 60);
+	cam = ft_camera_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 0, -1, 0), 60);
 	ray1 = ft_camera_ray(cam, cam->reso_x / 2 - 1, 0);
 	ray2 = ft_camera_ray(cam, cam->reso_x / 2, 0);
 	ray3 = ft_camera_ray(cam, cam->reso_x / 2 - 1, cam->reso_y - 1);

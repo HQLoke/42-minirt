@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:36:05 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 11:31:28 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 11:53:37 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	test_render(void)
 	t_img	*img;
 
 	cam = ft_camera_new(
-			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, -1, 0), 70);
 	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
 	lights = NULL;
 	light = ft_point_new(ft_vec4_new(5, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
