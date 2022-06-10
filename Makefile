@@ -30,10 +30,9 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_spot.c \
 			) \
 			$(addprefix $(ERROR_DIR), \
-				check_objects.c \
-				check_settings.c \
-				error_handler.c \
-				error_utils.c \
+				ft_check_object.c \
+				ft_check_setting.c \
+				ft_error.c \
 			) \
 			$(addprefix $(IMAGE_DIR), \
 				ft_image.c \
@@ -61,7 +60,9 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 			$(addprefix $(UTILS_DIR), \
 				ft_array_size.c \
 				ft_atof.c \
+				ft_check_float.c \
 				ft_memdel.c \
+				ft_putstr_fd_clr.c \
 			)
 OBJDIR	=	obj
 OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))
@@ -85,7 +86,7 @@ all: $(NAME)
 $(LIBFT_PATH)/libft.a:
 	$(MAKE) -C $(LIBFT_PATH)
 
-$(NAME): $(LIBFT_PATH)/libft.a $(LIBRT)
+$(NAME): $(LIBFT_PATH)/libft.a $(LIBRT) $(MAIN)
 	$(CC) $(CFLAGS) -o $(NAME) $(MAIN) $(FDFLAGS) $(FDLIBS)
 	@printf "$(NEWLINE)$(GREEN)Successfully created $(GREEN)$@$(GREEN)!\n$(NO_COLOR)"
 

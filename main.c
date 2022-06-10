@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:23 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/12 10:26:04 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/08 16:22:48 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (teach_them());
-	error_handler(argv[1]);
+	ft_error(argv[1]);
 	return (0);
 }

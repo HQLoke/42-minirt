@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   element.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/08 23:15:05 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/09 13:50:25 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef t_vec*			(*t_intense)(t_light *light, t_ray *ray);
 
 typedef enum e_element
 {
-	CAMERA,
 	AMBIENT,
+	CAMERA,
 	POINT,
 	SPOT,
 	SPHERE,
