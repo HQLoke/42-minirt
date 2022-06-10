@@ -6,11 +6,11 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:32:55 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/25 15:23:23 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 14:54:57 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "error.h"
 
 /* Handles the integral component of a number as a double, and moves
  * the pointer to the unhandled part of the string. */

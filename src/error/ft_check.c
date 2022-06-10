@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:05:48 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/09 22:06:44 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/10 15:02:34 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "error.h"
 
 /*
 Check for file format, file extension, and file permission

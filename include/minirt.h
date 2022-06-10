@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/08 15:36:50 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/10 15:04:50 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
-
-# include <limits.h>
-# include <math.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
 
 # include "element.h"
 # include "error.h"
@@ -46,15 +39,6 @@ void	check_sphere(char **info, int line_num, t_list **err);
 void	check_plane(char **info, int line_num, t_list **err);
 void	check_cylinder(char **info, int line_num, t_list **err);
 void	ft_error(char *scene);
-
-/*
-/srcs/utils
-*/
-size_t	ft_array_size(const void *array);
-double	ft_atof(const char *str);
-int		ft_check_float(char **data, size_t size, double min, double max);
-void	ft_memdel(void *ptr, void (*del)(void *));
-void	ft_putstr_fd_clr(char *s, int fd, char *color);
 
 // ft_diffuse.c -- ray tracing related functions
 int		ft_hit_light(t_light *light, t_ray *ray, t_list *objs);

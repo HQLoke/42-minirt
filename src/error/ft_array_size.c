@@ -6,11 +6,11 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 09:06:59 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/25 11:23:07 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 14:55:03 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "error.h"
 
 /*
 Return the size of a NULL terminated array of pointers.

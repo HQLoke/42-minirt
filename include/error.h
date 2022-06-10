@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/09 15:24:18 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/10 15:04:05 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
+
+# include <fcntl.h>
+# include <limits.h>
+# include <math.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+
+# include "libft.h"
 
 typedef enum e_elem
 {
@@ -52,5 +61,14 @@ void	ft_error_exit(char *str);
 int		ft_check_file(char *scene);
 void	ft_check_info(char *data, int elem_info);
 void	ft_check_line(char *line);
+
+/*
+/srcs/utils
+*/
+size_t	ft_array_size(const void *array);
+double	ft_atof(const char *str);
+int		ft_check_float(char **data, size_t size, double min, double max);
+void	ft_memdel(void *ptr, void (*del)(void *));
+void	ft_putstr_fd_clr(char *s, int fd, char *color);
 
 #endif

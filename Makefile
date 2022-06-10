@@ -30,8 +30,12 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_spot.c \
 			) \
 			$(addprefix $(ERROR_DIR), \
+				ft_array_size.c \
+				ft_atof.c \
+				ft_check_float.c \
 				ft_check.c \
 				ft_error.c \
+				ft_memdel.c \
 			) \
 			$(addprefix $(IMAGE_DIR), \
 				ft_image.c \
@@ -55,12 +59,6 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_hit.c \
 				ft_phong.c \
 				ft_trace.c \
-			) \
-			$(addprefix $(UTILS_DIR), \
-				ft_array_size.c \
-				ft_atof.c \
-				ft_check_float.c \
-				ft_memdel.c \
 			)
 OBJDIR	=	obj
 OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))

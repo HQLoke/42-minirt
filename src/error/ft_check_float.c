@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_float.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 15:15:54 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/08 15:17:00 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/10 14:55:07 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "error.h"
 
 /*
 This function serves two purposes
