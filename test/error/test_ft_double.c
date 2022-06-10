@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_ft_atof.c                                     :+:      :+:    :+:   */
+/*   test_ft_double.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:32:50 by weng              #+#    #+#             */
-/*   Updated: 2022/05/25 15:22:51 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 00:58:24 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "error.h"
 
 void	test_atof(void)
 {
@@ -67,8 +67,31 @@ void	test_atof(void)
 		printf("ft_atof: OK\n");
 }
 
+void	test_check_vector(void)
+{
+	t_vec	*vec;
+
+	vec = ft_parse_vector("0,100,200", 3, -1000, 1000);
+	printf("ft_parse_vector: OK\n");
+	ft_vec_del(vec);
+}
+
+void	test_check_vector_null(void)
+{
+	t_vec	*vec;
+
+	vec = ft_parse_vector("", 0, 0, 0);
+	if (vec != NULL)
+		printf("ft_parse_vector NULL: Error!\n");
+	else
+		printf("ft_parse_vector NULL: OK\n");
+	ft_vec_del(vec);
+}
+
 int	main(void)
 {
 	test_atof();
+	test_check_vector();
+	test_check_vector_null();
 	return (0);
 }

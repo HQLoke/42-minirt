@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:22:21 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 17:28:29 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 01:02:45 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	test_open_scene(void)
 
 void	test_split_scene(void)
 {
-	char **arr;
+	char	**arr;
 
-	arr = ft_split_scene("a\t\tb\tc\t\t");
+	arr = ft_split_scene("a\t\tb\tc\t\t", '\t');
 	if (ft_array_size(arr) != 5)
 		printf("ft_split_scene: Error!\n");
 	else

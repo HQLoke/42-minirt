@@ -38,7 +38,6 @@ void	check_light(char **info, int line_num, t_list **err);
 void	check_sphere(char **info, int line_num, t_list **err);
 void	check_plane(char **info, int line_num, t_list **err);
 void	check_cylinder(char **info, int line_num, t_list **err);
-void	ft_error(char *scene);
 
 // ft_diffuse.c -- ray tracing related functions
 int		ft_hit_light(t_light *light, t_ray *ray, t_list *objs);

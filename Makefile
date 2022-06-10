@@ -31,8 +31,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 			) \
 			$(addprefix $(ERROR_DIR), \
 				ft_array.c \
-				ft_atof.c \
-				ft_check_float.c \
+				ft_double.c \
 				ft_check.c \
 				ft_error.c \
 			) \

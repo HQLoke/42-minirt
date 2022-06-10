@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 17:22:09 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 01:01:31 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
+# include "linalg.h"
 # include "libft.h"
+
+typedef struct s_vec	t_vec;	// forward declaration
 
 typedef enum e_elem
 {
@@ -59,19 +62,18 @@ enum e_elem_info
 size_t	ft_array_size(const void *array);
 void	ft_array_del(void *ptr, void (*del)(void *));
 
+// ft_check.c
+int		ft_open_scene(const char *scene);
+char	**ft_split_scene(const char *line, char c);
+
+// ft_double.c
+double	ft_atof(const char *str);
+int		ft_isdouble(const char *s);
+int		ft_check_double(double d, double min, double max);
+t_vec	*ft_parse_vector(const char *s, size_t size, double min, double max);
+
 // ft_error.c
 void	ft_perror(const char *s);
 void	ft_error(char *scene);
-
-// ft_check.c
-int		ft_open_scene(const char *scene);
-char	**ft_split_scene(const char *line);
-void	ft_check_info(char *data, int elem_info);
-void	ft_check_line(char *line);
-
-// Other utility functions
-double	ft_atof(const char *str);
-int		ft_check_float(char **data, size_t size, double min, double max);
-void	ft_array_del(void *ptr, void (*del)(void *));
 
 #endif

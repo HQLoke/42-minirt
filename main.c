@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:23 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/08 16:22:48 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/11 11:05:59 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (teach_them());
-	ft_error(argv[1]);
+	(void) argv;
 	return (0);
 }
