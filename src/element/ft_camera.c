@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:42:14 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 11:57:34 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 12:02:57 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_cam	*ft_camera_new(t_vec *ctr, t_vec *orient, double fov)
 	camera->reso_y = 300;
 	camera->lx = camera->near * tan(fov / 2 * M_PI / 180);
 	camera->ly = camera->lx * camera->reso_y / camera->reso_x;
+	orient = ft_vec_normalise(orient);
 	orient = ft_vec_mul_scalar(orient, -1);
 	camera->to_world = ft_affine_transform(ctr, orient);
 	camera->fr_world = ft_mat_affine_inverse(ft_mat_copy(camera->to_world));

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:58:17 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 15:40:22 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 11:56:21 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ t_mat	*ft_affine_transform(t_vec *centre, t_vec *orient)
 	t_mat	*transform;
 	t_mat	*rotate;
 
+	if (eq_double(ft_vec_len(orient), 1) == 0)
+	{
+		perror("Orientation vector is not a unit vector.\n");
+		exit(1);
+	}
 	transform = ft_affine_translate(
 			centre->data[0], centre->data[1], centre->data[2]);
 	rotate = ft_affine_rotate(orient);

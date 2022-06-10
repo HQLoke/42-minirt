@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:16:49 by weng              #+#    #+#             */
-/*   Updated: 2022/05/26 15:08:07 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 12:18:48 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ t_light	*ft_light_new(t_vec *ctr, t_vec *dir, t_vec *param, t_vec *colour)
 	if (light == NULL)
 		return (NULL);
 	light->centre = ctr;
-	light->dir = dir;
+	if (dir == NULL)
+		light->dir = NULL;
+	else
+		light->dir = ft_vec_normalise(dir);
 	light->param = param;
 	light->colour = colour;
 	return (light);
