@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_ft_checkerboard.c                             :+:      :+:    :+:   */
+/*   test_ft_obj_checkerboard.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 11:00:58 by weng              #+#    #+#             */
-/*   Updated: 2022/06/07 17:39:45 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:44:52 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	test_cone(void)
 	t_img	*img;
 
 	cam = ft_camera_new(
-			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, -1, 0), 70);
 	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
 	lights = NULL;
 	light = ft_point_new(ft_vec4_new(5, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
@@ -60,7 +60,7 @@ void	test_cylinder(void)
 	t_img	*img;
 
 	cam = ft_camera_new(
-			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, -1, 0), 70);
 	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
 	lights = NULL;
 	light = ft_point_new(ft_vec4_new(5, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
@@ -97,7 +97,7 @@ void	test_plane(void)
 	t_opt	opt;
 
 	cam = ft_camera_new(
-			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, -1, 0), 70);
 	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
 	lights = NULL;
 	light = ft_point_new(ft_vec4_new(3, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
@@ -133,7 +133,7 @@ void	test_sphere(void)
 	t_img	*img;
 
 	cam = ft_camera_new(
-			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, 1, 0), 70);
+			ft_vec4_new(0, 0, 5, 1), ft_vec4_new(0, 0, -1, 0), 70);
 	ambient = ft_ambient_new(.1, ft_vec3_new(1, 1, 1));
 	lights = NULL;
 	light = ft_point_new(ft_vec4_new(5, 0, 5, 1), .8, ft_vec3_new(1, 1, 1));
@@ -142,7 +142,8 @@ void	test_sphere(void)
 	opt.colour = ft_vec3_new(1, 0, 0);
 	opt.disruption = 1;
 	opt.norm_map = NULL;
-	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0.1, 1), 1, &opt);
+	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 1, 1, 0),
+			ft_vec2_new(1, 1), &opt);
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));
 	img = ft_render(cam, ambient, lights, objs);
 	if (ft_image_2_ppm(img, "test_sphere_checkerboard.ppm", 6) == 0)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cylinder.c                                      :+:      :+:    :+:   */
+/*   ft_obj_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:16:59 by weng              #+#    #+#             */
-/*   Updated: 2022/06/08 23:32:45 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:50:45 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_obj	*ft_cylinder_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt)
 	cy = ft_obj_new(ctr, orient, dim, opt);
 	if (cy == NULL)
 		return (NULL);
-	cy->type = CYLINDER;
 	cy->intersect = ft_obj_intersect;
 	cy->coefficient = ft_cylinder_coefficient;
 	cy->normal = ft_cylinder_normal;

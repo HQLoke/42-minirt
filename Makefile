@@ -15,19 +15,19 @@ UTILS_DIR	=	utils/
 
 SRCDIR	=	src
 SRCS	=	$(addprefix $(ELEMENT_DIR), \
-				ft_ambient.c \
 				ft_camera.c \
-				ft_checkerboard.c \
-				ft_cone.c \
-				ft_cylinder.c \
 				ft_light.c \
-				ft_norm_map.c \
+				ft_light_ambient.c \
+				ft_light_point.c \
+				ft_light_spot.c \
 				ft_obj.c \
-				ft_plane.c \
-				ft_point.c \
+				ft_obj_cone.c \
+				ft_obj_cylinder.c \
+				ft_obj_plane.c \
+				ft_obj_sphere.c \
+				ft_obj_checkerboard.c \
+				ft_obj_norm_map.c \
 				ft_ray.c \
-				ft_sphere.c \
-				ft_spot.c \
 			) \
 			$(addprefix $(ERROR_DIR), \
 				ft_array.c \

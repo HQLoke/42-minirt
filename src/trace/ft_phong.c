@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:06:13 by weng              #+#    #+#             */
-/*   Updated: 2022/06/03 10:52:09 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:53:30 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ t_vec	*ft_light_intensity(t_hit *hit, t_light *light, t_list *objs)
 	double	factor;
 	t_vec	*intensity;
 
-	if (light->type == AMBIENT)
-		return (light->intense(light, NULL));
 	ray = ft_ray_new(ft_vec_copy(hit->point),
 			ft_vec_sub(ft_vec_copy(light->centre), hit->point));
 	factor = ft_vec_mul_dot(hit->norm, ray->dir);
@@ -94,7 +92,7 @@ t_vec	*ft_phong_reflection(
 	double	specular;
 
 	if (ambient != NULL)
-		vec = ft_light_intensity(hit, ambient, objs);
+		vec = ambient->intense(ambient, NULL);
 	else
 		vec = ft_vec3_new(0, 0, 0);
 	while (lights != NULL)

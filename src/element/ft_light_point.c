@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_point.c                                         :+:      :+:    :+:   */
+/*   ft_light_point.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:18:50 by weng              #+#    #+#             */
-/*   Updated: 2022/06/02 14:21:16 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:52:30 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_light	*ft_point_new(t_vec *ctr, double ratio, t_vec *colour)
 	light = ft_light_new(ctr, NULL, param, colour);
 	if (light == NULL)
 		return (NULL);
-	light->type = POINT;
 	light->intense = ft_point_intensity;
 	return (light);
 }
