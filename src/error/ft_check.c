@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:05:48 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 17:03:38 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 17:27:42 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,38 @@ int	ft_open_scene(const char *scene)
 	if (fd == -1)
 		ft_perror("Scene file cannot be opened");
 	return (fd);
+}
+
+/* Parse one line of scene input file into an array, with tab as
+ * delimiter. Continuous tabs means some inputs are parsed as empty
+ * string. The output from this function must eventually be freed. */
+char	**ft_split_scene(const char *line)
+{
+	char			**arr;
+	char			*ptr;
+	const size_t	max_arg = 7;
+	size_t			i;
+
+	arr = ft_calloc(sizeof(char *), max_arg + 1);
+	if (arr == NULL)
+		ft_perror("ft_split_scene cannot allocate memory.");
+	i = 0;
+	while (line && *line != '\0')
+	{
+		if (i == max_arg)
+		{
+			errno = ERANGE;
+			ft_perror("Line in scene file is too long");
+		}
+		ptr = ft_strchr(line, '\t');
+		if (ptr != NULL)
+			arr[i] = ft_substr(line, 0, ptr - line);
+		else
+			arr[i] = ft_strdup(line);
+		line = ptr + (ptr != NULL);
+		++i;
+	}
+	return (arr);
 }
 
 /*

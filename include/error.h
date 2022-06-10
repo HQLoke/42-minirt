@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 16:33:27 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 17:22:09 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	ft_error(char *scene);
 
 // ft_check.c
 int		ft_open_scene(const char *scene);
+char	**ft_split_scene(const char *line);
 void	ft_check_info(char *data, int elem_info);
 void	ft_check_line(char *line);
 
