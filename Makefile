@@ -3,7 +3,7 @@ CC		=	gcc
 INCLUDE	=	-Iinclude -Ilibft
 CFLAGS	=	-Wall -Wextra -Werror $(INCLUDE) -g3 -fsanitize=address
 FDFLAGS	=	-L. -Llibft
-FDLIBS	=	-lrt -lft
+FDLIBS	=	-lrt -lft -lm
 
 # source and object files
 ELEMENT_DIR	=	element/
@@ -30,8 +30,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_spot.c \
 			) \
 			$(addprefix $(ERROR_DIR), \
-				ft_check_object.c \
-				ft_check_setting.c \
+				ft_check.c \
 				ft_error.c \
 			) \
 			$(addprefix $(IMAGE_DIR), \
@@ -62,7 +61,6 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_atof.c \
 				ft_check_float.c \
 				ft_memdel.c \
-				ft_putstr_fd_clr.c \
 			)
 OBJDIR	=	obj
 OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))
