@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:05:48 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 15:02:34 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 15:12:59 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_check_info(char *data, int elem_info)
 			ft_error_exit("Value is out of range.");
 		i += 1;
 	}
-	ft_memdel(tmp, free);
+	ft_array_del(tmp, free);
 }
 
 void	ft_check_line_aux(char **info, const int check[6])
@@ -106,5 +106,5 @@ void	ft_check_line(char *line)
 	}
 	if (i == n)
 		ft_error_exit("Invalid identifier.");
-	ft_memdel(info, free);
+	ft_array_del(info, free);
 }

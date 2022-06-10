@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 15:04:05 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 15:12:59 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ enum e_elem_info
 	xyz
 };
 
+// ft_array.c -- NULL terminated array related functions
+size_t	ft_array_size(const void *array);
+void	ft_array_del(void *ptr, void (*del)(void *));
+
 // ft_error.c
 void	ft_error(char *scene);
 void	ft_error_exit(char *str);
@@ -62,13 +66,9 @@ int		ft_check_file(char *scene);
 void	ft_check_info(char *data, int elem_info);
 void	ft_check_line(char *line);
 
-/*
-/srcs/utils
-*/
-size_t	ft_array_size(const void *array);
+// Other utility functions
 double	ft_atof(const char *str);
 int		ft_check_float(char **data, size_t size, double min, double max);
-void	ft_memdel(void *ptr, void (*del)(void *));
-void	ft_putstr_fd_clr(char *s, int fd, char *color);
+void	ft_array_del(void *ptr, void (*del)(void *));
 
 #endif

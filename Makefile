@@ -30,12 +30,11 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_spot.c \
 			) \
 			$(addprefix $(ERROR_DIR), \
-				ft_array_size.c \
+				ft_array.c \
 				ft_atof.c \
 				ft_check_float.c \
 				ft_check.c \
 				ft_error.c \
-				ft_memdel.c \
 			) \
 			$(addprefix $(IMAGE_DIR), \
 				ft_image.c \
