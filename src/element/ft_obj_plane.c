@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:59:41 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:42:04 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:51:22 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_opt *opt)
 	plane = ft_obj_new(point, norm, dim, opt);
 	if (plane == NULL)
 		return (NULL);
-	plane->type = PLANE;
 	plane->intersect = ft_plane_intersect;
 	plane->coefficient = NULL;
 	plane->normal = ft_plane_normal;

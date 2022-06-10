@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 22:40:32 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:45:00 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:50:49 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	test_new(void)
 			&opt);
 	identity = ft_mat_identity(4);
 	ft_mat_mul(cylinder->fr_world, cylinder->to_world);
-	if (eq_mat(identity, cylinder->fr_world) == 0 || cylinder->type != CYLINDER)
+	if (eq_mat(identity, cylinder->fr_world) == 0)
 		printf("ft_cylinder_new: Error!\n");
 	else
 		printf("ft_cylinder_new: OK\n");

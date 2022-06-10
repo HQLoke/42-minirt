@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:49:29 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:42:45 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:52:07 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_light	*ft_spot_new(t_vec *ctr, t_vec *dir, double ratio, t_vec *colour)
 	light = ft_light_new(ctr, ft_vec_normalise(dir), param, colour);
 	if (light == NULL)
 		return (NULL);
-	light->type = SPOT;
 	light->intense = ft_spot_intensity;
 	return (light);
 }

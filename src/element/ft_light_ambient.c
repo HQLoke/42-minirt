@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:03:17 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:41:28 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:53:33 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_light	*ft_ambient_new(double ratio, t_vec *colour)
 	light = ft_light_new(NULL, NULL, NULL, colour);
 	if (light == NULL)
 		return (NULL);
-	light->type = AMBIENT;
 	light->intense = ft_ambient_intensity;
 	return (light);
 }

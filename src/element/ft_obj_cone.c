@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 14:46:57 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:41:56 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:49:21 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_obj	*ft_cone_new(t_vec *ctr, t_vec *orient, double height, t_opt *opt)
 	cone = ft_obj_new(ctr, orient, dim, opt);
 	if (cone == NULL)
 		return (NULL);
-	cone->type = CONE;
 	cone->intersect = ft_obj_intersect;
 	cone->coefficient = ft_cone_coefficient;
 	cone->normal = ft_cone_normal;

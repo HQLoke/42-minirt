@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 22:40:32 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:44:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:50:55 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	test_new(void)
 			&opt);
 	identity = ft_mat_identity(4);
 	ft_mat_mul(cone->fr_world, cone->to_world);
-	if (eq_mat(identity, cone->fr_world) == 0 || cone->type != CONE)
+	if (eq_mat(identity, cone->fr_world) == 0)
 		printf("ft_cone_new: Error!\n");
 	else
 		printf("ft_cone_new: OK\n");

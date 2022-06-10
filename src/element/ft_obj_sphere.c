@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:42:07 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:51:42 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_obj	*ft_sphere_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt)
 	sp = ft_obj_new(ctr, orient, dim, opt);
 	if (sp == NULL)
 		return (NULL);
-	sp->type = SPHERE;
 	sp->intersect = ft_obj_intersect;
 	sp->coefficient = ft_sphere_coefficient;
 	sp->normal = ft_sphere_normal;

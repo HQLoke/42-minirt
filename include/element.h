@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 12:14:40 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 13:53:57 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,6 @@ typedef t_vec*			(*t_normal)(
 	t_obj *obj, t_ray *ray, t_vec *point, t_vec *norm);
 typedef t_vec*			(*t_colour)(t_obj *obj, t_vec *point);
 typedef t_vec*			(*t_intense)(t_light *light, t_ray *ray);
-
-typedef enum e_element
-{
-	CAMERA,
-	AMBIENT,
-	POINT,
-	SPOT,
-	SPHERE,
-	PLANE,
-	CYLINDER,
-	CONE
-}	t_element;
 
 /* struct representing a ray
  * @org	the point of origin. w-coordinate = 1
@@ -87,7 +75,6 @@ typedef struct s_cam
  */
 typedef struct s_light
 {
-	t_element	type;
 	t_vec		*centre;
 	t_vec		*dir;
 	t_vec		*param;
@@ -105,7 +92,6 @@ typedef struct s_light
  */
 typedef struct s_obj
 {
-	t_element	type;
 	t_vec		*dimension;
 	t_vec		*base_colour;
 	t_mat		*to_world;
