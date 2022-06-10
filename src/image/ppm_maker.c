@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:40:36 by hloke             #+#    #+#             */
-/*   Updated: 2022/05/28 22:51:37 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 16:01:44 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ static int	ft_ppm_header(
 
 	fd = open(pathname, O_CREAT | O_TRUNC | O_WRONLY, S_IWUSR);
 	if (fd == -1)
-	{
-		perror("Cannot create ppm file.");
-		return (fd);
-	}
+		ft_perror("Cannot create ppm file.");
 	ft_putendl_fd(type, fd);
 	ft_putnbr_fd(col, fd);
 	ft_putstr_fd(" ", fd);

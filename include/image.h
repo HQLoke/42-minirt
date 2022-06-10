@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:13:04 by weng              #+#    #+#             */
-/*   Updated: 2022/06/07 16:25:45 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 15:41:52 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
+# include "error.h"
 # include "linalg.h"
 
 /* struct for an image */

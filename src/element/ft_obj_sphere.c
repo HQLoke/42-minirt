@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:53:28 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:51:42 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 16:00:26 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,7 @@ t_vec	*ft_sphere_normal(t_obj *sp, t_ray *ray, t_vec *point, t_vec *norm)
 	if (eq_double(
 			ft_vec_mul_dot(point, point),
 			pow(sp->dimension->data[0], 2) + 1) == 0)
-	{
-		perror("Point is not on a given sphere.");
-		exit(1);
-	}
+		ft_perror("Point is not on a given sphere.");
 	normal = ft_vec4_new(0, 0, 0, 1);
 	normal = ft_vec_sub(normal, point);
 	normal = ft_vec_mul_scalar(normal, -1);

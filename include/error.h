@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 15:12:59 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 15:44:32 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -58,8 +59,8 @@ size_t	ft_array_size(const void *array);
 void	ft_array_del(void *ptr, void (*del)(void *));
 
 // ft_error.c
+void	ft_perror(const char *s);
 void	ft_error(char *scene);
-void	ft_error_exit(char *str);
 
 // ft_check.c
 int		ft_check_file(char *scene);

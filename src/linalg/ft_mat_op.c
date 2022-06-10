@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:49:02 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 11:37:07 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 16:06:04 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ t_mat	*ft_mat_add(t_mat *A, const t_mat *B)
 	size_t	i;
 
 	if (A->row != B->row || A->col != B->col)
-	{
-		perror("ft_mat_add: size of matrix A must equal size of matrix B");
-		exit(1);
-	}
+		ft_perror("ft_mat_add: size of matrix A != size of matrix B");
 	i = -1;
 	while (++i < A->row * A->col)
 		A->data[i / A->col][i % A->col] += B->data[i / A->col][i % A->col];
@@ -36,10 +33,7 @@ t_mat	*ft_mat_sub(t_mat *A, const t_mat *B)
 	size_t	i;
 
 	if (A->row != B->row || A->col != B->col)
-	{
-		perror("ft_mat_add: size of matrix A must equal size of matrix B");
-		exit(1);
-	}
+		ft_perror("ft_mat_add: size of matrix A != size of matrix B");
 	i = -1;
 	while (++i < A->row * A->col)
 		A->data[i / A->col][i % A->col] -= B->data[i / A->col][i % A->col];

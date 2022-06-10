@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:05:48 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 15:12:59 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 15:45:09 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	ft_check_file(char *scene)
 	while (scene[i] && scene[i] != '.')
 		i += 1;
 	if (scene[i] == '\0')
-		ft_error_exit("File is not in .rt format.");
+		ft_perror("File is not in .rt format.");
 	if (ft_strcmp(scene + (i + 1), "rt") != 0)
-		ft_error_exit("Wrong file extension.");
+		ft_perror("Wrong file extension.");
 	fd = open(scene, O_RDONLY, 0);
 	if (fd == -1)
-		ft_error_exit("File cannot be opened.");
+		ft_perror("File cannot be opened.");
 	return (fd);
 }
 
@@ -48,13 +48,13 @@ void	ft_check_info(char *data, int elem_info)
 
 	tmp = ft_split(data, ',');
 	if (ft_array_size(tmp) != size[elem_info])
-		ft_error_exit("Wrong number of values.");
+		ft_perror("Wrong number of values.");
 	i = 0;
 	while (tmp[i])
 	{
 		if (ft_atof(tmp[i]) < range[elem_info][0] || ft_atof(tmp[i]) >
 			range[elem_info][1])
-			ft_error_exit("Value is out of range.");
+			ft_perror("Value is out of range.");
 		i += 1;
 	}
 	ft_array_del(tmp, free);
@@ -69,7 +69,7 @@ void	ft_check_line_aux(char **info, const int check[6])
 	while (check[++i] != 0)
 	{
 		if (info[i + 1] == NULL)
-			ft_error_exit("Too few inputs");
+			ft_perror("Too few inputs");
 		else
 			ft_check_info(info[i + 1], check[i]);
 	}
@@ -77,7 +77,7 @@ void	ft_check_line_aux(char **info, const int check[6])
 	while (info[size] != NULL)
 		size += 1;
 	if (size != (i + 1))
-		ft_error_exit("Too many inputs.");
+		ft_perror("Too many inputs.");
 }
 
 /*
@@ -105,6 +105,6 @@ void	ft_check_line(char *line)
 		}
 	}
 	if (i == n)
-		ft_error_exit("Invalid identifier.");
+		ft_perror("Invalid identifier.");
 	ft_array_del(info, free);
 }

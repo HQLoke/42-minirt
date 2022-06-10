@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:16:59 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:50:45 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 16:00:17 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ t_vec	*ft_cylinder_normal(t_obj *cy, t_ray *ray, t_vec *point, t_vec *norm)
 	if (eq_double(
 			pow(point->data[0], 2) + pow(point->data[1], 2),
 			pow(cy->dimension->data[0], 2)) == 0)
-	{
-		perror("Point is not on a given cylinder.");
-		exit(1);
-	}
+		ft_perror("Point is not on a given cylinder.");
 	normal = ft_vec4_new(point->data[0], point->data[1], 0.0, 0.0);
 	ft_vec_normalise(normal);
 	ft_vec_swap(norm, normal);

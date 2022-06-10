@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 15:40:05 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 16:07:26 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# include "../libft/libft.h"
+# include "error.h"
+# include "libft.h"
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846

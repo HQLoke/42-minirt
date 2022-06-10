@@ -6,23 +6,17 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:34:22 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 15:02:44 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 15:40:38 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 
-/*
-Prints Error followed by \n first. 
-Then prints an explicit error message that shows where the error happened.
-Exit failure at last.
-*/
-void	ft_error_exit(char *str)
+/* Print error and exit the program with error code 1. */
+void	ft_perror(const char *s)
 {
-	write(STDERR_FILENO, "Error: \n", 7);
-	write(STDERR_FILENO, str, ft_strlen(str));
-	write(STDERR_FILENO, "\n", 1);
-	exit (EXIT_FAILURE);
+	perror(s);
+	exit(EXIT_FAILURE);
 }
 
 /*

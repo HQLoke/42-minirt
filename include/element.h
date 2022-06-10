@@ -6,13 +6,14 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 15:15:08 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 16:01:27 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ELEMENT_H
 # define ELEMENT_H
 
+# include "error.h"
 # include "linalg.h"
 # include "image.h"
 

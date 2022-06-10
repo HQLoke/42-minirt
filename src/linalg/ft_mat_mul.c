@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:20:19 by weng              #+#    #+#             */
-/*   Updated: 2022/05/20 15:40:32 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 16:05:30 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ t_mat	*ft_mat_mul_elem(t_mat *A, const t_mat *B)
 	row = A->row;
 	col = A->col;
 	if (row != B->row || col != B->col)
-	{
-		perror("ft_mat_mul_elem: input matrices must have the same size.");
-		exit(1);
-	}
+		ft_perror("ft_mat_mul_elem: input matrices must have the same size.");
 	i = -1;
 	while (++i < row * col)
 		A->data[i / col][i % col] *= B->data[i / col][i % col];
@@ -55,10 +52,7 @@ t_vec	*ft_mat_mul_vec(const t_mat *A, t_vec *b)
 	double	val;
 
 	if (A->col != b->size)
-	{
-		perror("ft_mat_mul_vec: A->col != b->size");
-		exit(1);
-	}
+		ft_perror("ft_mat_mul_vec: A->col != b->size");
 	vec = ft_vec_new(A->row);
 	i = -1;
 	while (++i < A->row)
@@ -83,10 +77,7 @@ t_mat	*ft_mat_mul(t_mat *A, const t_mat *B)
 	size_t	j;
 
 	if (A->col != B->row)
-	{
-		perror("ft_mat_mul: column of matrix A must equal to row of matrix B");
-		exit(1);
-	}
+		ft_perror("ft_mat_mul: column of matrix A != row of matrix B");
 	mat = ft_mat_empty(A->row, B->col);
 	i = -1;
 	while (++i < A->row * B->col)
