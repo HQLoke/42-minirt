@@ -6,13 +6,14 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 15:44:32 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 16:33:27 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
+# include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -63,7 +64,7 @@ void	ft_perror(const char *s);
 void	ft_error(char *scene);
 
 // ft_check.c
-int		ft_check_file(char *scene);
+int		ft_open_scene(const char *scene);
 void	ft_check_info(char *data, int elem_info);
 void	ft_check_line(char *line);
 

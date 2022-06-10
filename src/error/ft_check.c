@@ -6,31 +6,27 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:05:48 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 15:45:09 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 17:03:38 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 
-/*
-Check for file format, file extension, and file permission
-Return the file descriptor of the scene file if successful
-*/
-int	ft_check_file(char *scene)
+/* Open a scene file that ends with .rt, and return the file descriptor. */
+int	ft_open_scene(const char *scene)
 {
-	int	i;
-	int	fd;
+	char	*ptr;
+	int		fd;
 
-	i = 0;
-	while (scene[i] && scene[i] != '.')
-		i += 1;
-	if (scene[i] == '\0')
-		ft_perror("File is not in .rt format.");
-	if (ft_strcmp(scene + (i + 1), "rt") != 0)
-		ft_perror("Wrong file extension.");
+	ptr = ft_strrchr(scene, '.');
+	if (ptr == NULL || ft_strcmp(ptr, ".rt") != 0)
+	{
+		errno = EINVAL;
+		ft_perror("Invalid input file format");
+	}
 	fd = open(scene, O_RDONLY, 0);
 	if (fd == -1)
-		ft_perror("File cannot be opened.");
+		ft_perror("Scene file cannot be opened");
 	return (fd);
 }
 

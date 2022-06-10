@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:34:22 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 15:40:38 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/10 16:32:15 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_error(char *scene)
 	int		fd;
 	char	*line;
 
-	fd = ft_check_file(scene);
+	fd = ft_open_scene(scene);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
