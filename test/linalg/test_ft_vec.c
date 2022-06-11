@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:32:53 by weng              #+#    #+#             */
-/*   Updated: 2022/06/11 10:35:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 11:17:56 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,22 @@ void	test_copy(void)
 	ft_vec_del(copy);
 }
 
+void	test_append(void)
+{
+	t_vec	*vec;
+	t_vec	*target;
+
+	target = ft_vec4_new(1, 2, 3, 4);
+	vec = ft_vec3_new(target->data[0], target->data[1], target->data[2]);
+	vec = ft_vec_append(vec, target->data[3]);
+	if (eq_vec(vec, target) == 0)
+		printf("ft_vec_append: Error!\n");
+	else
+		printf("ft_vec_append: OK\n");
+	ft_vec_del(vec);
+	ft_vec_del(target);
+}
+
 void	test_swap(void)
 {
 	t_vec	*a;
@@ -68,6 +84,7 @@ int	main(void)
 {
 	test_new();
 	test_copy();
+	test_append();
 	test_swap();
 	return (0);
 }

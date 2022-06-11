@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/06/11 10:35:51 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 11:13:17 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ft_mat_swap(t_mat *A, t_mat *B);
 // ft_vec.c -- vector construction, destruction & swap functions
 t_vec	*ft_vec_new(size_t n, ...);
 t_vec	*ft_vec_copy(t_vec *vec);
+t_vec	*ft_vec_append(t_vec *vec, double val);
 void	ft_vec_del(t_vec *vec);
 void	ft_vec_swap(t_vec *a, t_vec *b);
 

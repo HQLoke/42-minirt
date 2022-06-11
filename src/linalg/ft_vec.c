@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:26:01 by weng              #+#    #+#             */
-/*   Updated: 2022/06/11 10:35:47 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 11:20:26 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,23 @@ t_vec	*ft_vec_copy(t_vec *vec)
 	retval = ft_vec_new(n);
 	ft_memmove(retval->data, vec->data, sizeof(vec->data[0]) * n);
 	return (retval);
+}
+
+/* Append an additional number to a vector */
+t_vec	*ft_vec_append(t_vec *vec, double val)
+{
+	double	*ptr;
+
+	(void) val;
+	ptr = malloc(sizeof(double) * (vec->size + 1));
+	if (ptr == NULL)
+		ft_perror("ft_vec_append unable to allocate memory");
+	ft_memmove(ptr, vec->data, sizeof(vec->data[0]) * vec->size);
+	ptr[vec->size] = val;
+	free(vec->data);
+	++vec->size;
+	vec->data = ptr;
+	return (vec);
 }
 
 /* Delete a vector from memory. */
