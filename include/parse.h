@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/11 15:18:45 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 17:06:36 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,16 @@ int		ft_isdouble(const char *s);
 int		ft_check_double(double d, double min, double max);
 t_vec	*ft_parse_vector(const char *s, size_t size, double min, double max);
 
-// ft_parse.c -- parse line and return relevant objects
+// ft_parse.c -- parse line and return relevant camera or light objects
 t_cam	*ft_parse_camera(char **arr);
 t_light	*ft_parse_light_ambient(char **arr);
 t_light	*ft_parse_light_point(char **arr);
 t_light	*ft_parse_light_spot(char **arr);
+
+// ft_parse_obj.c -- parse line and return relevant surface object
+t_obj	*ft_parse_obj_cone(char **arr);
+t_obj	*ft_parse_obj_cylinder_sphere(char **arr);
+t_obj	*ft_parse_obj_plane(char **arr);
+t_obj	*ft_parse_obj(char **arr);
 
 #endif
