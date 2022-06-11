@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check.c                                         :+:      :+:    :+:   */
+/*   ft_parse_scene.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:05:48 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/11 11:11:11 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/12 00:11:39 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,71 @@ char	**ft_split_scene(const char *line, char c)
 		++i;
 	}
 	return (arr);
+}
+
+/* Strip trailing new line character, if any */
+char	*ft_strip_newline(char *line)
+{
+	char	*ptr;
+
+	if (line == NULL)
+		return (NULL);
+	ptr = ft_strchr(line, '\n');
+	if (ptr != NULL)
+		*ptr = '\0';
+	return (line);
+}
+
+/* Parse one line of the scene file, and add to the approprite list. */
+t_cam	*ft_parse_line(
+	const char *line, t_light **ambient, t_list **lights, t_list **objs)
+{
+	char	**arr;
+
+	arr = ft_split(line, ' ');
+	if (ft_array_size(arr) == 0)
+	{
+		ft_array_del(arr, free);
+		return (NULL);
+	}
+	else if (ft_strcmp(arr[0], "C") == 0)
+		return (ft_parse_camera(arr));
+	else if (ft_strcmp(arr[0], "A") == 0)
+		*ambient = ft_parse_light_ambient(arr);
+	else if (ft_strcmp(arr[0], "lp") == 0)
+		ft_lstadd_back(lights, ft_lstnew(ft_parse_light_point(arr)));
+	else if (ft_strcmp(arr[0], "ls") == 0)
+		ft_lstadd_back(lights, ft_lstnew(ft_parse_light_spot(arr)));
+	else
+		ft_lstadd_back(objs, ft_lstnew(ft_parse_obj(arr)));
+	return (NULL);
+}
+
+/* Parse a scene file and initialise all relevant objects. */
+t_cam	*ft_parse_scene(
+	const char *scene, t_light **ambient, t_list **lights, t_list **objs)
+{
+	int		fd;
+	char	*line;
+	t_cam	*cam;
+	t_cam	*retval;
+
+	cam = NULL;
+	fd = ft_open_scene(scene);
+	line = ft_strip_newline(get_next_line(fd));
+	while (line != NULL)
+	{
+		if (*line != '#')
+		{
+			retval = ft_parse_line(line, ambient, lights, objs);
+			if (retval != NULL)
+				cam = retval;
+		}
+		free(line);
+		line = ft_strip_newline(get_next_line(fd));
+	}
+	close(fd);
+	if (cam == NULL)
+		ft_perror("At least one camera is needed for a scene");
+	return (cam);
 }

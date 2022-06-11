@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/11 17:06:36 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/12 00:11:57 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@
 size_t	ft_array_size(const void *array);
 void	ft_array_del(void *ptr, void (*del)(void *));
 
-// ft_check.c
-int		ft_open_scene(const char *scene);
-char	**ft_split_scene(const char *line, char c);
-
 // ft_double.c
 double	ft_atof(const char *str);
 int		ft_isdouble(const char *s);
@@ -48,5 +44,14 @@ t_obj	*ft_parse_obj_cone(char **arr);
 t_obj	*ft_parse_obj_cylinder_sphere(char **arr);
 t_obj	*ft_parse_obj_plane(char **arr);
 t_obj	*ft_parse_obj(char **arr);
+
+// ft_parse_scene.c -- scene parsing related functions
+int		ft_open_scene(const char *scene);
+char	**ft_split_scene(const char *line, char c);
+char	*ft_strip_newline(char *line);
+t_cam	*ft_parse_line(const char *line,
+			t_light **ambient, t_list **lights, t_list **objs);
+t_cam	*ft_parse_scene(const char *scene,
+			t_light **ambient, t_list **lights, t_list **objs);
 
 #endif
