@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:13:55 by weng              #+#    #+#             */
-/*   Updated: 2022/06/11 17:04:44 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 22:20:46 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	test_obj(void)
 	while (++i < n)
 	{
 		obj = ft_parse_obj(ft_split(str[i], ' '));
-		ft_lstadd_back(&objs, ft_lstnew(obj, 0));
+		ft_lstadd_back(&objs, ft_lstnew(obj));
 	}
 	printf("ft_parse_obj: OK\n");
 	ft_lstclear(&objs, (void (*)(void *)) ft_obj_del);

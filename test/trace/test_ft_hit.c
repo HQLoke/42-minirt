@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:49:04 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 11:30:58 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 22:27:12 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	test_hit_obj(void)
 	opt.colour = ft_vec3_new(1, 1, 1);
 	obj2 = ft_sphere_new(ft_vec4_new(5, 0, 0, 1), ft_vec4_new(0, 1, 0, 0),
 			ft_vec2_new(1, 2), &opt);
-	ft_lstadd_back(&objs, ft_lstnew(obj1, 0));
-	ft_lstadd_back(&objs, ft_lstnew(obj2, 0));
+	ft_lstadd_back(&objs, ft_lstnew(obj1));
+	ft_lstadd_back(&objs, ft_lstnew(obj2));
 	ray = ft_ray_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	hit = ft_hit_objs(ray, objs);
 	if (hit->obj != obj2)

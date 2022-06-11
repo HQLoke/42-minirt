@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:05:44 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 11:31:18 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 22:27:12 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	test_hit_light(void)
 	opt.norm_map = NULL;
 	obj = ft_sphere_new(ft_vec4_new(10, 0, 0, 1), ft_vec4_new(0, 1, 0, 0),
 			ft_vec2_new(1, 2), &opt);
-	ft_lstadd_back(&objs, ft_lstnew(obj, 0));
+	ft_lstadd_back(&objs, ft_lstnew(obj));
 	if (ft_hit_light(light, ray, objs) == 0)
 		printf("ft_hit_light: Error!\n");
 	else
@@ -54,7 +54,7 @@ void	test_hit_light_false(void)
 	opt.norm_map = NULL;
 	obj = ft_sphere_new(ft_vec4_new(4, 0, 0, 1), ft_vec4_new(0, 1, 0, 0),
 			ft_vec2_new(1, 2), &opt);
-	ft_lstadd_back(&objs, ft_lstnew(obj, 0));
+	ft_lstadd_back(&objs, ft_lstnew(obj));
 	if (ft_hit_light(light, ray, objs) == 1)
 		printf("ft_hit_light blocked: Error!\n");
 	else
@@ -106,9 +106,9 @@ void	test_sum_intensity(void)
 	l1 = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
 	l2 = ft_point_new(ft_vec4_new(10, 10, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
 	l3 = ft_point_new(ft_vec4_new(-10, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
-	ft_lstadd_back(&light, ft_lstnew(l1, 0));
-	ft_lstadd_back(&light, ft_lstnew(l2, 0));
-	ft_lstadd_back(&light, ft_lstnew(l3, 0));
+	ft_lstadd_back(&light, ft_lstnew(l1));
+	ft_lstadd_back(&light, ft_lstnew(l2));
+	ft_lstadd_back(&light, ft_lstnew(l3));
 	hit = ft_hit_new(NULL, ft_vec4_new(0, 0, 0, 1), ft_vec4_new(1, 0, 0, 0));
 	factor = 0.2;
 	factor += 1 / (l1->param->data[0]
@@ -146,7 +146,7 @@ void	test_clip(void)
 	light = NULL;
 	ambient = ft_ambient_new(0.2, ft_vec3_new(1, 1, 1));
 	l1 = ft_point_new(ft_vec4_new(5, 0, 0, 1), 0.2, ft_vec3_new(1, 1, 1));
-	ft_lstadd_back(&light, ft_lstnew(l1, 0));
+	ft_lstadd_back(&light, ft_lstnew(l1));
 	opt.colour = ft_vec3_new(0.1, 0.3, 0.5);
 	opt.disruption = 0;
 	opt.norm_map = NULL;
