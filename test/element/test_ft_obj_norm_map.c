@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 15:27:02 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:45:02 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 16:25:31 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	test_cone(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(0.7294, 0.8235, 0.8745);
 	opt.disruption = 0;
-	opt.norm_map = "../map/water.ppm";
+	opt.norm_map = ft_strdup("../map/water.ppm");
 	cone = ft_cone_new(
 			ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 0.75, 1, 0), 2, &opt);
 	ft_lstadd_back(&objs, ft_lstnew(cone, 0));
@@ -68,7 +68,7 @@ void	test_cylinder(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(0.3569, 0.6353, 0.5137);
 	opt.disruption = 0;
-	opt.norm_map = "../map/earth.ppm";
+	opt.norm_map = ft_strdup("../map/earth.ppm");
 	cy = ft_cylinder_new(
 			ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 0.75, 1, 0),
 			ft_vec2_new(1, 2), &opt);
@@ -105,7 +105,7 @@ void	test_plane(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(0.5137, 0.3216, 0.2745);
 	opt.disruption = 0;
-	opt.norm_map = "../map/brick.ppm";
+	opt.norm_map = ft_strdup("../map/brick.ppm");
 	plane = ft_plane_new(ft_vec4_new(0, -10, 0, 1), ft_vec4_new(0, 1, 1, 0),
 			&opt);
 	ft_lstadd_back(&objs, ft_lstnew(plane, 0));
@@ -141,7 +141,7 @@ void	test_sphere(void)
 	objs = NULL;
 	opt.colour = ft_vec3_new(0.9, 0.9, 0.9);
 	opt.disruption = 0;
-	opt.norm_map = "../map/golfball.ppm";
+	opt.norm_map = ft_strdup("../map/golfball.ppm");
 	sphere = ft_sphere_new(ft_vec4_new(0, 0, 0, 1), ft_vec4_new(0, 1, 0, 0),
 			ft_vec2_new(1, 2), &opt);
 	ft_lstadd_back(&objs, ft_lstnew(sphere, 0));

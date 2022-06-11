@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/06/08 12:00:46 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 16:24:33 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt)
 	obj->checkerboard = NULL;
 	obj->disruption = opt->disruption;
 	obj->norm_map = ft_norm_map(opt->norm_map);
+	free(opt->norm_map);
 	return (obj);
 }
 
