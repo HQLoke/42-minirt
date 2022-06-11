@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/11 14:32:43 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 15:18:45 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ t_vec	*ft_parse_vector(const char *s, size_t size, double min, double max);
 
 // ft_parse.c -- parse line and return relevant objects
 t_cam	*ft_parse_camera(char **arr);
+t_light	*ft_parse_light_ambient(char **arr);
+t_light	*ft_parse_light_point(char **arr);
+t_light	*ft_parse_light_spot(char **arr);
 
 #endif
