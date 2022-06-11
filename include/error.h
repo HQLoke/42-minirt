@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 10:34:22 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/11 12:11:14 by weng             ###   ########.fr       */
+/*   Created: 2022/06/11 11:11:43 by weng              #+#    #+#             */
+/*   Updated: 2022/06/11 12:22:08 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-/* Print error and exit the program with error code 1. */
-void	ft_perror(const char *s)
-{
-	perror(s);
-	exit(EXIT_FAILURE);
-}
+# include <errno.h>
+# include <stdio.h>
+# include <stdlib.h>
+
+// ft_error.c
+void	ft_perror(const char *s);
+
+#endif

@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/11 01:01:31 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 11:14:44 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef PARSE_H
+# define PARSE_H
 
-# include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 
 # include "linalg.h"
 # include "libft.h"
-
-typedef struct s_vec	t_vec;	// forward declaration
 
 typedef enum e_elem
 {
@@ -71,9 +66,5 @@ double	ft_atof(const char *str);
 int		ft_isdouble(const char *s);
 int		ft_check_double(double d, double min, double max);
 t_vec	*ft_parse_vector(const char *s, size_t size, double min, double max);
-
-// ft_error.c
-void	ft_perror(const char *s);
-void	ft_error(char *scene);
 
 #endif

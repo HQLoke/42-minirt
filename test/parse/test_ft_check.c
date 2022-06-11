@@ -6,11 +6,11 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:22:21 by weng              #+#    #+#             */
-/*   Updated: 2022/06/11 01:02:45 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 11:11:11 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
+#include "parse.h"
 
 void	test_open_scene(void)
 {

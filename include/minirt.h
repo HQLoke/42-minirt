@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/10 15:04:50 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 12:03:25 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define MINIRT_H
 
 # include "element.h"
-# include "error.h"
 # include "image.h"
 # include "libft.h"
 # include "linalg.h"
+# include "parse.h"
 
 /* represents a data when an object is hit by a ray */
 typedef struct s_hit

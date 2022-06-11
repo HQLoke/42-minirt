@@ -6,11 +6,11 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:05:48 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/11 01:01:18 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 11:11:11 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
+#include "parse.h"
 
 /* Open a scene file that ends with .rt, and return the file descriptor. */
 int	ft_open_scene(const char *scene)
