@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:59:31 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/11 11:14:44 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 14:32:43 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,9 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
+# include "element.h"
 # include "linalg.h"
 # include "libft.h"
-
-typedef enum e_elem
-{
-	ambient,
-	camera,
-	light,
-	sphere,
-	plane,
-	cylinder,
-	cone
-}	t_elem;
-
-/*
- * diameter range: {0, INT_MAX}       size: 1
- * fov      range: {0, 180}           size: 1
- * height   range: {0, INT_MAX}       size: 1
- * orient   range: {-1, 1}            size: 3
- * ratio    range: {0, 1}             size: 1
- * rgb      range: {0, 255}           size: 3
- * xyz      range: {INT_MIN, INT_MAX} size: 3
- */
-enum e_elem_info
-{
-	diameter = 1,
-	fov,
-	height,
-	orient,
-	ratio,
-	rgb,
-	xyz
-};
 
 // ft_array.c -- NULL terminated array related functions
 size_t	ft_array_size(const void *array);
@@ -66,5 +36,8 @@ double	ft_atof(const char *str);
 int		ft_isdouble(const char *s);
 int		ft_check_double(double d, double min, double max);
 t_vec	*ft_parse_vector(const char *s, size_t size, double min, double max);
+
+// ft_parse.c -- parse line and return relevant objects
+t_cam	*ft_parse_camera(char **arr);
 
 #endif

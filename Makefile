@@ -55,6 +55,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_array.c \
 				ft_double.c \
 				ft_check.c \
+				ft_parse.c \
 			) \
 			$(addprefix $(TRACE_DIR), \
 				ft_hit.c \
