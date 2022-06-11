@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 09:27:06 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 16:07:26 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/11 10:35:51 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	ft_mat_swap(t_mat *A, t_mat *B);
 t_vec	*ft_vec_new(size_t n, ...);
 t_vec	*ft_vec_copy(t_vec *vec);
 void	ft_vec_del(t_vec *vec);
-void	ft_vec_del_many(size_t n, ...);
 void	ft_vec_swap(t_vec *a, t_vec *b);
 
 // ft_vec_mul.c -- various multiplication functions for vectors
