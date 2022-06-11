@@ -54,7 +54,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 			$(addprefix $(PARSE_DIR), \
 				ft_array.c \
 				ft_double.c \
-				ft_parse.c \
+				ft_parse_cam_light.c \
 				ft_parse_obj.c \
 				ft_parse_scene.c \
 			) \
