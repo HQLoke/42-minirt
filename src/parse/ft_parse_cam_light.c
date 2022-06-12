@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:11:03 by weng              #+#    #+#             */
-/*   Updated: 2022/06/12 00:19:48 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/12 22:53:09 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ t_cam	*ft_parse_camera(char **arr)
 	t_vec		*fov;
 	t_cam		*cam;
 
+	if (arr == NULL)
+	{
+		count = 0;
+		return (NULL);
+	}
 	if (++count > 1)
 		ft_perror("ft_parse_camera: More than one camera is defined.");
 	if (ft_array_size(arr) != 4)
@@ -48,6 +53,11 @@ t_light	*ft_parse_light_ambient(char **arr)
 	t_vec		*colour;
 	t_light		*ambient;
 
+	if (arr == NULL)
+	{
+		count = 0;
+		return (NULL);
+	}
 	if (++count > 1)
 		ft_perror("ft_parse_light_ambient: More than one ambient is defined.");
 	if (ft_array_size(arr) != 3)
