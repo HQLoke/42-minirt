@@ -1,9 +1,10 @@
 # Implicit variables
 CC		=	gcc
-INCLUDE	=	-Iinclude -Ilibft
+INCLUDE	=	-Iinclude -Ilibft -Imlx
 CFLAGS	=	-Wall -Wextra -Werror $(INCLUDE) -g3 -fsanitize=address
 FDFLAGS	=	-L. -Llibft
-FDLIBS	=	-lrt -lft -lm
+FDLIBS	=	-lrt -lft -lmlx
+MAC		=   -framework OpenGL -framework AppKit
 
 # source and object files
 ELEMENT_DIR	=	element/
@@ -13,6 +14,7 @@ LINALG_DIR	=	linalg/
 PARSE_DIR	=	parse/
 TRACE_DIR	=	trace/
 UTILS_DIR	=	utils/
+WINDOW_DIR  =   window/
 
 SRCDIR	=	src
 SRCS	=	$(addprefix $(ELEMENT_DIR), \
@@ -62,6 +64,12 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_hit.c \
 				ft_phong.c \
 				ft_trace.c \
+			) \
+			$(addprefix $(WINDOW_DIR), \
+				ft_draw.c \
+				ft_key.c \
+				ft_update.c \
+				ft_window.c \
 			)
 OBJDIR	=	obj
 OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))
@@ -86,7 +94,7 @@ $(LIBFT_PATH)/libft.a:
 	$(MAKE) -C $(LIBFT_PATH)
 
 $(NAME): $(LIBFT_PATH)/libft.a $(LIBRT) $(MAIN)
-	$(CC) $(CFLAGS) -o $(NAME) $(MAIN) $(FDFLAGS) $(FDLIBS)
+	$(CC) $(CFLAGS) $(MAC) -o $(NAME) $(MAIN) $(FDFLAGS) $(FDLIBS)
 	@printf "$(NEWLINE)$(GREEN)Successfully created $(GREEN)$@$(GREEN)!\n$(NO_COLOR)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c

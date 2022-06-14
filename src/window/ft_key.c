@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   ft_key.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/11 11:11:43 by weng              #+#    #+#             */
-/*   Updated: 2022/06/14 12:54:03 by hloke            ###   ########.fr       */
+/*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
+/*   Updated: 2022/06/14 11:06:32 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "window.h"
 
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-// ft_error.c
-void	ft_perror(const char *s);
-
-#endif
+int	ft_key(void)
+{
+	printf("");
+	return (0);
+}

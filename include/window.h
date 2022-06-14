@@ -1,23 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/11 11:11:43 by weng              #+#    #+#             */
-/*   Updated: 2022/06/14 12:54:03 by hloke            ###   ########.fr       */
+/*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
+/*   Updated: 2022/06/14 12:51:41 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef WINDOW_H
+# define WINDOW_H
 
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
+# include "image.h"
+# include "mlx.h"
 
-// ft_error.c
-void	ft_perror(const char *s);
+enum e_size
+{
+	width = 400,
+	height = 300
+};
+
+typedef struct s_window
+{
+	void	*mlx;
+	void	*mlx_win;
+	t_img8	*img;
+}	t_window;
+
+//* ft_draw.c
+int		ft_draw_img8(t_window *window);
+
+//* ft_key.c
+int		ft_key(void);
+
+//* ft_update.c
+
+//* ft_window.c
+void	ft_window_start(t_window *window);
+void	ft_window_run(t_window *window);
 
 #endif

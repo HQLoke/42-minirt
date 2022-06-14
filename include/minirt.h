@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/11 12:03:25 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/14 12:54:53 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "libft.h"
 # include "linalg.h"
 # include "parse.h"
+# include "window.h"
 
 /* represents a data when an object is hit by a ray */
 typedef struct s_hit
