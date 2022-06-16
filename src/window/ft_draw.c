@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:22:27 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/15 21:37:26 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/16 11:47:44 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 static int	ft_convert_rgb(t_vec *color)
 {
 	int	rgb[3];
-	
+
 	rgb[0] = color->data[0] * 255.9999;
 	rgb[1] = color->data[1] * 255.9999;
-	rgb[2] = color->data[2] * 255.9999;	
+	rgb[2] = color->data[2] * 255.9999;
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
 
@@ -55,7 +55,7 @@ void	ft_draw_img8(t_window *window, t_img8 *img)
 
 /*
  * @color = in 0xFFFFFF format
- * If an object is rotated or translated, draw a screen with specified color 
+ * If an object is rotated or translated, draw a screen with specified color
  * before printing a new image.
  */
 void	ft_draw_colored_screen(t_window *window, t_img8 *img, int color)
