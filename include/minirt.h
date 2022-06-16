@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/14 12:54:53 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/15 11:25:30 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,6 @@ typedef struct s_hit
 	t_ray	*ray;
 	double	distance;
 }	t_hit;
-
-/*
-/srcs/error
-*/
-void	check_ambient(char **info, int line_num, t_list **err);
-void	check_camera(char **info, int line_num, t_list **err);
-void	check_light(char **info, int line_num, t_list **err);
-void	check_sphere(char **info, int line_num, t_list **err);
-void	check_plane(char **info, int line_num, t_list **err);
-void	check_cylinder(char **info, int line_num, t_list **err);
 
 // ft_diffuse.c -- ray tracing related functions
 int		ft_hit_light(t_light *light, t_ray *ray, t_list *objs);

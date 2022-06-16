@@ -68,7 +68,7 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 			$(addprefix $(WINDOW_DIR), \
 				ft_draw.c \
 				ft_key.c \
-				ft_update.c \
+				ft_loop.c \
 				ft_window.c \
 			)
 OBJDIR	=	obj

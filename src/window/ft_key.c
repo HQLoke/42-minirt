@@ -6,14 +6,15 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/14 11:06:32 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/15 21:39:42 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window.h"
 
-int	ft_key(void)
+int	ft_key(int keycode, t_window *window)
 {
-	printf("");
+	if (keycode == esc)
+		ft_window_end(window);
 	return (0);
 }
