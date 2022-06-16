@@ -1,10 +1,20 @@
 # Implicit variables
 CC		=	gcc
-INCLUDE	=	-Iinclude -Ilibft -Imlx
 CFLAGS	=	-Wall -Wextra -Werror $(INCLUDE) -g3 -fsanitize=address
-FDFLAGS	=	-L. -Llibft
-FDLIBS	=	-lrt -lft -lmlx
-MAC		=   -framework OpenGL -framework AppKit
+
+UNAME_S	= $(shell uname -s)
+
+ifeq ($(UNAME_S),Darwin)
+	INCLUDE	=	-Iinclude -Ilibft -Imlx
+	FDFLAGS	=	-L. -Llibft -Lmlx
+	FDLIBS	=	-lrt -lft -lmlx
+	MAC		=	-framework OpenGL -framework AppKit
+else
+	INCLUDE	=	-Iminilibx-linux -Iinclude -Ilibft
+	FDLIBS	=	-lrt -lft -lmlx -lXext -lX11 -lm
+	FDFLAGS	=	-L. -Llibft -Lminilibx-linux
+	MAC		=
+endif
 
 # source and object files
 ELEMENT_DIR	=	element/
@@ -79,6 +89,9 @@ MAIN	=	main.c
 NAME	=	minirt
 LIBRT	=	librt.a
 
+LIBX_PATH	= ./minilibx-linux
+LIBX		= $(LIBX_PATH)/libmlx.a
+
 LIBFT_PATH = ./libft
 
 # colour and format
@@ -88,12 +101,21 @@ GREEN = \e[1;32m
 PINK_TEXT = \e[38;2;255;124;212m
 NEWLINE = \e[1K\r
 
-all: $(NAME)
+all: setup_display $(NAME)
+
+# set up DISPLAY environment variable
+setup_display:
+	@export DISPLAY=$(shell cat /etc/resolv.conf | grep nameserver | awk '{print $$2}'):0.0
 
 $(LIBFT_PATH)/libft.a:
 	$(MAKE) -C $(LIBFT_PATH)
 
-$(NAME): $(LIBFT_PATH)/libft.a $(LIBRT) $(MAIN)
+$(LIBX):
+	git submodule init
+	git submodule update
+	$(MAKE) -C $(LIBX_PATH)
+
+$(NAME): $(LIBX) $(LIBFT_PATH)/libft.a $(LIBRT) $(MAIN)
 	$(CC) $(CFLAGS) $(MAC) -o $(NAME) $(MAIN) $(FDFLAGS) $(FDLIBS)
 	@printf "$(NEWLINE)$(GREEN)Successfully created $(GREEN)$@$(GREEN)!\n$(NO_COLOR)"
 
@@ -109,6 +131,7 @@ clean:
 	@echo "Removing object files..." 
 	@rm -rf $(OBJDIR)
 	@make clean -C $(LIBFT_PATH) -s
+	@$(MAKE) clean -C $(LIBX_PATH)
 
 fclean: clean
 	@echo "Removing executables and libraries..."
