@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:22:27 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/16 11:47:44 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/16 15:06:44 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ft_draw_img8(t_window *window, t_img8 *img)
 				ft_perror("ft_draw_img8: Invalid color data.");
 			color = ft_convert_rgb(vec);
 			mlx_pixel_put(window->mlx, window->mlx_win, j, i, color);
+			ft_vec_del(vec);
 		}
 	}
 }
