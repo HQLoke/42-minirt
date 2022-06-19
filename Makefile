@@ -7,6 +7,7 @@ FDLIBS	=	-lrt -lft -lmlx
 MAC		=   -framework OpenGL -framework AppKit
 
 # source and object files
+DISPLAY_DIR =   display/
 ELEMENT_DIR	=	element/
 ERROR_DIR	=	error/
 IMAGE_DIR	=	image/
@@ -14,10 +15,17 @@ LINALG_DIR	=	linalg/
 PARSE_DIR	=	parse/
 TRACE_DIR	=	trace/
 UTILS_DIR	=	utils/
-WINDOW_DIR  =   window/
+
 
 SRCDIR	=	src
-SRCS	=	$(addprefix $(ELEMENT_DIR), \
+SRCS	=	$(addprefix $(DISPLAY_DIR), \
+				ft_draw.c \
+				ft_mlx_image.c \
+				ft_mlx_key.c \
+				ft_mlx_loop.c \
+				ft_mlx.c \
+			) \
+			$(addprefix $(ELEMENT_DIR), \
 				ft_camera.c \
 				ft_light.c \
 				ft_light_ambient.c \
@@ -64,12 +72,6 @@ SRCS	=	$(addprefix $(ELEMENT_DIR), \
 				ft_hit.c \
 				ft_phong.c \
 				ft_trace.c \
-			) \
-			$(addprefix $(WINDOW_DIR), \
-				ft_draw.c \
-				ft_key.c \
-				ft_loop.c \
-				ft_window.c \
 			)
 OBJDIR	=	obj
 OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))

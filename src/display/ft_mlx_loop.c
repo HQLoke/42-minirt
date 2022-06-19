@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_loop.c                                          :+:      :+:    :+:   */
+/*   ft_mlx_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:26:22 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/15 21:34:16 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/19 09:27:21 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "window.h"
+#include "display.h"
 
-int	ft_loop(t_window *window)
+//* Might not need looping
+int	ft_mlx_loop(t_mlx *mlx)
 {
-	ft_draw_img8(window, window->img8);
+	(void)mlx;
 	return (1);
 }
