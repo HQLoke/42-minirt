@@ -121,7 +121,7 @@ fclean: clean
 re: fclean all
 
 norm:
-	norminette include/* src/*
+	norminette include/* src/* main.c
 
 test:
 	@gcc  -g3 -fsanitize=address -Iinclude -Ilibft -o 123TEST TEST.c -Llibft -lft

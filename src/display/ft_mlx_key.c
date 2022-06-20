@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/19 18:28:34 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/20 15:06:51 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static void	ft_mlx_key_rotate(int keycode, t_mlx *mlx)
 	else if (keycode == s)
 		ft_obj_rotate_x(mlx->objs->content, M_PI / 36);
 	else if (keycode == a)
-		ft_obj_rotate_y(mlx->objs->content, M_PI / 36);
-	else if (keycode == d)
 		ft_obj_rotate_y(mlx->objs->content, -M_PI / 36);
+	else if (keycode == d)
+		ft_obj_rotate_y(mlx->objs->content, M_PI / 36);
 	else if (keycode == q)
-		ft_obj_rotate_z(mlx->objs->content, M_PI / 36);
-	else if (keycode == e)
 		ft_obj_rotate_z(mlx->objs->content, -M_PI / 36);
+	else if (keycode == e)
+		ft_obj_rotate_z(mlx->objs->content, M_PI / 36);
 	ft_display_update(mlx);
 }
 
@@ -79,7 +79,7 @@ int	ft_mlx_key(int keycode, t_mlx *mlx)
 	else if (keycode == q || keycode == w || keycode == e
 		|| keycode == a || keycode == s || keycode == d)
 		ft_mlx_key_rotate(keycode, mlx);
-	else if (keycode == up || keycode == down 
+	else if (keycode == up || keycode == down
 		|| keycode == left || keycode == right)
 		ft_mlx_key_translate(keycode, mlx);
 	else if (keycode == n || keycode == m)

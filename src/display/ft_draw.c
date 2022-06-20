@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:25:04 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 11:15:50 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/20 14:56:04 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 static int	ft_convert_rgb(t_vec *color)
 {
 	int	rgb[3];
-	
+
 	rgb[0] = color->data[0] * 255.9999;
 	rgb[1] = color->data[1] * 255.9999;
-	rgb[2] = color->data[2] * 255.9999;	
+	rgb[2] = color->data[2] * 255.9999;
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
 

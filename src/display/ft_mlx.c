@@ -16,7 +16,7 @@ t_mlx	*ft_mlx_new(int width, int height)
 {
 	t_mlx	*mlx;
 
-	mlx = calloc(1, sizeof(t_mlx));
+	mlx = ft_calloc(1, sizeof(t_mlx));
 	if (mlx != NULL)
 	{
 		mlx->width = width;
@@ -27,7 +27,7 @@ t_mlx	*ft_mlx_new(int width, int height)
 		mlx->lights = NULL;
 		mlx->objs = NULL;
 		mlx->cam = NULL;
-		mlx->image = NULL;
+		mlx->image = ft_mlx_image_new(mlx->mlx_ptr, mlx->width, mlx->height);
 	}
 	return (mlx);
 }
@@ -35,8 +35,6 @@ t_mlx	*ft_mlx_new(int width, int height)
 int	ft_mlx_del(t_mlx *mlx)
 {
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-	free(mlx->mlx_ptr);
-	free(mlx);
 	printf("Minirt is exiting.\n");
 	system("leaks minirt");
 	exit (EXIT_SUCCESS);
