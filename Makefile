@@ -29,6 +29,7 @@ UTILS_DIR	=	utils/
 
 SRCDIR	=	src
 SRCS	=	$(addprefix $(DISPLAY_DIR), \
+				ft_cam_transform.c \
 				ft_display.c \
 				ft_draw.c \
 				ft_mlx_image.c \
