@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:47:33 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 16:29:03 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/20 17:36:30 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,8 @@ typedef struct s_cam
 	double	ly;
 	int		reso_x;
 	int		reso_y;
-	double	rotate_z;
 	t_vec	*centre;
-	t_vec	*orient;
+	t_mat	*rotate;
 	t_mat	*to_world;
 	t_mat	*fr_world;
 }	t_cam;
@@ -98,9 +97,8 @@ typedef struct s_obj
 {
 	t_vec		*dimension;
 	t_vec		*base_colour;
-	double		rotate_z;
 	t_vec		*centre;
-	t_vec		*orient;
+	t_mat		*rotate;
 	t_mat		*to_world;
 	t_mat		*fr_world;
 	t_intersect	intersect;

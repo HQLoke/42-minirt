@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:40:38 by weng              #+#    #+#             */
-/*   Updated: 2022/06/20 17:08:36 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/20 21:16:41 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ t_obj	*ft_obj_new(t_vec *ctr, t_vec *orient, t_vec *dim, t_opt *opt)
 		return (NULL);
 	obj->dimension = dim;
 	obj->base_colour = opt->colour;
-	obj->rotate_z = 0;
 	obj->centre = ctr;
-	obj->orient = ft_vec_normalise(orient);
-	obj->to_world = ft_affine_transform(
-			obj->rotate_z, obj->centre, obj->orient);
+	orient = ft_vec_normalise(orient);
+	obj->rotate = ft_affine_rotate(orient);
+	ft_vec_del(orient);
+	obj->to_world = ft_affine_transform(obj->centre, obj->rotate);
 	obj->fr_world = ft_mat_affine_inverse(ft_mat_copy(obj->to_world));
 	if (obj->to_world == NULL || obj->fr_world == NULL)
 	{
@@ -53,8 +53,8 @@ void	ft_obj_del(t_obj *obj)
 		return ;
 	ft_vec_del(obj->dimension);
 	ft_vec_del(obj->base_colour);
-	ft_vec_del(obj->orient);
 	ft_vec_del(obj->centre);
+	ft_mat_del(obj->rotate);
 	ft_mat_del(obj->to_world);
 	ft_mat_del(obj->fr_world);
 	ft_image_del(obj->norm_map);
