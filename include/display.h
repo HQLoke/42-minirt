@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 13:03:15 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/20 13:15:46 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,47 @@ enum e_keycode
 	MAC_SIX = 22,
 	MAC_SEVEN = 26,
 	MAC_EIGHT = 28,
-	MAC_NINE = 25
+	MAC_NINE = 25,
+	WIN_ESC = 65307,
+	WIN_Q = 113,
+	WIN_W = 119,
+	WIN_E = 101,
+	WIN_R = 114,
+	WIN_T = 116,
+	WIN_Y = 121,
+	WIN_U = 117,
+	WIN_I = 105,
+	WIN_O = 111,
+	WIN_P = 112,
+	WIN_A = 97,
+	WIN_S = 115,
+	WIN_D = 100,
+	WIN_F = 102,
+	WIN_G = 103,
+	WIN_H = 104,
+	WIN_J = 106,
+	WIN_K = 107,
+	WIN_L = 108,
+	WIN_Z = 122,
+	WIN_X = 120,
+	WIN_C = 99,
+	WIN_V = 118,
+	WIN_B = 98,
+	WIN_N = 110,
+	WIN_M = 109,
+	WIN_UP = 65362,
+	WIN_DOWN = 65364,
+	WIN_LEFT = 65361,
+	WIN_RIGHT = 65363,
+	WIN_ONE = 65436,
+	WIN_TWO = 65433,
+	WIN_THREE = 65435,
+	WIN_FOUR = 65430,
+	WIN_FIVE = 65437,
+	WIN_SIX = 65432,
+	WIN_SEVEN = 65429,
+	WIN_EIGHT = 65431,
+	WIN_NINE = 65434
 };
 
 /* structure for minilibx image */
