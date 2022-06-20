@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 14:12:04 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/20 14:13:04 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,6 @@ static void	ft_mlx_key_translate(int keycode, t_mlx *mlx)
 	ft_display_update(mlx);
 }
 
-/*
- * Command keys for scaling:
- * N: Zoom out
- * M: Zoom in
- */
-static void	ft_mlx_key_scale(int keycode, t_mlx *mlx)
-{
-	if (keycode == MAC_N || keycode == WIN_N)
-		ft_obj_scale(mlx->objs->content, 1.1);
-	else if (keycode == MAC_M || keycode == WIN_M)
-		ft_obj_scale(mlx->objs->content, 1.0 / 1.1);
-	ft_display_update(mlx);
-}
-
 int	ft_mlx_key(int keycode, t_mlx *mlx)
 {
 	if (keycode == MAC_ESC || keycode == WIN_ESC)
@@ -93,8 +79,5 @@ int	ft_mlx_key(int keycode, t_mlx *mlx)
 		|| keycode == WIN_UP || keycode == WIN_DOWN
 		|| keycode == WIN_LEFT || keycode == WIN_RIGHT)
 		ft_mlx_key_translate(keycode, mlx);
-	else if (keycode == MAC_N || keycode == MAC_M
-		|| keycode == WIN_N || keycode == WIN_M)
-		ft_mlx_key_scale(keycode, mlx);
 	return (0);
 }

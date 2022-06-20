@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 14:05:36 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/20 14:13:29 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ void	ft_mlx_image_put(t_mlx *mlx, t_image *image, int x, int y);
 void	ft_obj_rotate_x(t_obj *obj, double theta);
 void	ft_obj_rotate_y(t_obj *obj, double theta);
 void	ft_obj_rotate_z(t_obj *obj, double theta);
-void	ft_obj_scale(t_obj *obj, double scale);
 void	ft_obj_translate(t_obj *obj, double dx, double dy, double dz);
 
 //* ft_mlx_key.c
