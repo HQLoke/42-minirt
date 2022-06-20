@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 14:13:29 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/20 14:23:48 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,12 @@ typedef struct s_mlx
 	t_img8	*img8;
 	t_image	*image;
 }	t_mlx;
+
+//* ft_cam_transform.c
+void	ft_cam_rotate_x(t_cam *cam, double theta);
+void	ft_cam_rotate_y(t_cam *cam, double theta);
+void	ft_cam_rotate_z(t_cam *cam, double theta);
+void	ft_cam_translate(t_cam *cam, double dx, double dy, double dz);
 
 //* ft_display.c
 void	ft_display_update(t_mlx *mlx);
