@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 13:18:42 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/20 14:12:04 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,23 @@ static void	ft_mlx_key_rotate(int keycode, t_mlx *mlx)
 
 /*
  * Command keys for translation:
- *    Up: Move up   
- *  Down: Move down
- *  Left: Move left
- * Right: Move right
+ * Up:			Move along +ve y
+ * Down:		Move along -ve y
+ * Left:		Move along -ve x
+ * Right:		Move along +ve x
+ * PageUp:		Move along +ve z
+ * PageDown:	Move along -ve z
  */
 static void	ft_mlx_key_translate(int keycode, t_mlx *mlx)
 {
-	if (keycode == MAC_UP || keycode == WIN_UP)
-		ft_obj_translate(mlx->objs->content, 0, -1, 0);
-	else if (keycode == MAC_DOWN || keycode == WIN_DOWN)
+	if (keycode == WIN_PAGEUP)
+		ft_obj_translate(mlx->objs->content, 0, 0, 1);
+	else if (keycode == WIN_PAGEDOWN)
+		ft_obj_translate(mlx->objs->content, 0, 0, -1);
+	else if (keycode == MAC_UP || keycode == WIN_UP)
 		ft_obj_translate(mlx->objs->content, 0, 1, 0);
+	else if (keycode == MAC_DOWN || keycode == WIN_DOWN)
+		ft_obj_translate(mlx->objs->content, 0, -1, 0);
 	else if (keycode == MAC_LEFT || keycode == WIN_LEFT)
 		ft_obj_translate(mlx->objs->content, -1, 0, 0);
 	else if (keycode == MAC_RIGHT || keycode == WIN_RIGHT)
@@ -83,6 +89,7 @@ int	ft_mlx_key(int keycode, t_mlx *mlx)
 		ft_mlx_key_rotate(keycode, mlx);
 	else if (keycode == MAC_UP || keycode == MAC_DOWN
 		|| keycode == MAC_LEFT || keycode == MAC_RIGHT
+		|| keycode == WIN_PAGEUP || keycode == WIN_PAGEDOWN
 		|| keycode == WIN_UP || keycode == WIN_DOWN
 		|| keycode == WIN_LEFT || keycode == WIN_RIGHT)
 		ft_mlx_key_translate(keycode, mlx);

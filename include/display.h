@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 13:15:46 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/20 14:05:36 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ enum e_keycode
 	WIN_DOWN = 65364,
 	WIN_LEFT = 65361,
 	WIN_RIGHT = 65363,
+	WIN_PAGEUP = 65365,
+	WIN_PAGEDOWN = 65366,
 	WIN_ONE = 65436,
 	WIN_TWO = 65433,
 	WIN_THREE = 65435,
