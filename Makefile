@@ -104,11 +104,11 @@ GREEN = \e[1;32m
 PINK_TEXT = \e[38;2;255;124;212m
 NEWLINE = \e[1K\r
 
-all: setup_display $(NAME)
+all: $(NAME)
 
 # set up DISPLAY environment variable
 setup_display:
-	@export DISPLAY=$(shell cat /etc/resolv.conf | grep nameserver | awk '{print $$2}'):0.0
+	export DISPLAY=$(shell cat /etc/resolv.conf | grep nameserver | awk '{print $$2}'):0.0
 
 $(LIBFT_PATH)/libft.a:
 	$(MAKE) -C $(LIBFT_PATH)
