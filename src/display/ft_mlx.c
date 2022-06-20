@@ -1,36 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_window.c                                        :+:      :+:    :+:   */
+/*   ft_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 13:46:48 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/15 13:49:06 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/16 15:48:58 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "window.h"
+#include "display.h"
 
-void	ft_window_start(t_window *window)
+t_mlx	*ft_mlx_new(int width, int height)
 {
-	window->mlx = mlx_init();
-	window->mlx_win = mlx_new_window(window->mlx, window->img8->col, \
-	window->img8->row, "minirt");
+	t_mlx	*mlx;
+
+	mlx = calloc(1, sizeof(t_mlx));
+	if (mlx != NULL)
+	{
+		mlx->width = width;
+		mlx->height = height;
+		mlx->mlx_ptr = mlx_init();
+		mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, width, height, "MINIRT");
+		mlx->ambient = NULL;
+		mlx->lights = NULL;
+		mlx->objs = NULL;
+		mlx->cam = NULL;
+		mlx->image = NULL;
+	}
+	return (mlx);
 }
 
-int	ft_window_end(t_window *window)
+int	ft_mlx_del(t_mlx *mlx)
 {
-	mlx_destroy_window(window->mlx, window->mlx_win);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	free(mlx->mlx_ptr);
+	free(mlx);
 	printf("Minirt is exiting.\n");
+	system("leaks minirt");
 	exit (EXIT_SUCCESS);
 	return (0);
-}
-
-void	ft_window_run(t_window *window)
-{
-	mlx_hook(window->mlx_win, 17, 17, ft_window_end, window);
-	mlx_key_hook(window->mlx_win, ft_key, window);
-	mlx_loop_hook(window->mlx, ft_loop, window);
-	mlx_loop(window->mlx);
 }

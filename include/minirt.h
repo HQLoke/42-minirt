@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/15 11:25:30 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/17 15:53:49 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "libft.h"
 # include "linalg.h"
 # include "parse.h"
-# include "window.h"
+# include "display.h"
 
 /* represents a data when an object is hit by a ray */
 typedef struct s_hit

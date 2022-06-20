@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 16:22:27 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/16 15:06:44 by weng             ###   ########.fr       */
+/*   Created: 2022/06/19 11:25:04 by hloke             #+#    #+#             */
+/*   Updated: 2022/06/20 11:44:11 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "window.h"
+#include "display.h"
 
 /*
  * Colour vector contains rgb value in range (0, 1).
@@ -26,49 +26,39 @@ static int	ft_convert_rgb(t_vec *color)
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
 
-/*
- * Given an 8 bit image, draw the image pixel by pixel
- */
-void	ft_draw_img8(t_window *window, t_img8 *img)
+/* Draw a pixel to an image. */
+static void	ft_pixel_draw(t_image *image, int x, int y, int color)
+{
+	char	*dst;
+
+	if (image == NULL
+		|| x < 0 || y < 0 || x > image->width || y > image->height)
+		return ;
+	dst = image->addr + (y * image->line_length + x * (image->bpp / 8));
+	*((unsigned int *) dst) = color;
+}
+
+void	ft_draw_image(t_mlx *mlx)
 {
 	size_t	i;
 	size_t	j;
 	int		color;
 	t_vec	*vec;
 
-	if (img == NULL)
-		ft_perror("ft_draw_img8: No image file found.");
+	if (mlx->img8 == NULL)
+		ft_perror("ft_draw_image: Image8 file is not found.");
 	i = -1;
-	while (++i < img->row)
+	while (++i < mlx->img8->row)
 	{
 		j = -1;
-		while (++j < img->col)
+		while (++j < mlx->img8->col)
 		{
-			vec = ft_image8_get(img, i, j);
+			vec = ft_image8_get(mlx->img8, i, j);
 			if (vec == NULL)
 				ft_perror("ft_draw_img8: Invalid color data.");
 			color = ft_convert_rgb(vec);
-			mlx_pixel_put(window->mlx, window->mlx_win, j, i, color);
+			ft_pixel_draw(mlx->image, j, i, color);
 			ft_vec_del(vec);
 		}
-	}
-}
-
-/*
- * @color = in 0xFFFFFF format
- * If an object is rotated or translated, draw a screen with specified color
- * before printing a new image.
- */
-void	ft_draw_colored_screen(t_window *window, t_img8 *img, int color)
-{
-	size_t	i;
-	size_t	j;
-
-	i = -1;
-	while (++i < img->row)
-	{
-		j = -1;
-		while (++j < img->col)
-			mlx_pixel_put(window->mlx, window->mlx_win, j, i, color);
 	}
 }
