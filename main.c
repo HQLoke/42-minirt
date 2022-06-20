@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:23 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 15:14:38 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/20 15:43:12 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	teach_them(void)
 	return (1);
 }
 
+/* Run minilibx */
 int	main(int argc, char **argv)
 {
 	t_mlx	*mlx;

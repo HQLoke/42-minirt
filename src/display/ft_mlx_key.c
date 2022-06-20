@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 15:06:51 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/20 15:42:22 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,17 @@
  */
 static void	ft_mlx_key_rotate(int keycode, t_mlx *mlx)
 {
-	if (keycode == w)
+	if (keycode == MAC_W)
 		ft_obj_rotate_x(mlx->objs->content, -M_PI / 36);
-	else if (keycode == s)
+	else if (keycode == MAC_S)
 		ft_obj_rotate_x(mlx->objs->content, M_PI / 36);
-	else if (keycode == a)
-		ft_obj_rotate_y(mlx->objs->content, -M_PI / 36);
-	else if (keycode == d)
+	else if (keycode == MAC_A)
 		ft_obj_rotate_y(mlx->objs->content, M_PI / 36);
-	else if (keycode == q)
+	else if (keycode == MAC_D)
+		ft_obj_rotate_y(mlx->objs->content, -M_PI / 36);
+	else if (keycode == MAC_Q)
+		ft_obj_rotate_z(mlx->objs->content, M_PI / 36);
+	else if (keycode == MAC_E)
 		ft_obj_rotate_z(mlx->objs->content, -M_PI / 36);
 	else if (keycode == e)
 		ft_obj_rotate_z(mlx->objs->content, M_PI / 36);
@@ -47,13 +49,13 @@ static void	ft_mlx_key_rotate(int keycode, t_mlx *mlx)
  */
 static void	ft_mlx_key_translate(int keycode, t_mlx *mlx)
 {
-	if (keycode == up)
+	if (keycode == MAC_UP)
 		ft_obj_translate(mlx->objs->content, 0, -1, 0);
-	else if (keycode == down)
+	else if (keycode == MAC_DOWN)
 		ft_obj_translate(mlx->objs->content, 0, 1, 0);
-	else if (keycode == left)
+	else if (keycode == MAC_LEFT)
 		ft_obj_translate(mlx->objs->content, -1, 0, 0);
-	else if (keycode == right)
+	else if (keycode == MAC_RIGHT)
 		ft_obj_translate(mlx->objs->content, 1, 0, 0);
 	ft_display_update(mlx);
 }
@@ -65,24 +67,24 @@ static void	ft_mlx_key_translate(int keycode, t_mlx *mlx)
  */
 static void	ft_mlx_key_scale(int keycode, t_mlx *mlx)
 {
-	if (keycode == n)
+	if (keycode == MAC_N)
 		ft_obj_scale(mlx->objs->content, 1.1);
-	else if (keycode == m)
+	else if (keycode == MAC_M)
 		ft_obj_scale(mlx->objs->content, 1.0 / 1.1);
 	ft_display_update(mlx);
 }
 
 int	ft_mlx_key(int keycode, t_mlx *mlx)
 {
-	if (keycode == esc)
+	if (keycode == MAC_ESC)
 		ft_mlx_del(mlx);
-	else if (keycode == q || keycode == w || keycode == e
-		|| keycode == a || keycode == s || keycode == d)
+	else if (keycode == MAC_Q || keycode == MAC_W || keycode == MAC_E
+		|| keycode == MAC_A || keycode == MAC_S || keycode == MAC_D)
 		ft_mlx_key_rotate(keycode, mlx);
-	else if (keycode == up || keycode == down
-		|| keycode == left || keycode == right)
+	else if (keycode == MAC_UP || keycode == MAC_DOWN
+		|| keycode == MAC_LEFT || keycode == MAC_RIGHT)
 		ft_mlx_key_translate(keycode, mlx);
-	else if (keycode == n || keycode == m)
+	else if (keycode == MAC_N || keycode == MAC_M)
 		ft_mlx_key_scale(keycode, mlx);
 	return (0);
 }

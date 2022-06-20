@@ -35,8 +35,15 @@ t_mlx	*ft_mlx_new(int width, int height)
 int	ft_mlx_del(t_mlx *mlx)
 {
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	ft_light_del(mlx->ambient);
+	ft_lstclear(&mlx->lights, (void (*)(void *)) ft_light_del);
+	ft_lstclear(&mlx->objs, (void (*)(void *)) ft_obj_del);
+	ft_camera_del(mlx->cam);
+	ft_image8_del(mlx->img8);
+	ft_mlx_image_del(mlx->image);
+	free(mlx->mlx_ptr);
+	free(mlx);
 	printf("Minirt is exiting.\n");
-	system("leaks minirt");
 	exit (EXIT_SUCCESS);
 	return (0);
 }
