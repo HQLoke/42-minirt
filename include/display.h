@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/19 09:17:00 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/20 11:15:46 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,15 @@ enum e_keycode
 };
 
 /* structure for minilibx image */
-typedef struct s_image {
+typedef struct s_image
+{
 	void	*mlx_ptr;
 	void	*img_ptr;
-	char	*data;
+	char	*addr;
 	int		width;
 	int		height;
 	int		bpp;
-	int		size_line;
+	int		line_length;
 	int		endian;
 }	t_image;
 
@@ -90,29 +91,33 @@ typedef struct s_mlx
 	t_list  *lights;
 	t_list  *objs;
 	t_cam   *cam;
-	t_image *image;
-
-	t_img8 *img8;
+	t_img8	*img8;
+	t_image	*image;
 }	t_mlx;
 
-//* ft_draw.c
-void	ft_draw_image(t_mlx *mlx, t_img8 *img);
-void	ft_draw_colored_screen(t_mlx *mlx, t_img8 *img, int color);
+//* ft_display.c
+void	ft_display_update(t_mlx *mlx);
 
-//* ft_mlx_image.c
+//* ft_draw.c
+void	ft_draw_image(t_mlx *mlx);
+
+//* ft_image.c
 t_image	*ft_mlx_image_new(void *mlx_ptr, int width, int height);
 void	ft_mlx_image_del(t_image *image);
-void	ft_mlx_image_put(t_image *image, t_mlx *mlx, int x, int y);
+void	ft_mlx_image_put(t_mlx *mlx, t_image *image, int x, int y);
+
+//* ft_obj_transform.c
+void	ft_obj_rotate_x(t_obj *obj, double theta);
+void	ft_obj_rotate_y(t_obj *obj, double theta);
+void	ft_obj_rotate_z(t_obj *obj, double theta);
+void	ft_obj_scale(t_obj *obj, double scale);
+void	ft_obj_translate(t_obj *obj, double dx, double dy, double dz);
 
 //* ft_mlx_key.c
 int		ft_mlx_key(int keycode, t_mlx *mlx);
 
-//* ft_mlx_loop.c
-int		ft_mlx_loop(t_mlx *mlx);
-
 //* ft_mlx.c
 t_mlx	*ft_mlx_new(int width, int height);
 int		ft_mlx_del(t_mlx *mlx);
-void	ft_mlx_run(t_mlx *mlx);
 
 #endif

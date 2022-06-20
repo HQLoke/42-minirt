@@ -27,6 +27,7 @@ t_mlx	*ft_mlx_new(int width, int height)
 		mlx->lights = NULL;
 		mlx->objs = NULL;
 		mlx->cam = NULL;
+		mlx->image = NULL;
 	}
 	return (mlx);
 }
@@ -37,13 +38,7 @@ int	ft_mlx_del(t_mlx *mlx)
 	free(mlx->mlx_ptr);
 	free(mlx);
 	printf("Minirt is exiting.\n");
+	system("leaks minirt");
+	exit (EXIT_SUCCESS);
 	return (0);
-}
-
-void	ft_mlx_run(t_mlx *mlx)
-{
-	mlx_hook(mlx->win_ptr, 17, 17, ft_mlx_del, mlx);
-	mlx_key_hook(mlx->win_ptr, ft_mlx_key, mlx);
-	mlx_loop_hook(mlx->mlx_ptr, ft_mlx_loop, mlx);
-	mlx_loop(mlx->mlx_ptr);
 }

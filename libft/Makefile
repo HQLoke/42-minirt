@@ -1,6 +1,6 @@
 # define variables used by implicit rule
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror #-g3 -fsanitize=address
 
 # define source and object files
 SRCS	= ft_atoi.c \

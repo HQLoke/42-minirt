@@ -1,7 +1,7 @@
 # Implicit variables
 CC		=	gcc
 INCLUDE	=	-Iinclude -Ilibft -Imlx
-CFLAGS	=	-Wall -Wextra -Werror $(INCLUDE) -g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror $(INCLUDE) #-g3 -fsanitize=address
 FDFLAGS	=	-L. -Llibft
 FDLIBS	=	-lrt -lft -lmlx
 MAC		=   -framework OpenGL -framework AppKit
@@ -19,11 +19,12 @@ UTILS_DIR	=	utils/
 
 SRCDIR	=	src
 SRCS	=	$(addprefix $(DISPLAY_DIR), \
+				ft_display.c \
 				ft_draw.c \
 				ft_mlx_image.c \
 				ft_mlx_key.c \
-				ft_mlx_loop.c \
 				ft_mlx.c \
+				ft_obj_transform.c \
 			) \
 			$(addprefix $(ELEMENT_DIR), \
 				ft_camera.c \
