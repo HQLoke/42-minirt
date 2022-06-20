@@ -89,7 +89,7 @@ OBJS	=	$(addprefix $(OBJDIR)/, $(SRCS:%.c=%.o))
 
 # targets
 MAIN	=	main.c
-NAME	=	minirt
+NAME	=	miniRT
 LIBRT	=	librt.a
 
 LIBX_PATH	= ./minilibx-linux
