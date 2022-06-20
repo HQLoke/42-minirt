@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:58:17 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 16:02:34 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/20 15:27:42 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,22 @@ t_mat	*ft_affine_rotate(t_vec *orient)
 	return (rotate);
 }
 
-/* Calculate the transformation matrix, given a centre and orientation. */
-t_mat	*ft_affine_transform(t_vec *centre, t_vec *orient)
+/* Calculate the transformation matrix, given local z-axis orientation,
+ * a centre and orientation. */
+t_mat	*ft_affine_transform(double theta, t_vec *centre, t_vec *orient)
 {
 	t_mat	*transform;
+	t_mat	*rotate_theta;
 	t_mat	*rotate;
 
 	if (eq_double(ft_vec_len(orient), 1) == 0)
 		ft_perror("Orientation vector is not a unit vector.");
 	transform = ft_affine_translate(
 			centre->data[0], centre->data[1], centre->data[2]);
-	rotate = ft_affine_rotate(orient);
+	rotate_theta = ft_affine_rotate_z(theta);
+	rotate = ft_mat_mul(ft_affine_rotate(orient), rotate_theta);
 	transform = ft_mat_mul(transform, rotate);
+	ft_mat_del(rotate_theta);
 	ft_mat_del(rotate);
 	return (transform);
 }

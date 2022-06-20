@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 14:40:53 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/20 15:35:56 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,17 @@ static void	ft_mlx_key_translate(int keycode, t_mlx *mlx)
 static void	ft_mlx_cam_rotate(int keycode, t_mlx *mlx)
 {
 	if (keycode == MAC_T || keycode == WIN_T)
-		ft_cam_rotate_x(mlx->cam, -M_PI / 36);
-	else if (keycode == MAC_G || keycode == WIN_G)
 		ft_cam_rotate_x(mlx->cam, M_PI / 36);
+	else if (keycode == MAC_G || keycode == WIN_G)
+		ft_cam_rotate_x(mlx->cam, -M_PI / 36);
 	else if (keycode == MAC_F || keycode == WIN_F)
 		ft_cam_rotate_y(mlx->cam, M_PI / 36);
 	else if (keycode == MAC_H || keycode == WIN_H)
 		ft_cam_rotate_y(mlx->cam, -M_PI / 36);
 	else if (keycode == MAC_R || keycode == WIN_R)
-		ft_cam_rotate_z(mlx->cam, M_PI / 36);
-	else if (keycode == MAC_Y || keycode == WIN_Y)
 		ft_cam_rotate_z(mlx->cam, -M_PI / 36);
+	else if (keycode == MAC_Y || keycode == WIN_Y)
+		ft_cam_rotate_z(mlx->cam, M_PI / 36);
 	ft_display_update(mlx);
 }
 
