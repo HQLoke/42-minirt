@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 11:15:46 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/20 11:33:30 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ typedef struct s_mlx
 	int		height;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_light *ambient;
-	t_list  *lights;
-	t_list  *objs;
-	t_cam   *cam;
+	t_light	*ambient;
+	t_list	*lights;
+	t_list	*objs;
+	t_cam	*cam;
 	t_img8	*img8;
 	t_image	*image;
 }	t_mlx;

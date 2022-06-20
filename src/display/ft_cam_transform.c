@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cam_transform.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:13:40 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/19 19:16:19 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/20 11:31:14 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,3 @@ void	ft_cam_translate(t_cam *cam, double dx, double dy, double dz)
 	ft_mat_del(cam->fr_world);
 	cam->fr_world = ft_mat_affine_inverse(ft_mat_copy(cam->to_world));
 }
-

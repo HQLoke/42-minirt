@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:19:06 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 10:43:08 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/20 11:32:24 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_image	*ft_mlx_image_new(void *mlx_ptr, int width, int height)
 		image->mlx_ptr = mlx_ptr;
 		image->img_ptr = mlx_new_image(image->mlx_ptr, width, height);
 		image->addr = mlx_get_data_addr(image->img_ptr, &image->bpp,
-		&image->line_length, &image->endian);
+				&image->line_length, &image->endian);
 		image->width = width;
 		image->height = height;
 	}

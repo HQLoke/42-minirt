@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_key.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/19 18:28:34 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/20 11:32:42 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_mlx_key(int keycode, t_mlx *mlx)
 	else if (keycode == q || keycode == w || keycode == e
 		|| keycode == a || keycode == s || keycode == d)
 		ft_mlx_key_rotate(keycode, mlx);
-	else if (keycode == up || keycode == down 
+	else if (keycode == up || keycode == down
 		|| keycode == left || keycode == right)
 		ft_mlx_key_translate(keycode, mlx);
 	else if (keycode == n || keycode == m)
