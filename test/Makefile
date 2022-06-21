@@ -1,8 +1,8 @@
 # Implicit variables
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -I../include -I../libft -g -fsanitize=address
-LDFLAGS	=	-L.. -L../libft
-LDLIBS	=	-lrt -lft -lm
+CFLAGS	=	-Wall -Wextra -Werror -I../include -I../libft -I../minilibx-linux -g -fsanitize=address
+LDFLAGS	=	-L.. -L../libft -L../minilibx-linux
+LDLIBS	=	-lrt -lft -lmlx -lm
 SRCS	=	$(wildcard */test*.c)
 FILES	=	$(notdir $(SRCS))
 MAINS	=	$(FILES:test_%.c=%)

@@ -9,11 +9,15 @@ ifeq ($(UNAME_S),Darwin)
 	FDFLAGS	=	-L. -Llibft -Lmlx
 	FDLIBS	=	-lrt -lft -lmlx
 	MAC		=	-framework OpenGL -framework AppKit
+	LIBX_PATH	=
+	LIBX		=
 else
 	INCLUDE	=	-Iminilibx-linux -Iinclude -Ilibft
 	FDLIBS	=	-lrt -lft -lmlx -lXext -lX11 -lm
 	FDFLAGS	=	-L. -Llibft -Lminilibx-linux
 	MAC		=
+	LIBX_PATH	=	./minilibx-linux
+	LIBX		=	$(LIBX_PATH)/libmlx.a
 endif
 
 # source and object files
@@ -93,10 +97,7 @@ MAIN	=	main.c
 NAME	=	miniRT
 LIBRT	=	librt.a
 
-LIBX_PATH	= ./minilibx-linux
-LIBX		= $(LIBX_PATH)/libmlx.a
-
-LIBFT_PATH = ./libft
+LIBFT_PATH	= ./libft
 
 # colour and format
 BOLD = \e[1m
@@ -135,12 +136,11 @@ clean:
 	@echo "Removing object files..." 
 	@rm -rf $(OBJDIR)
 	@make clean -C $(LIBFT_PATH) -s
-	@$(MAKE) clean -C $(LIBX_PATH)
 
 fclean: clean
 	@echo "Removing executables and libraries..."
 	@$(RM) $(NAME) $(LIBRT)
-	@make fclean -C $(LIBFT_PATH) -s
+	@rm -rf $(LIBX_PATH)
 
 re: fclean all
 

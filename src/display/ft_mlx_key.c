@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 21:43:06 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/21 11:11:21 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ static void	ft_mlx_key_rotate(int keycode, t_mlx *mlx)
 	else if (keycode == MAC_S || keycode == WIN_S)
 		ft_obj_rotate_x(mlx->objs->content, M_PI / 36);
 	else if (keycode == MAC_A || keycode == WIN_A)
-		ft_obj_rotate_y(mlx->objs->content, M_PI / 36);
-	else if (keycode == MAC_D || keycode == WIN_D)
 		ft_obj_rotate_y(mlx->objs->content, -M_PI / 36);
+	else if (keycode == MAC_D || keycode == WIN_D)
+		ft_obj_rotate_y(mlx->objs->content, M_PI / 36);
 	else if (keycode == MAC_Q || keycode == WIN_Q)
 		ft_obj_rotate_z(mlx->objs->content, M_PI / 36);
 	else if (keycode == MAC_E || keycode == WIN_E)
 		ft_obj_rotate_z(mlx->objs->content, -M_PI / 36);
-	else if (keycode == e)
-		ft_obj_rotate_z(mlx->objs->content, M_PI / 36);
 	ft_display_update(mlx);
 }
 
