@@ -37,3 +37,4 @@
 # id     centre: x,y,z       orientation: x,y,z  radius,height       colour: r,g,b       checkerboard        norm_map
 # sp     (-inf, inf)         [0, 1]              (0, inf)            [0, 255]            float               path (optional)
   sp     0,0,0               0,1,0               1,2                 255,0,0             0                   
+  sp     0,0,0               0,1,0               1,2                 255,255,0             0                   

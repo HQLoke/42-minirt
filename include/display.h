@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 21:42:24 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/21 22:08:08 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct s_mlx
 	t_cam	*cam;
 	t_img8	*img8;
 	t_image	*image;
+	t_list	*current_obj;
 }	t_mlx;
 
 //* ft_cam_transform.c
@@ -149,16 +150,10 @@ void	ft_display_update(t_mlx *mlx);
 //* ft_draw.c
 void	ft_draw_image(t_mlx *mlx);
 
-//* ft_image.c
+//* ft_mlx_image.c
 t_image	*ft_mlx_image_new(void *mlx_ptr, int width, int height);
 void	ft_mlx_image_del(t_image *image);
 void	ft_mlx_image_put(t_mlx *mlx, t_image *image, int x, int y);
-
-//* ft_obj_transform.c
-void	ft_obj_rotate_x(t_obj *obj, double theta);
-void	ft_obj_rotate_y(t_obj *obj, double theta);
-void	ft_obj_rotate_z(t_obj *obj, double theta);
-void	ft_obj_translate(t_obj *obj, double dx, double dy, double dz);
 
 //* ft_mlx_key.c
 int		ft_mlx_key(int keycode, t_mlx *mlx);
@@ -166,5 +161,14 @@ int		ft_mlx_key(int keycode, t_mlx *mlx);
 //* ft_mlx.c
 t_mlx	*ft_mlx_new(int width, int height);
 int		ft_mlx_del(t_mlx *mlx);
+
+//* ft_obj_selection.c
+void	ft_obj_selection(int keycode, t_mlx *mlx);
+
+//* ft_obj_transform.c
+void	ft_obj_rotate_x(t_obj *obj, double theta);
+void	ft_obj_rotate_y(t_obj *obj, double theta);
+void	ft_obj_rotate_z(t_obj *obj, double theta);
+void	ft_obj_translate(t_obj *obj, double dx, double dy, double dz);
 
 #endif

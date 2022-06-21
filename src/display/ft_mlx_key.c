@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/21 11:11:21 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/21 22:06:50 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 static void	ft_mlx_key_rotate(int keycode, t_mlx *mlx)
 {
 	if (keycode == MAC_W || keycode == WIN_W)
-		ft_obj_rotate_x(mlx->objs->content, -M_PI / 36);
+		ft_obj_rotate_x(mlx->current_obj->content, -M_PI / 36);
 	else if (keycode == MAC_S || keycode == WIN_S)
-		ft_obj_rotate_x(mlx->objs->content, M_PI / 36);
+		ft_obj_rotate_x(mlx->current_obj->content, M_PI / 36);
 	else if (keycode == MAC_A || keycode == WIN_A)
-		ft_obj_rotate_y(mlx->objs->content, -M_PI / 36);
+		ft_obj_rotate_y(mlx->current_obj->content, -M_PI / 36);
 	else if (keycode == MAC_D || keycode == WIN_D)
-		ft_obj_rotate_y(mlx->objs->content, M_PI / 36);
+		ft_obj_rotate_y(mlx->current_obj->content, M_PI / 36);
 	else if (keycode == MAC_Q || keycode == WIN_Q)
-		ft_obj_rotate_z(mlx->objs->content, M_PI / 36);
+		ft_obj_rotate_z(mlx->current_obj->content, M_PI / 36);
 	else if (keycode == MAC_E || keycode == WIN_E)
-		ft_obj_rotate_z(mlx->objs->content, -M_PI / 36);
+		ft_obj_rotate_z(mlx->current_obj->content, -M_PI / 36);
 	ft_display_update(mlx);
 }
 
@@ -50,17 +50,17 @@ static void	ft_mlx_key_rotate(int keycode, t_mlx *mlx)
 static void	ft_mlx_key_translate(int keycode, t_mlx *mlx)
 {
 	if (keycode == WIN_PAGEUP)
-		ft_obj_translate(mlx->objs->content, 0, 0, 1);
+		ft_obj_translate(mlx->current_obj->content, 0, 0, 1);
 	else if (keycode == WIN_PAGEDOWN)
-		ft_obj_translate(mlx->objs->content, 0, 0, -1);
+		ft_obj_translate(mlx->current_obj->content, 0, 0, -1);
 	else if (keycode == MAC_UP || keycode == WIN_UP)
-		ft_obj_translate(mlx->objs->content, 0, 1, 0);
+		ft_obj_translate(mlx->current_obj->content, 0, 1, 0);
 	else if (keycode == MAC_DOWN || keycode == WIN_DOWN)
-		ft_obj_translate(mlx->objs->content, 0, -1, 0);
+		ft_obj_translate(mlx->current_obj->content, 0, -1, 0);
 	else if (keycode == MAC_LEFT || keycode == WIN_LEFT)
-		ft_obj_translate(mlx->objs->content, -1, 0, 0);
+		ft_obj_translate(mlx->current_obj->content, -1, 0, 0);
 	else if (keycode == MAC_RIGHT || keycode == WIN_RIGHT)
-		ft_obj_translate(mlx->objs->content, 1, 0, 0);
+		ft_obj_translate(mlx->current_obj->content, 1, 0, 0);
 	ft_display_update(mlx);
 }
 
@@ -141,5 +141,8 @@ int	ft_mlx_key(int keycode, t_mlx *mlx)
 		|| keycode == WIN_U || keycode == WIN_I || keycode == WIN_O
 		|| keycode == WIN_J || keycode == WIN_K || keycode == WIN_L)
 		ft_mlx_cam_translate(keycode, mlx);
+	else if (keycode == MAC_Z || keycode == MAC_X ||
+		keycode == WIN_Z || keycode == WIN_X)
+		ft_obj_selection(keycode, mlx);
 	return (0);
 }

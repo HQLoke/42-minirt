@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display.c                                       :+:      :+:    :+:   */
+/*   ft_obj_selection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 16:22:27 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/21 22:41:31 by hloke            ###   ########.fr       */
+/*   Created: 2022/06/21 15:23:11 by hloke             #+#    #+#             */
+/*   Updated: 2022/06/21 22:05:02 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
 
-void	ft_display_update(t_mlx *mlx)
+void	ft_obj_selection(int keycode, t_mlx *mlx)
 {
-	t_img	*img;
-
-	if (mlx->current_obj == NULL)
+	if (keycode == MAC_Z || keycode == WIN_Z)
 		mlx->current_obj = mlx->objs;
-	img = ft_render(mlx->cam, mlx->ambient, mlx->lights, mlx->objs);
-	ft_image8_del(mlx->img8);
-	mlx->img8 = ft_image_2_image8(img);
-	ft_image_del(img);
-	ft_draw_image(mlx);
-	ft_mlx_image_put(mlx, mlx->image, 0, 0);
+	else if (keycode == MAC_X || keycode == WIN_X)
+	{
+		if (mlx->current_obj->next != NULL)
+			mlx->current_obj = mlx->current_obj->next;
+	}
 }

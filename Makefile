@@ -39,6 +39,7 @@ SRCS	=	$(addprefix $(DISPLAY_DIR), \
 				ft_mlx_image.c \
 				ft_mlx_key.c \
 				ft_mlx.c \
+				ft_obj_selection.c \
 				ft_obj_transform.c \
 			) \
 			$(addprefix $(ELEMENT_DIR), \
