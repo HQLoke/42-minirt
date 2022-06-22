@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:35:27 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 16:02:18 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 16:47:18 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static FILE	*ft_fopen(const char *pathname, const char *mode)
 
 	stream = fopen(pathname, mode);
 	if (stream == NULL)
-		ft_perror("Error: cannot read a ppm file.");
+		ft_perror("cannot read a ppm file.");
 	return (stream);
 }
 
