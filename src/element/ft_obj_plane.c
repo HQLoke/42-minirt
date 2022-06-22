@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:59:41 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 13:51:22 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 22:46:38 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@
 t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_opt *opt)
 {
 	t_obj	*plane;
-	t_vec	*dim;
 
-	dim = ft_vec_copy(norm);
-	dim->data[3] = -ft_vec_mul_dot(norm, point);
-	plane = ft_obj_new(point, norm, dim, opt);
+	plane = ft_obj_new(point, norm, NULL, opt);
 	if (plane == NULL)
 		return (NULL);
 	plane->intersect = ft_plane_intersect;
@@ -45,22 +42,21 @@ t_obj	*ft_plane_new(t_vec *point, t_vec *norm, t_opt *opt)
  * */
 int	ft_plane_intersect(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm)
 {
-	double	denominator;
 	double	t;
 	int		retval;
 
-	denominator = ft_vec_mul_dot(plane->dimension, ray->dir);
-	retval = (denominator != 0);
+	ray = ft_ray_transform(plane->fr_world, ft_ray_copy(ray));
+	retval = (eq_double(ray->dir->data[2], 0) == 0);
 	if (retval == 1)
 	{
-		t = -ft_vec_mul_dot(plane->dimension, ray->org) / denominator;
-		retval = (eq_double(t, 0) == 0 && t > 0);
-		if (retval == 1)
-		{
-			point = ft_ray_calc_point(ray, t, point);
-			norm = ft_plane_normal(plane, ray, point, norm);
-		}
+		t = -ray->org->data[2] / ray->dir->data[2];
+		point = ft_ray_calc_point(ray, t, point);
+		norm = plane->normal(plane, ray, point, norm);
+		ft_mat_mul_vec(plane->to_world, point);
+		ft_mat_mul_vec(plane->to_world, norm);
+		retval &= (eq_double(t, 0) == 0 && t > 0);
 	}
+	ft_ray_del(ray);
 	return (retval);
 }
 
@@ -84,10 +80,9 @@ t_vec	*ft_plane_normal(t_obj *plane, t_ray *ray, t_vec *point, t_vec *norm)
 {
 	t_vec	*normal;
 
-	(void) point;
-	normal = ft_vec_copy(plane->dimension);
-	normal->data[3] = 0.0;
-	ft_vec_normalise(normal);
+	if (eq_double(point->data[2], 0) == 0)
+		ft_perror("Point is not on a given plane", EINVAL);
+	normal = ft_vec4_new(0, 0, 1, 0);
 	ft_vec_swap(norm, normal);
 	ft_vec_del(normal);
 	norm = ft_correct_normal(norm, ray);
