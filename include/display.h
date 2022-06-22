@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 14:23:48 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 17:26:55 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ int		ft_mlx_key(int keycode, t_mlx *mlx);
 
 //* ft_mlx.c
 t_mlx	*ft_mlx_new(int width, int height);
+void	ft_mlx_init(t_mlx *mlx);
 int		ft_mlx_del(t_mlx *mlx);
 
 #endif

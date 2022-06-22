@@ -12,6 +12,7 @@
 
 #include "display.h"
 
+/* Allocate memory for the t_mlx struct */
 t_mlx	*ft_mlx_new(int width, int height)
 {
 	t_mlx	*mlx;
@@ -21,11 +22,18 @@ t_mlx	*ft_mlx_new(int width, int height)
 		ft_perror("ft_mlx_new", ENOMEM);
 	mlx->width = width;
 	mlx->height = height;
-	mlx->mlx_ptr = mlx_init();
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, width, height, "MINIRT");
 	return (mlx);
 }
 
+/* Initialise a minilibx window */
+void	ft_mlx_init(t_mlx *mlx)
+{
+	mlx->mlx_ptr = mlx_init();
+	mlx->win_ptr = mlx_new_window(
+			mlx->mlx_ptr, mlx->width, mlx->height, "MINIRT");
+}
+
+/* Deletes t_mlx struct from memory and exit program */
 int	ft_mlx_del(t_mlx *mlx)
 {
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
