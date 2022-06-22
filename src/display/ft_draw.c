@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:25:04 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 11:44:11 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 17:03:46 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_draw_image(t_mlx *mlx)
 	t_vec	*vec;
 
 	if (mlx->img8 == NULL)
-		ft_perror("ft_draw_image: Image8 file is not found.");
+		ft_perror("ft_draw_image: Image8 file is not found", EINVAL);
 	i = -1;
 	while (++i < mlx->img8->row)
 	{
@@ -55,7 +55,7 @@ void	ft_draw_image(t_mlx *mlx)
 		{
 			vec = ft_image8_get(mlx->img8, i, j);
 			if (vec == NULL)
-				ft_perror("ft_draw_img8: Invalid color data.");
+				ft_perror("ft_draw_img8: Invalid color data", EINVAL);
 			color = ft_convert_rgb(vec);
 			ft_pixel_draw(mlx->image, j, i, color);
 			ft_vec_del(vec);

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:11:03 by weng              #+#    #+#             */
-/*   Updated: 2022/06/12 22:53:09 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 17:01:49 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ t_cam	*ft_parse_camera(char **arr)
 		return (NULL);
 	}
 	if (++count > 1)
-		ft_perror("ft_parse_camera: More than one camera is defined.");
+		ft_perror("ft_parse_camera: More than one camera is defined", EINVAL);
 	if (ft_array_size(arr) != 4)
-		ft_perror("ft_parse_camera: Invalid number of parameters");
+		ft_perror("ft_parse_camera: Invalid number of parameters", EINVAL);
 	ctr = ft_parse_vector(arr[1], 3, -INFINITY, INFINITY);
 	ctr = ft_vec_append(ctr, 1);
 	orient = ft_parse_vector(arr[2], 3, -1, 1);
@@ -59,9 +59,11 @@ t_light	*ft_parse_light_ambient(char **arr)
 		return (NULL);
 	}
 	if (++count > 1)
-		ft_perror("ft_parse_light_ambient: More than one ambient is defined.");
+		ft_perror("ft_parse_light_ambient: More than one ambient is defined.",
+			EINVAL);
 	if (ft_array_size(arr) != 3)
-		ft_perror("ft_parse_light_ambient: Invalid number of parameters");
+		ft_perror("ft_parse_light_ambient: Invalid number of parameters",
+			EINVAL);
 	ratio = ft_parse_vector(arr[1], 1, 0, 1);
 	colour = ft_parse_vector(arr[2], 3, 0, 255);
 	colour = ft_vec_mul_scalar(colour, 1 / 255.999999);
@@ -82,7 +84,7 @@ t_light	*ft_parse_light_point(char **arr)
 	t_light		*point;
 
 	if (ft_array_size(arr) != 4)
-		ft_perror("ft_parse_light_point: Invalid number of parameters");
+		ft_perror("ft_parse_light_point: Invalid number of parameters", EINVAL);
 	ctr = ft_parse_vector(arr[1], 3, -INFINITY, INFINITY);
 	ctr = ft_vec_append(ctr, 1);
 	ratio = ft_parse_vector(arr[2], 1, 0, 1);
@@ -106,7 +108,7 @@ t_light	*ft_parse_light_spot(char **arr)
 	t_light		*spot;
 
 	if (ft_array_size(arr) != 5)
-		ft_perror("ft_parse_light_spot: Invalid number of parameters");
+		ft_perror("ft_parse_light_spot: Invalid number of parameters", EINVAL);
 	ctr = ft_parse_vector(arr[1], 3, -INFINITY, INFINITY);
 	ctr = ft_vec_append(ctr, 1);
 	orient = ft_parse_vector(arr[2], 3, -1, 1);

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 00:14:12 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 16:06:55 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 17:05:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vec	*ft_vec_add(t_vec *a, t_vec *b)
 	size_t	n;
 
 	if (a->size != b->size)
-		ft_perror("ft_vec_add: input vectors must have the same size.");
+		ft_perror("ft_vec_add: vectors must have the same size", EINVAL);
 	n = a->size;
 	while (n-- > 0)
 		a->data[n] += b->data[n];
@@ -33,7 +33,7 @@ t_vec	*ft_vec_sub(t_vec *a, t_vec *b)
 	size_t	n;
 
 	if (a->size != b->size)
-		ft_perror("ft_vec_add: input vectors must have the same size.");
+		ft_perror("ft_vec_add: vectors must have the same size", EINVAL);
 	n = a->size;
 	while (n-- > 0)
 		a->data[n] -= b->data[n];
@@ -67,6 +67,6 @@ t_vec	*ft_vec_normalise(t_vec *a)
 
 	len = ft_vec_len(a);
 	if (eq_double(0, len) == 1)
-		ft_perror("Cannot normalise vector of length 0.");
+		ft_perror("Cannot normalise vector of length 0", EINVAL);
 	return (ft_vec_mul_scalar(a, 1 / len));
 }

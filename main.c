@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:23 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/20 11:46:55 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 16:55:28 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 {
 	t_mlx	*mlx;
 
+	errno = 0;
 	if (argc != 2)
 		return (teach_them());
 	mlx = ft_mlx_new(400, 300);

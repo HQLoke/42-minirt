@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:05:48 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/12 00:11:39 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 17:05:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,10 @@ int	ft_open_scene(const char *scene)
 
 	ptr = ft_strrchr(scene, '.');
 	if (ptr == NULL || ft_strcmp(ptr, ".rt") != 0)
-	{
-		errno = EINVAL;
-		ft_perror("Invalid input file format");
-	}
+		ft_perror("Invalid input file format", EINVAL);
 	fd = open(scene, O_RDONLY, 0);
 	if (fd == -1)
-		ft_perror("Scene file cannot be opened");
+		ft_perror("Scene file cannot be opened", 0);
 	return (fd);
 }
 
@@ -42,15 +39,12 @@ char	**ft_split_scene(const char *line, char c)
 
 	arr = ft_calloc(sizeof(char *), max_arg + 1);
 	if (arr == NULL)
-		ft_perror("ft_split_scene cannot allocate memory.");
+		ft_perror("ft_split_scene cannot allocate memory", 0);
 	i = 0;
 	while (line && *line != '\0')
 	{
 		if (i == max_arg)
-		{
-			errno = ERANGE;
-			ft_perror("Line in scene file is too long");
-		}
+			ft_perror("Line in scene file is too long", ERANGE);
 		ptr = ft_strchr(line, c);
 		if (ptr != NULL)
 			arr[i] = ft_substr(line, 0, ptr - line);
@@ -125,6 +119,6 @@ t_cam	*ft_parse_scene(
 	}
 	close(fd);
 	if (cam == NULL)
-		ft_perror("At least one camera is needed for a scene");
+		ft_perror("At least one camera is needed for a scene", EINVAL);
 	return (cam);
 }

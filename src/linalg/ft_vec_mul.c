@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:26:26 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 16:06:38 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 17:05:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_vec	*ft_vec_mul_elem(t_vec *a, t_vec *b)
 	size_t	n;
 
 	if (a->size != b->size)
-		ft_perror("ft_vec_mul_elem: input vectors must have the same size.");
+		ft_perror("ft_vec_mul_elem: vectors must have the same size", EINVAL);
 	n = a->size;
 	while (n-- > 0)
 		a->data[n] *= b->data[n];
@@ -46,7 +46,7 @@ double	ft_vec_mul_dot(t_vec *a, t_vec *b)
 	double	retval;
 
 	if (a->size != b->size)
-		ft_perror("ft_vec_mul_dot: input vectors must have the same size.");
+		ft_perror("ft_vec_mul_dot: vectors must have the same size", EINVAL);
 	retval = 0;
 	i = 0;
 	while (i < a->size)
@@ -66,7 +66,7 @@ t_vec	*ft_vec_mul_cross(t_vec *a, t_vec *b)
 	t_vec	*vec;
 
 	if (a->size != 3 || b->size != 3)
-		ft_perror("ft_vec_mul_cross: input vectors must be of size 3.");
+		ft_perror("ft_vec_mul_cross: vectors must be of size 3", EINVAL);
 	v_a = a->data;
 	v_b = b->data;
 	vec = ft_vec3_new(
@@ -85,7 +85,7 @@ double	ft_vec_mul_triple(t_vec *a, t_vec *b, t_vec *c)
 	double	retval;
 
 	if (a->size != 3 || b->size != 3 || c->size != 3)
-		ft_perror("ft_vec_mul_triple: input vectors must be of size 3.");
+		ft_perror("ft_vec_mul_triple: vectors must be of size 3", EINVAL);
 	temp = ft_vec_copy(b);
 	temp = ft_vec_mul_cross(temp, c);
 	retval = ft_vec_mul_dot(a, temp);
