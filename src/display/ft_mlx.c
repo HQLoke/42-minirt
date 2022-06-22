@@ -16,19 +16,13 @@ t_mlx	*ft_mlx_new(int width, int height)
 {
 	t_mlx	*mlx;
 
-	mlx = calloc(1, sizeof(t_mlx));
-	if (mlx != NULL)
-	{
-		mlx->width = width;
-		mlx->height = height;
-		mlx->mlx_ptr = mlx_init();
-		mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, width, height, "MINIRT");
-		mlx->ambient = NULL;
-		mlx->lights = NULL;
-		mlx->objs = NULL;
-		mlx->cam = NULL;
-		mlx->image = NULL;
-	}
+	mlx = ft_calloc(1, sizeof(t_mlx));
+	if (mlx == NULL)
+		ft_perror("ft_mlx_new", ENOMEM);
+	mlx->width = width;
+	mlx->height = height;
+	mlx->mlx_ptr = mlx_init();
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, width, height, "MINIRT");
 	return (mlx);
 }
 
