@@ -21,6 +21,7 @@ t_mlx	*ft_mlx_new(int width, int height)
 	{
 		mlx->width = width;
 		mlx->height = height;
+		mlx->select = OBJECT;
 		mlx->mlx_ptr = mlx_init();
 		mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, width, height, "MINIRT");
 		mlx->ambient = NULL;

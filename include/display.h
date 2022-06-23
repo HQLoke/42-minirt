@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/21 22:08:08 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/23 10:40:02 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,12 @@ enum e_keycode
 	WIN_NINE = 65434
 };
 
+enum e_select
+{
+	CAMERA,
+	OBJECT
+};
+
 /* structure for minilibx image */
 typedef struct s_image
 {
@@ -127,6 +133,7 @@ typedef struct s_mlx
 {
 	int		width;
 	int		height;
+	int		select;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_light	*ambient;
