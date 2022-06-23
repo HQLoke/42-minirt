@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 14:46:57 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 15:59:59 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 17:05:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_vec	*ft_cone_normal(t_obj *cone, t_ray *ray, t_vec *point, t_vec *norm)
 	if (eq_double(
 			pow(point->data[0], 2) + pow(point->data[1], 2),
 			pow(point->data[2], 2)) == 0)
-		ft_perror("Point is not on a given cone.");
+		ft_perror("Point is not on a given cone", EINVAL);
 	normal = ft_vec4_new(point->data[0], point->data[1], -point->data[2], 0.0);
 	ft_vec_normalise(normal);
 	ft_vec_swap(norm, normal);

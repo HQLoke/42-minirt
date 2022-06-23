@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:35:27 by weng              #+#    #+#             */
-/*   Updated: 2022/06/10 16:02:18 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 17:05:16 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static FILE	*ft_fopen(const char *pathname, const char *mode)
 
 	stream = fopen(pathname, mode);
 	if (stream == NULL)
-		ft_perror("Error: cannot read a ppm file.");
+		ft_perror("cannot read a ppm file", 0);
 	return (stream);
 }
 
@@ -45,14 +45,14 @@ static t_img8	*ft_ppm_2_image8(FILE *stream)
 			stream, "%s\n%ld %ld\n%ld\n", type, &size[0], &size[1], &size[2]);
 	if (retval == EOF || retval == 0
 		|| ft_strcmp("P6", type) != 0 || size[2] != 255)
-		ft_perror("Invalid ppm header. Expecting P6\\ncol row\\n255.\\n");
+		ft_perror("Invalid ppm header. Expect P6\\ncol row\\n255.\\n", EINVAL);
 	data = ft_calloc(sizeof(unsigned char), (size[0] * size[1] * 3) + 1);
 	if (data == NULL)
-		ft_perror("ft_ppm_2_image: failed memory allocation.");
+		ft_perror("ft_ppm_2_image: failed memory allocation", 0);
 	size[2] = size[0] * size[1] * 3;
 	fread(data, size[2] + 1, sizeof(char), stream);
 	if (data == NULL)
-		ft_perror("ft_ppm_2_image: can't read data from image file.");
+		ft_perror("ft_ppm_2_image: can't read data from image file", 0);
 	img = ft_image8_new(size[1], size[0]);
 	while (size[2]-- > 0)
 		img->data[size[2]] = (unsigned char) data[size[2]];

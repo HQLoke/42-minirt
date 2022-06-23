@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:24:36 by weng              #+#    #+#             */
-/*   Updated: 2022/06/11 16:58:52 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 17:01:57 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,6 @@ t_obj	*ft_parse_obj(char **arr)
 		if (ft_strcmp(arr[0], id[i]) == 0)
 			return (func[i](arr));
 	}
-	ft_perror(ft_strjoin("Unrecognised identifier ", arr[0]));
+	ft_perror(ft_strjoin("Unrecognised identifier ", arr[0]), EINVAL);
 	return (NULL);
 }

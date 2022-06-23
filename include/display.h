@@ -6,7 +6,7 @@
 /*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/23 11:31:27 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/23 11:38:46 by hloke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ int		ft_mlx_key(int keycode, t_mlx *mlx);
 
 //* ft_mlx.c
 t_mlx	*ft_mlx_new(int width, int height);
+void	ft_mlx_init(t_mlx *mlx);
 int		ft_mlx_del(t_mlx *mlx);
 
 //* ft_obj_transform.c

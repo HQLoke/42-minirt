@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:32:55 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/11 11:11:11 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/22 17:00:46 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_vec	*ft_parse_vector(const char *s, size_t size, double min, double max)
 
 	arr = ft_split_scene(s, ',');
 	if (ft_array_size(arr) != size)
-		ft_perror("Input vector is not the right size");
+		ft_perror("Input vector is not the right size", EINVAL);
 	vec = NULL;
 	if (size != 0)
 	{
@@ -110,7 +110,7 @@ t_vec	*ft_parse_vector(const char *s, size_t size, double min, double max)
 			retval &= ft_check_double(vec->data[size], min, max);
 		}
 		if (size != 0 || retval == 0)
-			ft_perror("Invalid input vector");
+			ft_perror("Invalid input vector", EINVAL);
 	}
 	ft_array_del(arr, free);
 	return (vec);
