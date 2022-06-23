@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:23 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/23 15:49:06 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/23 22:59:22 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	mlx->image = ft_mlx_image_new(mlx->mlx_ptr, mlx->width, mlx->height);
 	mlx_hook(mlx->win_ptr, 17, 17, ft_mlx_del, mlx);
 	mlx_key_hook(mlx->win_ptr, ft_mlx_key, mlx);
-	ft_display_update(mlx);
+	ft_display_update(mlx, 1);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/23 22:53:57 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/23 22:59:53 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	ft_mlx_key_rotate(int keycode, t_mlx *mlx)
 				of[i / 2](mlx->obj_o->content, ((i % 2) * 2 - 1) * M_PI / 36);
 		}
 	}
-	ft_display_update(mlx);
+	ft_display_update(mlx, 1);
 }
 
 /*
@@ -85,7 +85,7 @@ static void	ft_mlx_key_translate(int keycode, t_mlx *mlx)
 				ft_obj_translate(mlx->obj_o->content, x, y, z);
 		}
 	}
-	ft_display_update(mlx);
+	ft_display_update(mlx, 1);
 }
 
 /*
@@ -106,7 +106,7 @@ static void	ft_mlx_key_scale(int keycode, t_mlx *mlx)
 		ft_vec_mul_scalar(dimension, 1.1);
 	else if (keycode == MAC_M || keycode == WIN_M)
 		ft_vec_mul_scalar(dimension, 1.0 / 1.1);
-	ft_display_update(mlx);
+	ft_display_update(mlx, 1);
 }
 
 /*
@@ -139,7 +139,7 @@ static void	ft_elem_selection(int keycode, t_mlx *mlx)
 		else if (mlx->select == OBJECT && mlx->obj_o->next != NULL)
 			mlx->obj_o = mlx->obj_o->next;
 	}
-	ft_display_update(mlx);
+	ft_display_update(mlx, 0);
 }
 
 int	ft_mlx_key(int keycode, t_mlx *mlx)
