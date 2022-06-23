@@ -36,6 +36,7 @@ SRCS	=	$(addprefix $(DISPLAY_DIR), \
 				ft_cam_transform.c \
 				ft_display.c \
 				ft_draw.c \
+				ft_light_transform.c \
 				ft_mlx_image.c \
 				ft_mlx_key.c \
 				ft_mlx.c \

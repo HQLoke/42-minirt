@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 08:55:51 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/23 16:47:16 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/23 17:20:39 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ enum e_keycode
 enum e_select
 {
 	CAMERA,
-	OBJECT
+	LIGHT,
+	OBJECT,
 };
 
 /* structure for minilibx image */
@@ -156,6 +157,12 @@ void	ft_display_update(t_mlx *mlx);
 
 //* ft_draw.c
 void	ft_draw_image(t_mlx *mlx);
+
+//* ft_light_transform.c
+void	ft_light_rotate_x(t_light *light, double theta);
+void	ft_light_rotate_y(t_light *light, double theta);
+void	ft_light_rotate_z(t_light *light, double theta);
+void	ft_light_translate(t_light *light, double dx, double dy, double dz);
 
 //* ft_mlx_image.c
 t_image	*ft_mlx_image_new(void *mlx_ptr, int width, int height);
