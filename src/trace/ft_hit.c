@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:24:23 by weng              #+#    #+#             */
-/*   Updated: 2022/06/02 22:23:56 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/24 00:23:43 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_hit	*ft_hit_objs(t_ray *ray, t_list *objs)
 		if (obj->intersect(obj, ray, hit->point, hit->norm) == 1)
 		{
 			distance = ft_vec_len(ft_vec_sub(hit->point, ray->org));
-			if (distance < hit->distance)
+			if (distance < hit->distance - FLT_EPSILON)
 			{
 				hit->distance = distance;
 				hit->obj = obj;
