@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/23 22:22:54 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/23 22:53:57 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,17 @@ static void	ft_elem_selection(int keycode, t_mlx *mlx)
 	else if (keycode == MAC_O || keycode == WIN_O)
 		mlx->select = OBJECT;
 	else if (keycode == MAC_Z || keycode == WIN_Z)
-		mlx->obj_o = mlx->objs;
+	{
+		if (mlx->select == LIGHT)
+			mlx->light_o = mlx->lights;
+		else if (mlx->select == OBJECT)
+			mlx->obj_o = mlx->objs;
+	}
 	else if (keycode == MAC_X || keycode == WIN_X)
 	{
-		if (mlx->obj_o->next != NULL)
+		if (mlx->select == LIGHT && mlx->light_o->next != NULL)
+			mlx->light_o = mlx->light_o->next;
+		else if (mlx->select == OBJECT && mlx->obj_o->next != NULL)
 			mlx->obj_o = mlx->obj_o->next;
 	}
 	ft_display_update(mlx);
