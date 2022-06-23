@@ -36,14 +36,6 @@ t_mlx	*ft_mlx_new(int width, int height)
 	return (mlx);
 }
 
-/* Initialise a minilibx window */
-void	ft_mlx_init(t_mlx *mlx)
-{
-	mlx->mlx_ptr = mlx_init();
-	mlx->win_ptr = mlx_new_window(
-			mlx->mlx_ptr, mlx->width, mlx->height, "MINIRT");
-}
-
 /* Deletes t_mlx struct from memory and exit program */
 int	ft_mlx_del(t_mlx *mlx)
 {
