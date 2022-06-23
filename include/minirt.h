@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:27:50 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/17 15:53:49 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/24 02:01:24 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
+
+# ifndef PROCESSOR_COUNT
+#  define PROCESSOR_COUNT 1
+# endif
+
+# include <pthread.h>
 
 # include "element.h"
 # include "image.h"
@@ -29,6 +35,23 @@ typedef struct s_hit
 	t_ray	*ray;
 	double	distance;
 }	t_hit;
+
+/* represents all the objects in a scene */
+typedef struct s_scene
+{
+	t_cam	*cam;
+	t_light	*ambient;
+	t_list	*lights;
+	t_list	*objs;
+}	t_scene;
+
+/* argument to be passed to thread */
+typedef struct s_arg
+{
+	t_scene	*scene;
+	t_img	*image;
+	int		k;
+}	t_arg;
 
 // ft_diffuse.c -- ray tracing related functions
 int		ft_hit_light(t_light *light, t_ray *ray, t_list *objs);

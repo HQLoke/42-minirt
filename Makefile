@@ -1,19 +1,19 @@
 # Implicit variables
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror $(INCLUDE) -g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror $(INCLUDE) -g3 -fsanitize=address -D PROCESSOR_COUNT=$(shell expr `grep -c ^processor /proc/cpuinfo` - 1)
 
 UNAME_S	= $(shell uname -s)
 
 ifeq ($(UNAME_S),Darwin)
 	INCLUDE	=	-Iinclude -Ilibft -Imlx
 	FDFLAGS	=	-L. -Llibft -Lmlx
-	FDLIBS	=	-lrt -lft -lmlx
+	FDLIBS	=	-lrt -lft -lmlx -lpthread
 	MAC		=	-framework OpenGL -framework AppKit
 	LIBX_PATH	=
 	LIBX		=
 else
 	INCLUDE	=	-Iminilibx-linux -Iinclude -Ilibft
-	FDLIBS	=	-lrt -lft -lmlx -lXext -lX11 -lm
+	FDLIBS	=	-lrt -lft -lmlx -lXext -lX11 -lpthread -lm
 	FDFLAGS	=	-L. -Llibft -Lminilibx-linux
 	MAC		=
 	LIBX_PATH	=	./minilibx-linux
