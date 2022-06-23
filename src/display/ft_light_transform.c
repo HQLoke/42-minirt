@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 17:10:36 by weng              #+#    #+#             */
-/*   Updated: 2022/06/23 17:14:27 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/23 22:31:30 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_light_rotate_x(t_light *light, double theta)
 
 	if (light == NULL)
 		return ;
-	transform = ft_affine_rotate_x(theta);
+	transform = ft_affine_rotate_x(-theta);
 	light->dir = ft_mat_mul_vec(transform, light->dir);
 	ft_mat_del(transform);
 }
@@ -29,7 +29,7 @@ void	ft_light_rotate_y(t_light *light, double theta)
 
 	if (light == NULL)
 		return ;
-	transform = ft_affine_rotate_y(theta);
+	transform = ft_affine_rotate_y(-theta);
 	light->dir = ft_mat_mul_vec(transform, light->dir);
 	ft_mat_del(transform);
 }
@@ -40,7 +40,7 @@ void	ft_light_rotate_z(t_light *light, double theta)
 
 	if (light == NULL)
 		return ;
-	transform = ft_affine_rotate_z(theta);
+	transform = ft_affine_rotate_z(-theta);
 	light->dir = ft_mat_mul_vec(transform, light->dir);
 	ft_mat_del(transform);
 }
