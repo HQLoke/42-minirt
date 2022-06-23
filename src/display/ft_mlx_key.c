@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_key.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:13:30 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/23 11:35:37 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/23 16:34:09 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,27 @@
  */
 static void	ft_mlx_key_rotate(int keycode, t_mlx *mlx)
 {
-	if ((keycode == MAC_W || keycode == WIN_W) && mlx->select == OBJECT)
-		ft_obj_rotate_x(mlx->current_obj->content, -M_PI / 36);
-	else if ((keycode == MAC_W || keycode == WIN_W) && mlx->select == CAMERA)
-		ft_cam_rotate_x(mlx->cam, M_PI / 36);
-	else if ((keycode == MAC_S || keycode == WIN_S) && mlx->select == OBJECT)
-		ft_obj_rotate_x(mlx->current_obj->content, M_PI / 36);
-	else if ((keycode == MAC_S || keycode == WIN_S) && mlx->select == CAMERA)
-		ft_cam_rotate_x(mlx->cam, -M_PI / 36);
-	else if ((keycode == MAC_A || keycode == WIN_A) && mlx->select == OBJECT)
-		ft_obj_rotate_y(mlx->current_obj->content, -M_PI / 36);
-	else if ((keycode == MAC_A || keycode == WIN_A) && mlx->select == CAMERA)
-		ft_cam_rotate_y(mlx->cam, M_PI / 36);
-	else if ((keycode == MAC_D || keycode == WIN_D) && mlx->select == OBJECT)
-		ft_obj_rotate_y(mlx->current_obj->content, M_PI / 36);
-	else if ((keycode == MAC_D || keycode == WIN_D) && mlx->select == CAMERA)
-		ft_cam_rotate_y(mlx->cam, -M_PI / 36);
-	else if ((keycode == MAC_Q || keycode == WIN_Q) && mlx->select == OBJECT)
-		ft_obj_rotate_z(mlx->current_obj->content, M_PI / 36);
-	else if ((keycode == MAC_Q || keycode == WIN_Q) && mlx->select == CAMERA)
-		ft_cam_rotate_z(mlx->cam, -M_PI / 36);
-	else if ((keycode == MAC_E || keycode == WIN_E) && mlx->select == OBJECT)
-		ft_obj_rotate_z(mlx->current_obj->content, -M_PI / 36);
-	else if ((keycode == MAC_E || keycode == WIN_E) && mlx->select == CAMERA)
-		ft_cam_rotate_z(mlx->cam, M_PI / 36);
+	const int	keys[] = {
+		MAC_W, MAC_S, MAC_A, MAC_D, MAC_E, MAC_Q,
+		WIN_W, WIN_S, WIN_A, WIN_D, WIN_E, WIN_Q};
+	static void	(*cam_func[])(t_cam *, double) = {
+		ft_cam_rotate_x, ft_cam_rotate_y, ft_cam_rotate_z};
+	static void	(*obj_func[])(t_obj *, double) = {
+		ft_obj_rotate_x, ft_obj_rotate_y, ft_obj_rotate_z};
+	int			i;
+
+	i = -1;
+	while (++i < 6)
+	{
+		if (keycode == keys[i] || keycode == keys[i + 6])
+		{
+			if (mlx->select == CAMERA)
+				cam_func[i / 2](mlx->cam, (-1 + (i % 2) * 2) * M_PI / 36);
+			else if (mlx->select == OBJECT)
+				obj_func[i / 2](mlx->current_obj->content,
+					(-1 + (i % 2) * 2) * M_PI / 36);
+		}
+	}
 	ft_display_update(mlx);
 }
 
@@ -61,30 +58,28 @@ static void	ft_mlx_key_rotate(int keycode, t_mlx *mlx)
  */
 static void	ft_mlx_key_translate(int keycode, t_mlx *mlx)
 {
-	if ((keycode == MAC_T || keycode == WIN_T) && mlx->select == OBJECT)
-		ft_obj_translate(mlx->current_obj->content, 0, 1, 0);
-	else if ((keycode == MAC_T || keycode == WIN_T) && mlx->select == CAMERA)
-		ft_cam_translate(mlx->cam, 0, 1, 0);
-	else if ((keycode == MAC_G || keycode == WIN_G) && mlx->select == OBJECT)
-		ft_obj_translate(mlx->current_obj->content, 0, -1, 0);
-	else if ((keycode == MAC_G || keycode == WIN_G) && mlx->select == CAMERA)
-		ft_cam_translate(mlx->cam, 0, -1, 0);
-	else if ((keycode == MAC_F || keycode == WIN_F) && mlx->select == OBJECT)
-		ft_obj_translate(mlx->current_obj->content, -1, 0, 0);
-	else if ((keycode == MAC_F || keycode == WIN_F) && mlx->select == CAMERA)
-		ft_cam_translate(mlx->cam, -1, 0, 0);
-	else if ((keycode == MAC_H || keycode == WIN_H) && mlx->select == OBJECT)
-		ft_obj_translate(mlx->current_obj->content, 1, 0, 0);
-	else if ((keycode == MAC_H || keycode == WIN_H) && mlx->select == CAMERA)
-		ft_cam_translate(mlx->cam, 1, 0, 0);
-	else if ((keycode == MAC_R || keycode == WIN_R) && mlx->select == OBJECT)
-		ft_obj_translate(mlx->current_obj->content, 0, 0, 1);
-	else if ((keycode == MAC_R || keycode == WIN_R) && mlx->select == CAMERA)
-		ft_cam_translate(mlx->cam, 0, 0, 1);
-	else if ((keycode == MAC_Y || keycode == WIN_Y) && mlx->select == OBJECT)
-		ft_obj_translate(mlx->current_obj->content, 0, 0, -1);
-	else if ((keycode == MAC_Y || keycode == WIN_Y) && mlx->select == CAMERA)
-		ft_cam_translate(mlx->cam, 0, 0, -1);
+	const int	keys[] = {
+		MAC_F, MAC_H, MAC_G, MAC_T, MAC_Y, MAC_R,
+		WIN_F, WIN_H, WIN_G, WIN_T, WIN_Y, WIN_R};
+	int			i;
+
+	i = -1;
+	while (++i < 6)
+	{
+		if (keycode == keys[i] || keycode == keys[i + 6])
+		{
+			if (mlx->select == CAMERA)
+				ft_cam_translate(mlx->cam,
+					-(i % 6 == 0) + (i % 6 == 1),
+					-(i % 6 == 2) + (i % 6 == 3),
+					-(i % 6 == 4) + (i % 6 == 5));
+			else if (mlx->select == OBJECT)
+				ft_obj_translate(mlx->current_obj->content,
+					-(i % 6 == 0) + (i % 6 == 1),
+					-(i % 6 == 2) + (i % 6 == 3),
+					-(i % 6 == 4) + (i % 6 == 5));
+		}
+	}
 	ft_display_update(mlx);
 }
 
