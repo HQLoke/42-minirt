@@ -18,22 +18,19 @@ t_mlx	*ft_mlx_new(int width, int height)
 	t_mlx	*mlx;
 
 	mlx = ft_calloc(1, sizeof(t_mlx));
-	if (mlx != NULL)
-	{
-		mlx->width = width;
-		mlx->height = height;
-		mlx->select = OBJECT;
-		mlx->mlx_ptr = mlx_init();
-		mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, width, height, "MINIRT");
-		mlx->ambient = NULL;
-		mlx->lights = NULL;
-		mlx->objs = NULL;
-		mlx->cam = NULL;
-		mlx->image = ft_mlx_image_new(mlx->mlx_ptr, mlx->width, mlx->height);
-	}
 	if (mlx == NULL)
 		ft_perror("ft_mlx_new", ENOMEM);
+	mlx->width = width;
+	mlx->height = height;
 	return (mlx);
+}
+
+/* Initialise a minilibx window */
+void	ft_mlx_init(t_mlx *mlx)
+{
+	mlx->mlx_ptr = mlx_init();
+	mlx->win_ptr = mlx_new_window(
+			mlx->mlx_ptr, mlx->width, mlx->height, "MINIRT");
 }
 
 /* Deletes t_mlx struct from memory and exit program */
