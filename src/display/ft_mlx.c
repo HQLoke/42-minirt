@@ -41,7 +41,6 @@ int	ft_mlx_del(t_mlx *mlx)
 	ft_lstclear(&mlx->lights, (void (*)(void *)) ft_light_del);
 	ft_lstclear(&mlx->objs, (void (*)(void *)) ft_obj_del);
 	ft_camera_del(mlx->cam);
-	ft_image8_del(mlx->img8);
 	ft_mlx_image_del(mlx->image);
 	free(mlx->mlx_ptr);
 	free(mlx);

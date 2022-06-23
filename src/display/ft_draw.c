@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hloke <hloke@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:25:04 by hloke             #+#    #+#             */
-/*   Updated: 2022/06/23 11:38:59 by hloke            ###   ########.fr       */
+/*   Updated: 2022/06/23 23:32:11 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,27 @@ static void	ft_pixel_draw(t_image *image, int x, int y, int color)
 	*((unsigned int *) dst) = color;
 }
 
-void	ft_draw_image(t_mlx *mlx)
+/* Draw a t_img8 image onto a t_image image. */
+void	ft_draw_image(t_image *image, t_img *img)
 {
 	size_t	i;
 	size_t	j;
 	int		color;
 	t_vec	*vec;
 
-	if (mlx->img8 == NULL)
+	if (img == NULL)
 		ft_perror("ft_draw_image: Image8 file is not found", EINVAL);
 	i = -1;
-	while (++i < mlx->img8->row)
+	while (++i < img->row)
 	{
 		j = -1;
-		while (++j < mlx->img8->col)
+		while (++j < img->col)
 		{
-			vec = ft_image8_get(mlx->img8, i, j);
+			vec = ft_image_get(img, i, j);
 			if (vec == NULL)
 				ft_perror("ft_draw_img8: Invalid color data", EINVAL);
 			color = ft_convert_rgb(vec);
-			ft_pixel_draw(mlx->image, j, i, color);
+			ft_pixel_draw(image, j, i, color);
 			ft_vec_del(vec);
 		}
 	}
