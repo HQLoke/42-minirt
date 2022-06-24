@@ -6,7 +6,7 @@
 /*   By: weng <weng@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:29:53 by weng              #+#    #+#             */
-/*   Updated: 2022/06/24 02:03:23 by weng             ###   ########.fr       */
+/*   Updated: 2022/06/24 11:07:10 by weng             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,21 @@ void	*ft_render_aux(void *arg_)
 	t_arg	*arg;
 	t_ray	*ray;
 	t_vec	*colour;
+	int		reso_x;
 	int		i;
-	int		j;
 
 	arg = arg_;
-	i = arg->scene->cam->reso_y / PROCESSOR_COUNT * arg->k++ - 1;
-	while (++i < arg->scene->cam->reso_y / PROCESSOR_COUNT * arg->k)
+	reso_x = arg->scene->cam->reso_x;
+	i = arg->k;
+	while (i < reso_x * arg->scene->cam->reso_y)
 	{
-		j = -1;
-		while (++j < arg->scene->cam->reso_x)
-		{
-			ray = ft_camera_ray(arg->scene->cam, j, i);
-			colour = ft_trace(ray,
-					arg->scene->ambient, arg->scene->lights, arg->scene->objs);
-			ft_image_set(arg->image, i, j, colour);
-			ft_ray_del(ray);
-			ft_vec_del(colour);
-		}
+		ray = ft_camera_ray(arg->scene->cam, i % reso_x, i / reso_x);
+		colour = ft_trace(ray,
+				arg->scene->ambient, arg->scene->lights, arg->scene->objs);
+		ft_image_set(arg->image, i / reso_x, i % reso_x, colour);
+		ft_ray_del(ray);
+		ft_vec_del(colour);
+		i += PROCESSOR_COUNT;
 	}
 	return (NULL);
 }
